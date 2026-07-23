@@ -1,0 +1,82 @@
+PREETI KENNEDY - FOUNDER WEBSITE
+Handover pack. Built 23 July 2026.
+===================================================================
+
+WHAT THIS IS
+A complete, static website. 51 files, 3.5 MB. No build step, no
+database, no server-side code, no dependencies to install.
+It is plain HTML/CSS/JavaScript, so it will run on any web host.
+
+-------------------------------------------------------------------
+HOW TO PUT IT LIVE (pick ONE)
+-------------------------------------------------------------------
+
+OPTION A - Existing host / cPanel (most likely)
+  1. Upload EVERYTHING in this folder into the site's web root
+     (usually public_html/ or www/).
+  2. Keep the folder structure exactly as-is. Do not move files
+     out of images/, insights/, press-assets/ or uploads/.
+  3. Done. index.html is the home page.
+
+OPTION B - Netlify / Vercel / Cloudflare Pages (free, fastest)
+  1. Log in, choose "deploy manually" / drag-and-drop.
+  2. Drag this whole folder in.
+  3. Point the domain at it. Done.
+
+OPTION C - WordPress site already on the domain
+  This is a standalone site, not a WordPress theme. Either
+  (a) put it on a subdomain (e.g. preetikennedy.com), or
+  (b) upload to a subfolder and link to it.
+  Do NOT try to paste it into a page builder - the layout and
+  scroll animations will break.
+
+-------------------------------------------------------------------
+BEFORE GOING LIVE - PLEASE CHECK
+-------------------------------------------------------------------
+1. Serve over HTTPS (any modern host does this by default).
+2. Fonts load from Google Fonts, so the server needs normal
+   outbound internet access. Nothing to configure.
+3. Test on a real phone as well as desktop. The site is built
+   mobile-first and was verified at 375px, 390px and 1440px:
+   no sideways scrolling, all tap targets 40px+.
+
+-------------------------------------------------------------------
+ONE THING THAT IS NOT CONNECTED YET
+-------------------------------------------------------------------
+THE NEWSLETTER FORM (the "Monthly Note" section near the bottom)
+It validates the name and email and shows a success message, but it
+does not yet send the details anywhere.
+
+To connect it, open index.html, search for:
+
+    var NEWSLETTER_ENDPOINT = '';
+
+and put the form URL from your email provider between the quotes
+(Mailchimp, Kit/ConvertKit, Formspree, Campaign Monitor - any of
+them will give you one). It POSTs JSON: { name, email }.
+
+Until that is filled in, subscribers are NOT being captured.
+Either connect it or hide the section before launch.
+
+-------------------------------------------------------------------
+FILE MAP
+-------------------------------------------------------------------
+  index.html              The entire home page (all sections + styles + scripts)
+  insights/               20 article pages, one per Founder Insight essay
+  images/insights/        The 20 magazine-style article covers
+  images/                 Book cover
+  uploads/                Hero photograph
+  press-assets/logos/     8 publication logos (Featured In section)
+
+-------------------------------------------------------------------
+KNOWN GAPS (content, not bugs)
+-------------------------------------------------------------------
+- The American Reporter has no logo file, so that press card shows
+  the publication name in type instead. Drop
+  press-assets/logos/the-american-reporter.png in to fix.
+- No Filter Club and Brand Vantage Academy show "Coming soon"
+  instead of a website link, because those sites do not exist yet.
+- The book's button links to LinkedIn. Swap it for a real
+  pre-order/purchase link when there is one.
+
+Questions: Chad Jacob, Shopa Marketing.

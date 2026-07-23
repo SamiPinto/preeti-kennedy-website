@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Preeti Kennedy — Founder, Operator, Working Mum</title>
+<meta name="description" content="Preeti Kennedy — founder, operator and working mum. A founder's notebook: what building five companies and raising kids at the same time has actually taught me.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; overflow-x: clip; }
+  body { margin: 0; background: #0C0B09; color: #EDE7DB; font-family: 'Outfit', sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: #C6A15B; }
+  ::selection { background: #C6A15B; color: #0C0B09; }
+  @keyframes heroRise { from { opacity: 0; transform: translateY(70px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes heroFade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes kenBurns { from { transform: scale(1.08); } to { transform: scale(1); } }
+  @keyframes scrollPulse { 0%, 100% { transform: translateY(0); opacity: 0.9; } 50% { transform: translateY(10px); opacity: 0.3; } }
+  @keyframes spinSlow { to { transform: rotate(360deg); } }
+
+  /* ===== Press cut-out figures (Featured In reel) — all sizes ===== */
+  .rf {
+    flex: 0 0 auto;
+    align-self: flex-end;
+    width: auto;
+    height: clamp(44vh, calc(6vh + 26vw), 56vh);
+    filter: contrast(1.02);
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    .rf { height: clamp(46vh, calc(10vh + 26vw), 56vh); }
+  }
+
+
+  /* ===== Mobile menu ===== */
+  #navToggle { display: none; }
+  #navMenu { position: fixed; inset: 0; z-index: 75; background: rgba(12,11,9,0.97); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; opacity: 0; pointer-events: none; transition: opacity 0.4s ease; }
+  #navMenu.is-open { opacity: 1; pointer-events: auto; }
+  #navMenu a { font-family: 'Cormorant Garamond', serif; font-size: 34px; font-weight: 300; color: #EDE7DB; letter-spacing: 0.02em; padding: 12px 18px; }
+  #navMenu a:active, #navMenu a:hover { color: #C6A15B; }
+  @media (min-width: 768px) { #navMenu { display: none; } }
+
+  /* ===== The Book ===== */
+  .bk-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: clamp(44px, 6vw, 96px); align-items: center; }
+  .bk-cover { position: relative; justify-self: start; width: 100%; max-width: 380px; }
+  .bk-cover img { width: 100%; height: auto; display: block; box-shadow: 0 48px 90px -40px rgba(0,0,0,0.95); }
+  .bk-cover::after { content: ''; position: absolute; inset: 14px; box-shadow: inset 0 0 0 1px rgba(198,161,91,0.5); pointer-events: none; }
+  .bk-kicker { font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #C6A15B; margin-bottom: 26px; }
+  .bk-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(42px, 5vw, 78px); line-height: 1.02; letter-spacing: 0.005em; margin-bottom: 26px; text-wrap: balance; }
+  .bk-sub { font-size: 17px; font-weight: 200; line-height: 1.75; color: rgba(237,231,219,0.7); max-width: 520px; margin-bottom: 38px; }
+  .bk-author { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 400; color: #EDE7DB; letter-spacing: 0.06em; }
+  .bk-tagline { font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: #C6A15B; margin-top: 10px; margin-bottom: 42px; }
+  .bk-cta { display: inline-block; border: 1px solid rgba(198,161,91,0.7); color: #C6A15B; padding: 18px 44px; border-radius: 999px; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; transition: background 0.35s ease, color 0.35s ease; }
+  @media (max-width: 900px) {
+    .bk-grid { grid-template-columns: 1fr; gap: 40px; justify-items: start; }
+    .bk-cover { max-width: 260px; }
+  }
+
+  /* ===== Companies fable: white brand-logo card ===== */
+  /* Warm ivory (the site's own light neutral) reads far more premium than stark white
+     against the near-black page, and keeps colour logos legible. Gold hairline + deep
+     soft shadow match the card language used elsewhere on the page. */
+
+  .hero-li { display: flex; align-items: center; justify-content: center; gap: 12px; width: fit-content; margin: 72px auto 0;
+             border: 1px solid rgba(198,161,91,0.75); color: #C6A15B; padding: 18px 46px; border-radius: 999px;
+             font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; text-decoration: none;
+             transition: background 0.35s ease, color 0.35s ease; }
+  .hero-li-ico { width: 17px; height: 17px; flex: 0 0 auto; display: block; }
+  @media (max-width: 767px) { .hero-li { margin: 40px 0 0; padding: 16px 34px; } }
+  /* ===== Founder Story reel cards (text-on-image) ===== */
+  [data-fable-visit].is-soon { border-color: rgba(237,231,219,0.28); color: rgba(237,231,219,0.5); cursor: default; pointer-events: none; }
+  /* ===== Featured In: small, logo-forward press cards ===== */
+  .pc-intro { flex: 0 0 auto; width: min(30vw, 380px); }
+  .pc-intro-h { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(32px, 3.2vw, 48px); line-height: 1.18; text-wrap: balance; }
+  .pc-intro-p { font-size: 14px; font-weight: 200; line-height: 1.8; color: rgba(237,231,219,0.6); margin: 24px 0 0; }
+  .pc { position: relative; flex: 0 0 auto; display: flex; flex-direction: column;
+        width: min(23vw, 300px); height: clamp(310px, 37vh, 380px); background: #12100D;
+        border: 1px solid rgba(237,231,219,0.14); box-sizing: border-box; text-decoration: none;
+        transition: background 0.4s ease, transform 0.5s cubic-bezier(0.2,0.6,0.2,1), border-color 0.4s ease; }
+  .pc:hover { background: #17130E; transform: translateY(-7px); border-color: rgba(198,161,91,0.4); }
+  .pc-top { display: block; }
+  /* the logo is the hero of the card - rendered as a clean white mark */
+  /* real publication colours, sitting on a light plate so dark marks read on the dark card */
+  /* full-width masthead band - the logo reads as part of the card, not a pasted patch */
+  .pc-band { position: relative; display: flex; align-items: center; justify-content: center; background: #F4F1EA;
+             min-height: 100px; padding: 18px 22px; box-sizing: border-box; }
+  .pc-band::after { content: ''; position: absolute; inset: 9px; box-shadow: inset 0 0 0 1px rgba(166,128,58,0.5); pointer-events: none; }
+  .pc-body { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 22px; padding: 24px 24px; }
+  .pc-logo { display: block; width: auto; height: auto; max-width: 150px; max-height: 48px; object-fit: contain; position: relative; z-index: 1; }
+  .pc-name { display: none; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 23px; line-height: 1.15; color: #14110d; text-align: center; }
+  .pc-title { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: 18px;
+              line-height: 1.42; color: rgba(237,231,219,0.85); display: -webkit-box; -webkit-line-clamp: 4;
+              -webkit-box-orient: vertical; overflow: hidden; }
+  .pc-cta { font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: #C6A15B; }
+  /* big outline numeral, sitting just outside the card - as it was before */
+  .pc-num { position: absolute; bottom: -40px; right: -24px; font-family: 'Cormorant Garamond', serif; font-size: 104px;
+            font-weight: 300; line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(198,161,91,0.65);
+            pointer-events: none; user-select: none; }
+  /* staggered rhythm - one slightly up, the next slightly down */
+  .pc:nth-of-type(4n+1) { margin-top: -13vh; }
+  .pc:nth-of-type(4n+2) { margin-top: 11vh; }
+  .pc:nth-of-type(4n+3) { margin-top: -5vh; }
+  .pc:nth-of-type(4n+4) { margin-top: 15vh; }
+  @media (max-width: 767px) {
+    .pc-intro { width: 100% !important; max-width: 420px; }
+    .pc { width: 100% !important; max-width: 420px !important; height: auto !important; min-height: 230px !important; }
+    .pc-logo { max-width: 140px; max-height: 44px; }
+    .pc { margin-top: 0 !important; }
+    .pc-num { display: none !important; }
+  }
+
+  /* ===== Monthly newsletter signup ===== */
+  .nl { border-top: 1px solid rgba(237,231,219,0.12); padding: 110px 64px; }
+  .nl-wrap { max-width: 900px; margin: 0 auto; text-align: center; }
+  .nl-kicker { font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #C6A15B; margin-bottom: 24px; }
+  .nl-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(34px, 3.6vw, 54px); line-height: 1.1; margin-bottom: 20px; text-wrap: balance; }
+  .nl-sub { font-size: 15px; font-weight: 200; line-height: 1.75; color: rgba(237,231,219,0.6); max-width: 520px; margin: 0 auto 44px; }
+  .nl-form { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .nl-form input { font-family: 'Outfit', sans-serif; font-size: 13px; color: #EDE7DB; background: transparent;
+    border: 1px solid rgba(237,231,219,0.22); border-radius: 999px; padding: 16px 24px; width: 240px; outline: none;
+    transition: border-color 0.3s ease; }
+  .nl-form input::placeholder { color: rgba(237,231,219,0.35); letter-spacing: 0.08em; }
+  .nl-form input:focus { border-color: rgba(198,161,91,0.8); }
+  .nl-form button { font-family: 'Outfit', sans-serif; cursor: pointer; background: #C6A15B; color: #0C0B09; border: 0;
+    border-radius: 999px; padding: 17px 40px; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+    transition: background 0.35s ease; }
+  .nl-form button:hover { background: #EDE7DB; }
+  .nl-note { margin-top: 20px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(237,231,219,0.4); min-height: 16px; }
+  .nl-note.err { color: #d98c8c; }
+  .nl-note.ok { color: #C6A15B; }
+  @media (max-width: 767px) {
+    .nl { padding: 84px 22px; }
+    .nl-form input { width: 100%; max-width: 320px; }
+    .nl-form button { width: 100%; max-width: 320px; }
+  }
+
+  /* =================================================================
+     MOBILE-FIRST RESPONSIVE LAYER (added 17 Jul 2026)
+     Page is inline-styled, so overrides use !important + targeted
+     attribute/id selectors. Scoped to <=767px unless noted.
+     ================================================================= */
+  @media (max-width: 767px) {
+    body { overflow-x: hidden; }
+    img { max-width: 100%; }
+
+    /* Nav: trim padding, hide the link cluster (logo stays, page is a scroll journey) */
+    [style*="z-index: 50"] { padding: 16px 20px !important; }
+    [style*="gap: 44px"] { display: none !important; }
+
+    /* Hero: single column, image below text; hide the spinning badge (overflows) */
+    [data-screen-label="Hero"] { grid-template-columns: 1fr !important; padding: 112px 22px 60px !important; min-height: auto !important; }
+    [data-screen-label="Hero"] > div:nth-child(2) { width: min(74vw, 300px) !important; justify-self: start !important; margin-top: 30px !important; }
+    [style*="animation: spinSlow"] { display: none !important; }
+
+    /* Section side padding + tighter vertical rhythm */
+    [data-screen-label="Manifesto"] { padding: 130px 22px 90px !important; }
+    #pillars { padding: 0 22px 90px !important; }
+    #companies { padding: 92px 22px 84px !important; }
+    #book { padding: 92px 22px 84px !important; }
+    #contact { padding: 92px 22px 48px !important; }
+
+    /* Content Pillars: tighten row grid, drop the empty spacer column */
+    #pillars [data-pillar] > div { grid-template-columns: 32px 1fr auto !important; gap: 14px !important; }
+    #pillars [data-pillar-body] > div { grid-template-columns: 0 1fr !important; gap: 0 !important; }
+
+    /* Companies "Fable": stack chapter index above the stage */
+    #companies [style*="minmax(280px"] { grid-template-columns: 1fr !important; gap: 44px !important; }
+
+    /* Founder Story: stack label above each paragraph */
+
+    /* ---- Horizontal reels become clean vertical stacks (no scroll-jack / sticky) ---- */
+    [data-reel-scene] { height: auto !important; }
+    [data-reel-scene] > div { position: static !important; height: auto !important; overflow: visible !important; }
+    [data-reel-track] { position: static !important; flex-direction: column !important; align-items: center !important; height: auto !important; width: auto !important; transform: none !important; gap: 28px !important; padding: 24px 22px !important; }
+    /* hide the absolute reel labels, keep the track itself */
+    [data-reel-scene] > div > div[style*="position: absolute"]:not([data-reel-track]) { display: none !important; }
+
+    /* Featured In: full-width cards, reset stagger, hide decorative overflow bits */
+
+    /* Behind-the-Story reel: stacked images */
+    [data-fable-stage] { grid-template-columns: 1fr !important; gap: 26px !important; justify-items: start !important; }
+
+    /* Press cut-outs on mobile: modest, centered above each card, never taller than the card */
+    .rf { height: clamp(210px, 34vh, 300px) !important; max-width: 62vw !important; align-self: center !important; }
+
+    /* --- mobile menu button (replaces the hidden desktop link row) --- */
+    #navToggle { display: flex !important; flex-direction: column; align-items: flex-end; justify-content: center; gap: 7px; width: 44px; height: 44px; padding: 0; background: none; border: 0; cursor: pointer; }
+    #navToggle span { display: block; height: 1px; background: #C6A15B; transition: transform 0.35s ease, width 0.3s ease; }
+    #navToggle span:nth-child(1) { width: 26px; }
+    #navToggle span:nth-child(2) { width: 17px; }
+    #navToggle.is-open span:nth-child(1) { transform: translateY(4px) rotate(45deg); width: 24px; }
+    #navToggle.is-open span:nth-child(2) { transform: translateY(-4px) rotate(-45deg); width: 24px; }
+
+    /* --- type scale: hero headline was overflowing at 56px --- */
+    /* grid/flex items default to min-width:auto and refuse to shrink -> blowout. */
+    [data-screen-label="Hero"], [data-screen-label="Hero"] > div { min-width: 0 !important; }
+    [data-screen-label="Hero"] > div > * { min-width: 0 !important; max-width: 100% !important; }
+    /* consistent vertical rhythm: inline padding was beating the stylesheet here */
+    #insights { padding: 92px 0 100px !important; }
+
+    /* hero CTAs: two pills don't fit side-by-side on a phone */
+    [data-screen-label="Hero"] div[style*="gap: 20px"] { flex-wrap: wrap !important; gap: 12px !important; margin-top: 36px !important; }
+    [data-screen-label="Hero"] div[style*="gap: 20px"] > a { padding: 16px 30px !important; }
+    [data-screen-label="Hero"] div[style*="clamp(56px"] { font-size: 40px !important; line-height: 1.06 !important; }
+    [data-screen-label="Hero"] div[style*="letter-spacing: 0.4em"] { letter-spacing: 0.26em !important; }
+    #contact div[style*="clamp(64px"] { font-size: 50px !important; line-height: 1.06 !important; }
+
+    /* --- tap targets: logo + footer links were 14-29px tall --- */
+    [style*="z-index: 50"] > a:first-child { display: inline-flex; align-items: center; min-height: 44px; }
+    #contact div[style*="border-top"] a { padding: 15px 0 !important; }
+
+  }
+</style>
+</head>
+<body>
+
+<!-- Film grain -->
+<div style="position: fixed; inset: 0; z-index: 60; pointer-events: none; opacity: 0.35; mix-blend-mode: overlay; background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E&quot;);"></div>
+
+<!-- Preloader -->
+<div data-preloader style="position: fixed; inset: 0; z-index: 100; background: #0C0B09; display: flex; align-items: center; justify-content: center; transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1);">
+  <div style="text-align: center;">
+    <div data-preloader-name style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(40px, 5vw, 72px); color: #EDE7DB; overflow: hidden;"><span style="display: inline-block; opacity: 0; transform: translateY(100%); transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.2,0.6,0.2,1);">Preeti <em style="color: #C6A15B;">Kennedy</em></span></div>
+    <div data-preloader-count style="font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(198,161,91,0.8); margin-top: 28px;">0</div>
+  </div>
+</div>
+
+<!-- Scroll progress -->
+<div data-progress style="position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: linear-gradient(90deg, #C6A15B, #EDE7DB); z-index: 70;"></div>
+
+<!-- Cursor ring (desktop) -->
+<div data-cursor style="position: fixed; top: 0; left: 0; width: 44px; height: 44px; border: 1px solid rgba(198,161,91,0.85); border-radius: 50%; z-index: 80; pointer-events: none; transform: translate(-100px, -100px); transition: width 0.25s ease, height 0.25s ease, opacity 0.25s ease; opacity: 0; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 15px; letter-spacing: 0.06em; color: #C6A15B; background: rgba(12,11,9,0.12);">PK</div>
+
+<!-- Nav -->
+<div style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; justify-content: space-between; align-items: center; padding: 28px 64px; background: linear-gradient(rgba(12,11,9,0.85), rgba(12,11,9,0)); backdrop-filter: blur(2px);">
+  <a href="#top" style="font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400; letter-spacing: 0.16em;">P<span style="color: #C6A15B;">·</span>K</a>
+  <div style="display: flex; gap: 44px; font-size: 11px; font-weight: 300; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(237,231,219,0.7);">
+    <a href="#pillars">Topics</a>
+    <a href="#insights">Insights</a>
+    <a href="#companies">Companies</a>
+    <a href="#book" style="color: #C6A15B;">Book</a>
+  </div>
+  <button id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+</div>
+
+<!-- Mobile menu overlay -->
+<nav id="navMenu" aria-hidden="true">
+  <a href="#pillars">Topics</a>
+  <a href="#insights">Insights</a>
+  <a href="#companies">Companies</a>
+  <a href="#book">Book</a>
+</nav>
+
+<!-- 1. Hero -->
+<div id="top" data-screen-label="Hero" style="position: relative; min-height: 100vh; display: grid; grid-template-columns: 1.15fr 0.85fr; align-items: center; overflow: hidden; padding: 140px 64px 80px;">
+  <div style="position: relative; z-index: 2;">
+    <div style="font-size: 12px; font-weight: 300; letter-spacing: 0.4em; text-transform: uppercase; color: #C6A15B; margin-bottom: 44px; opacity: 0; animation: heroRise 1.1s cubic-bezier(0.2, 0.6, 0.2, 1) 0.15s forwards;">Preeti Kennedy — Founder · Operator · Working Mum</div>
+    <div style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(56px, 6.4vw, 104px); line-height: 1.02; letter-spacing: 0.005em;">
+      <div style="overflow: hidden;"><div style="opacity: 0; animation: heroRise 1.2s cubic-bezier(0.2, 0.6, 0.2, 1) 0.3s forwards;">Building businesses.</div></div>
+      <div style="overflow: hidden;"><div style="opacity: 0; animation: heroRise 1.2s cubic-bezier(0.2, 0.6, 0.2, 1) 0.45s forwards;">Raising kids.</div></div>
+      <div style="overflow: hidden;"><div style="opacity: 0; animation: heroRise 1.2s cubic-bezier(0.2, 0.6, 0.2, 1) 0.6s forwards;">Sharing what I've learned <em style="color: #C6A15B;">along the way.</em></div></div>
+    </div>
+    <p style="font-size: 17px; font-weight: 200; line-height: 1.8; color: rgba(237,231,219,0.65); max-width: 480px; margin: 44px 0 0; opacity: 0; animation: heroFade 1.4s ease 1s forwards;">I walked into my first agency at seventeen. Twenty-three years, five companies and a family later, I've learned most of my lessons the hard way. This is where I write them down — the observations, not the highlight reel.</p>
+    <div style="display: flex; gap: 20px; margin-top: 48px; opacity: 0; animation: heroFade 1.4s ease 1.2s forwards;">
+      <a href="#insights" data-magnetic style="display: inline-block; background: #C6A15B; color: #0C0B09; padding: 18px 44px; border-radius: 999px; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; transition: background 0.35s ease;" style-hover="background: #EDE7DB;">Read Insights</a>
+      <a href="#companies" data-magnetic style="display: inline-block; border: 1px solid rgba(198,161,91,0.7); color: #C6A15B; padding: 18px 44px; border-radius: 999px; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; transition: background 0.35s ease, color 0.35s ease;" style-hover="background: #C6A15B; color: #0C0B09;">Explore Companies</a>
+    </div>
+  </div>
+  <div style="position: relative; z-index: 1; justify-self: center; width: min(44vw, 620px); opacity: 0; animation: heroFade 1.6s ease 0.7s forwards;">
+    <div class="hero-media" style="position: relative;">
+    <div style="overflow: hidden;">
+      <img src="uploads/hero-preeti.jpg" alt="Preeti Kennedy" style="width: 100%; height: min(66vh, 640px); object-fit: cover; object-position: 50% 10%; display: block; filter: contrast(1.03); animation: kenBurns 2.4s cubic-bezier(0.2, 0.6, 0.2, 1) forwards;">
+    </div>
+    <div style="position: absolute; inset: 18px; box-shadow: inset 0 0 0 1px rgba(198,161,91,0.45); pointer-events: none;"></div>
+    <div style="position: absolute; left: -70px; bottom: -50px; width: 140px; height: 140px; animation: spinSlow 22s linear infinite;">
+      <svg viewBox="0 0 140 140" style="width: 100%; height: 100%; display: block;">
+        <defs><path id="circlePath" d="M 70,70 m -52,0 a 52,52 0 1,1 104,0 a 52,52 0 1,1 -104,0"></path></defs>
+        <text style="font-family: Outfit, sans-serif; font-size: 10.5px; letter-spacing: 3.4px; fill: #C6A15B; text-transform: uppercase;"><textPath href="#circlePath">Founder · Operator · Mum · Melbourne · </textPath></text>
+      </svg>
+      <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: #EDE7DB;">pk</div>
+    </div>
+    </div>
+    <a class="hero-li" href="https://au.linkedin.com/in/preetikennedy" target="_blank" rel="noopener" data-magnetic aria-label="Connect with Preeti Kennedy on LinkedIn" style-hover="background: #C6A15B; color: #0C0B09;"><svg class="hero-li-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.24 8.02h4.48V24H.24V8.02zM8.34 8.02h4.29v2.18h.06c.6-1.13 2.06-2.32 4.24-2.32 4.54 0 5.38 2.99 5.38 6.88V24h-4.48v-6.35c0-1.51-.03-3.46-2.11-3.46-2.11 0-2.43 1.65-2.43 3.35V24H8.34V8.02z"/></svg><span>Connect on LinkedIn</span></a>
+  </div>
+  <div style="position: absolute; bottom: 36px; left: 64px; display: flex; align-items: center; gap: 14px; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(237,231,219,0.5); animation: scrollPulse 2.4s ease-in-out infinite;">
+    <span style="display: block; width: 1px; height: 40px; background: linear-gradient(#C6A15B, transparent);"></span> Scroll
+  </div>
+</div>
+
+<!-- 2. Featured In — pinned horizontal gallery of press features -->
+<div data-reel-scene data-screen-label="Featured In" style="height: 430vh; position: relative; border-top: 1px solid rgba(237,231,219,0.12);">
+  <div style="position: sticky; top: 0; height: 100vh; overflow: hidden;">
+    <div style="position: absolute; top: 48px; left: 64px; font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #C6A15B; z-index: 3;">Featured In</div>
+    <div style="position: absolute; top: 48px; right: 64px; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(237,231,219,0.4); z-index: 3;">Keep scrolling &rarr;</div>
+    <div data-reel-track style="position: absolute; top: 0; left: 0; height: 100vh; display: flex; align-items: center; gap: 4vw; padding: 0 9vw; will-change: transform;">
+
+      <div class="pc-intro">
+        <div class="pc-intro-h">The press found the story before I told it <em style="color: #C6A15B;">myself.</em></div>
+        <p class="pc-intro-p">Nine features across international publications &mdash; and the shelf keeps filling up.</p>
+      </div>
+
+      <a class="pc" href="https://www.digitaljournal.com/article/why-preeti-kennedy-believes-loyalty-is-a-business-strategy/" target="_blank" rel="noopener">
+        <span class="pc-band"><img class="pc-logo" src="press-assets/logos/digital-journal.png" alt="Digital Journal" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="pc-name">Digital Journal</span></span>
+        <span class="pc-body">
+          <span class="pc-title">Why Preeti Kennedy Believes Loyalty Is a Business Strategy</span>
+          <span class="pc-cta">Read the feature &#8599;</span>
+        </span>
+        <span class="pc-num">01</span>
+      </a>
+      <a class="pc" href="https://www.theamericanreporter.com/2026/07/04/why-this-global-founder-thinks-modern-business-has-forgotten-its-people/" target="_blank" rel="noopener">
+        <span class="pc-band"><span class="pc-name" style="display:block;">The American Reporter</span></span>
+        <span class="pc-body">
+          <span class="pc-title">Why this global founder thinks modern business has forgotten its people</span>
+          <span class="pc-cta">Read the feature &#8599;</span>
+        </span>
+        <span class="pc-num">02</span>
+      </a>
+      <a class="pc" href="https://usinsider.com/preeti-kennedy-is-redefining-what-modern-ambition-looks-like/" target="_blank" rel="noopener">
+        <span class="pc-band"><img class="pc-logo" src="press-assets/logos/us-insider.png" alt="US Insider" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="pc-name">US Insider</span></span>
+        <span class="pc-body">
+          <span class="pc-title">Preeti Kennedy Is Redefining What Modern Ambition Looks Like</span>
+          <span class="pc-cta">Read the feature &#8599;</span>
+        </span>
+        <span class="pc-num">03</span>
+      </a>
+      <a class="pc" href="https://www.usatoday.com/story/special/contributor-content/2026/01/23/why-global-marketing-agencies-are-rethinking-outsourcing-and-what-theyre-looking-for-instead/88323922007/" target="_blank" rel="noopener">
+        <span class="pc-band"><img class="pc-logo" src="press-assets/logos/usa-today.png" alt="USA Today" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="pc-name">USA Today</span></span>
+        <span class="pc-body">
+          <span class="pc-title">Why Global Marketing Agencies Are Rethinking Outsourcing — And What They&#x27;re Looking For Instead</span>
+          <span class="pc-cta">Read the feature &#8599;</span>
+        </span>
+        <span class="pc-num">04</span>
+      </a>
+      <a class="pc" href="https://theentrepreneur-times.com/how-the-smartest-marketing-agencies-are-scaling-without-hiring-more-people/" target="_blank" rel="noopener">
+        <span class="pc-band"><img class="pc-logo" src="press-assets/logos/the-entrepreneur-times.png" alt="The Entrepreneur Times" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="pc-name">The Entrepreneur Times</span></span>
+        <span class="pc-body">
+          <span class="pc-title">How the Smartest Marketing Agencies Are Scaling Without Hiring More People</span>
+          <span class="pc-cta">Read the feature &#8599;</span>
+        </span>
+        <span class="pc-num">05</span>
+      </a>
+      <a class="pc" href="https://theguardian.com.au/recommended/partner-content/2026/03/06/growing-with-purpose-shopa-marketings-strengthened-position-in-new-zealand/" target="_blank" rel="noopener">
+        <span class="pc-band"><img class="pc-logo" src="press-assets/logos/the-guardian.png" alt="The Guardian" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="pc-name">The Guardian</span></span>
+        <span class="pc-body">
+          <span class="pc-title">Growing with Purpose: Shopa Marketing&#x27;s Strengthened Position in New Zealand</span>
+          <span class="pc-cta">Read the feature &#8599;</span>
+        </span>
+        <span class="pc-num">06</span>
+      </a>
+      <a class="pc" href="https://markets.businessinsider.com/news/stocks/shopa-marketing-introduces-a-new-multi-platform-advertising-model-designed-exclusively-for-smes-across-australia-and-new-zealand-1035614816" target="_blank" rel="noopener">
+        <span class="pc-band"><img class="pc-logo" src="press-assets/logos/business-insider.png" alt="Business Insider" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="pc-name">Business Insider</span></span>
+        <span class="pc-body">
+          <span class="pc-title">Shopa Marketing Introduces a New Multi-Platform Advertising Model Designed Exclusively for SMEs Across Australia and New Zealand</span>
+          <span class="pc-cta">Read the feature &#8599;</span>
+        </span>
+        <span class="pc-num">07</span>
+      </a>
+      <a class="pc" href="https://apnews.com/press-release/marketersmedia/shopa-marketing-strengthens-position-as-go-to-advertising-partner-for-smes-across-australia-and-new-zealand-86c3162d8575a96ebff6b5981d7fb529" target="_blank" rel="noopener">
+        <span class="pc-band"><img class="pc-logo" src="press-assets/logos/ap-news.png" alt="AP News" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="pc-name">AP News</span></span>
+        <span class="pc-body">
+          <span class="pc-title">Shopa Marketing Strengthens Position as Go-To Advertising Partner for SMEs Across Australia and New Zealand</span>
+          <span class="pc-cta">Read the feature &#8599;</span>
+        </span>
+        <span class="pc-num">08</span>
+      </a>
+      <a class="pc" href="https://ceoweekly.com/making-marketing-human-again-how-one-founder-is-reshaping-sme-advertising-across-australia-and-new-zealand/" target="_blank" rel="noopener">
+        <span class="pc-band"><img class="pc-logo" src="press-assets/logos/ceo-weekly.png" alt="CEO Weekly" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><span class="pc-name">CEO Weekly</span></span>
+        <span class="pc-body">
+          <span class="pc-title">Making Marketing Human Again: How One Founder Is Reshaping SME Advertising Across Australia and New Zealand</span>
+          <span class="pc-cta">Read the feature &#8599;</span>
+        </span>
+        <span class="pc-num">09</span>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<!-- Manifesto -->
+<div data-screen-label="Manifesto" style="padding: 180px 64px 120px; max-width: 1120px; margin: 0 auto;">
+  <div data-reveal style="font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #C6A15B; text-align: center; margin-bottom: 48px;">Why this site exists</div>
+  <div data-reveal data-delay="120" data-word-scrub style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(21px, 2.15vw, 31px); line-height: 1.5; text-align: center; text-wrap: balance;">You won't find a résumé here, and I'm not selling you anything. This is my notebook — what building companies and raising kids at the same time has actually taught me. <em style="color: #C6A15B;">Trust first. Everything else follows.</em></div>
+</div>
+
+<!-- 3. Content Pillars -->
+<div id="pillars" data-screen-label="Content Pillars" style="padding: 0 64px 170px; position: relative; overflow: hidden;">
+  <!-- Giant ghost numeral tracks the active pillar -->
+  <div data-pillar-num style="position: absolute; right: -2vw; top: 50%; transform: translateY(-50%); font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 34vw; line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(198,161,91,0.22); pointer-events: none; user-select: none; transition: opacity 0.4s ease; z-index: 0;">01</div>
+
+  <div style="position: relative; z-index: 1;">
+    <div data-reveal style="font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #C6A15B; margin-bottom: 24px;">What I write &amp; speak about</div>
+    <div data-reveal data-delay="80" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; margin-bottom: 88px;">
+      <div style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(40px, 4.2vw, 64px); line-height: 1.1; max-width: 700px; text-wrap: balance;">The six things I can't stop <em style="color: #C6A15B;">talking about.</em></div>
+      <div style="font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(237,231,219,0.4); padding-bottom: 12px;">Hover to open ↓</div>
+    </div>
+
+    <div data-reveal style="border-top: 1px solid rgba(237,231,219,0.12);">
+
+      <div data-pillar style="border-bottom: 1px solid rgba(237,231,219,0.12); cursor: pointer;">
+        <div style="display: grid; grid-template-columns: 90px 1fr auto; gap: 40px; align-items: baseline; padding: 34px 0;">
+          <span style="font-size: 12px; letter-spacing: 0.3em; color: rgba(198,161,91,0.7);">01</span>
+          <span data-pillar-title style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(34px, 3.6vw, 58px); line-height: 1.05; transition: color 0.35s ease, transform 0.45s cubic-bezier(0.2,0.6,0.2,1); transform-origin: left;">Entrepreneurship</span>
+          <span data-pillar-mark style="font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 300; color: rgba(198,161,91,0.7); transition: transform 0.4s ease;">+</span>
+        </div>
+        <div data-pillar-body style="overflow: hidden; max-height: 0; transition: max-height 0.6s cubic-bezier(0.2,0.6,0.2,1), opacity 0.5s ease; opacity: 0;">
+          <div style="display: grid; grid-template-columns: 90px 1fr; gap: 40px; padding: 0 0 44px;">
+            <span></span>
+            <div style="max-width: 640px;">
+              <p style="font-size: 16px; font-weight: 200; line-height: 1.85; color: rgba(237,231,219,0.68); margin: 0 0 18px;">I've lived the messy middle five times now. What actually happens between the idea and the win — and what nobody warns you about.</p>
+              <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 21px; color: #C6A15B;">the messy middle, five times over</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div data-pillar style="border-bottom: 1px solid rgba(237,231,219,0.12); cursor: pointer;">
+        <div style="display: grid; grid-template-columns: 90px 1fr auto; gap: 40px; align-items: baseline; padding: 34px 0;">
+          <span style="font-size: 12px; letter-spacing: 0.3em; color: rgba(198,161,91,0.7);">02</span>
+          <span data-pillar-title style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(34px, 3.6vw, 58px); line-height: 1.05; transition: color 0.35s ease, transform 0.45s cubic-bezier(0.2,0.6,0.2,1); transform-origin: left;">Marketing</span>
+          <span data-pillar-mark style="font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 300; color: rgba(198,161,91,0.7); transition: transform 0.4s ease;">+</span>
+        </div>
+        <div data-pillar-body style="overflow: hidden; max-height: 0; transition: max-height 0.6s cubic-bezier(0.2,0.6,0.2,1), opacity 0.5s ease; opacity: 0;">
+          <div style="display: grid; grid-template-columns: 90px 1fr; gap: 40px; padding: 0 0 44px;">
+            <span></span>
+            <div style="max-width: 640px;">
+              <p style="font-size: 16px; font-weight: 200; line-height: 1.85; color: rgba(237,231,219,0.68); margin: 0 0 18px;">Twenty-three years beside business owners taught me one thing: visibility takes longer, and works better, than anyone tells you.</p>
+              <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 21px; color: #C6A15B;">visibility compounds — if you let it</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div data-pillar style="border-bottom: 1px solid rgba(237,231,219,0.12); cursor: pointer;">
+        <div style="display: grid; grid-template-columns: 90px 1fr auto; gap: 40px; align-items: baseline; padding: 34px 0;">
+          <span style="font-size: 12px; letter-spacing: 0.3em; color: rgba(198,161,91,0.7);">03</span>
+          <span data-pillar-title style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(34px, 3.6vw, 58px); line-height: 1.05; transition: color 0.35s ease, transform 0.45s cubic-bezier(0.2,0.6,0.2,1); transform-origin: left;">Leadership</span>
+          <span data-pillar-mark style="font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 300; color: rgba(198,161,91,0.7); transition: transform 0.4s ease;">+</span>
+        </div>
+        <div data-pillar-body style="overflow: hidden; max-height: 0; transition: max-height 0.6s cubic-bezier(0.2,0.6,0.2,1), opacity 0.5s ease; opacity: 0;">
+          <div style="display: grid; grid-template-columns: 90px 1fr; gap: 40px; padding: 0 0 44px;">
+            <span></span>
+            <div style="max-width: 640px;">
+              <p style="font-size: 16px; font-weight: 200; line-height: 1.85; color: rgba(237,231,219,0.68); margin: 0 0 18px;">I've built teams across five countries and got plenty wrong first. The lessons that stuck are the ones I share.</p>
+              <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 21px; color: #C6A15B;">calm is a skill, not a temperament</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div data-pillar style="border-bottom: 1px solid rgba(237,231,219,0.12); cursor: pointer;">
+        <div style="display: grid; grid-template-columns: 90px 1fr auto; gap: 40px; align-items: baseline; padding: 34px 0;">
+          <span style="font-size: 12px; letter-spacing: 0.3em; color: rgba(198,161,91,0.7);">04</span>
+          <span data-pillar-title style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(34px, 3.6vw, 58px); line-height: 1.05; transition: color 0.35s ease, transform 0.45s cubic-bezier(0.2,0.6,0.2,1); transform-origin: left;">Operations &amp; AI</span>
+          <span data-pillar-mark style="font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 300; color: rgba(198,161,91,0.7); transition: transform 0.4s ease;">+</span>
+        </div>
+        <div data-pillar-body style="overflow: hidden; max-height: 0; transition: max-height 0.6s cubic-bezier(0.2,0.6,0.2,1), opacity 0.5s ease; opacity: 0;">
+          <div style="display: grid; grid-template-columns: 90px 1fr; gap: 40px; padding: 0 0 44px;">
+            <span></span>
+            <div style="max-width: 640px;">
+              <p style="font-size: 16px; font-weight: 200; line-height: 1.85; color: rgba(237,231,219,0.68); margin: 0 0 18px;">Most founders don't have a marketing problem — they have a systems problem. Where AI genuinely helps, and where it's just noise.</p>
+              <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 21px; color: #C6A15B;">systems before software</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div data-pillar style="border-bottom: 1px solid rgba(237,231,219,0.12); cursor: pointer;">
+        <div style="display: grid; grid-template-columns: 90px 1fr auto; gap: 40px; align-items: baseline; padding: 34px 0;">
+          <span style="font-size: 12px; letter-spacing: 0.3em; color: rgba(198,161,91,0.7);">05</span>
+          <span data-pillar-title style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(34px, 3.6vw, 58px); line-height: 1.05; transition: color 0.35s ease, transform 0.45s cubic-bezier(0.2,0.6,0.2,1); transform-origin: left;">Working Motherhood</span>
+          <span data-pillar-mark style="font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 300; color: rgba(198,161,91,0.7); transition: transform 0.4s ease;">+</span>
+        </div>
+        <div data-pillar-body style="overflow: hidden; max-height: 0; transition: max-height 0.6s cubic-bezier(0.2,0.6,0.2,1), opacity 0.5s ease; opacity: 0;">
+          <div style="display: grid; grid-template-columns: 90px 1fr; gap: 40px; padding: 0 0 44px;">
+            <span></span>
+            <div style="max-width: 640px;">
+              <p style="font-size: 16px; font-weight: 200; line-height: 1.85; color: rgba(237,231,219,0.68); margin: 0 0 18px;">I became a mum young and built companies anyway. Honestly told — without the "having it all" myth.</p>
+              <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 21px; color: #C6A15B;">both, always — badly some weeks</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div data-pillar style="border-bottom: 1px solid rgba(237,231,219,0.12); cursor: pointer;">
+        <div style="display: grid; grid-template-columns: 90px 1fr auto; gap: 40px; align-items: baseline; padding: 34px 0;">
+          <span style="font-size: 12px; letter-spacing: 0.3em; color: rgba(198,161,91,0.7);">06</span>
+          <span data-pillar-title style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(34px, 3.6vw, 58px); line-height: 1.05; transition: color 0.35s ease, transform 0.45s cubic-bezier(0.2,0.6,0.2,1); transform-origin: left;">Fitness &amp; Discipline</span>
+          <span data-pillar-mark style="font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 300; color: rgba(198,161,91,0.7); transition: transform 0.4s ease;">+</span>
+        </div>
+        <div data-pillar-body style="overflow: hidden; max-height: 0; transition: max-height 0.6s cubic-bezier(0.2,0.6,0.2,1), opacity 0.5s ease; opacity: 0;">
+          <div style="display: grid; grid-template-columns: 90px 1fr; gap: 40px; padding: 0 0 44px;">
+            <span></span>
+            <div style="max-width: 640px;">
+              <p style="font-size: 16px; font-weight: 200; line-height: 1.85; color: rgba(237,231,219,0.68); margin: 0 0 18px;">The habits that hold everything else up. When the routine goes, everything else follows it out the door.</p>
+              <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 21px; color: #C6A15B;">the routine holds the rest</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 4. Founder Insights -->
+<div id="insights" data-screen-label="Founder Insights" style="background: #EDE7DB; color: #0C0B09; padding: 130px 0 140px; position: relative; overflow: hidden;">
+  <style>
+    .mq-head { max-width: 1280px; margin: 0 auto 52px; padding: 0 56px; display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; }
+    .mq-kicker { font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #9C7A3C; margin-bottom: 22px; }
+    .mq-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(38px, 4.2vw, 62px); line-height: 1.05; max-width: 640px; text-wrap: balance; }
+    .mq-hint { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(12,11,9,0.45); display: flex; align-items: center; gap: 10px; }
+    .mq-hint .dot { width: 5px; height: 5px; border-radius: 50%; background: #9C7A3C; animation: mqPulse 2s ease-in-out infinite; }
+    @keyframes mqPulse { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+
+    .mq-viewport { position: relative; width: 100%; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); cursor: grab; }
+    .mq-track { display: flex; gap: 26px; padding: 8px 26px; width: max-content; will-change: transform; }
+
+    .mq-card { position: relative; flex: 0 0 auto; width: clamp(230px, 19vw, 290px); aspect-ratio: 2 / 3; height: auto; border-radius: 2px; overflow: hidden; display: block; background: #14110d; box-shadow: 0 20px 50px -30px rgba(12,11,9,0.7); transition: transform 0.5s cubic-bezier(0.2,0.6,0.2,1), box-shadow 0.5s ease; }
+    .mq-media { position: absolute; inset: 0; }
+    .mq-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 1.2s cubic-bezier(0.2,0.6,0.2,1); }
+    .mq-cta { position: absolute; left: 0; right: 0; bottom: 0; z-index: 4; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 42px 18px 20px; font-size: 10px; letter-spacing: 0.26em; text-transform: uppercase; color: #C6A15B; background: linear-gradient(transparent, rgba(12,11,9,0.92)); opacity: 0; transition: opacity 0.4s ease; }
+    .mq-card:hover { transform: translateY(-8px); box-shadow: 0 30px 60px -28px rgba(12,11,9,0.85); }
+    .mq-card:hover .mq-media img { transform: scale(1.06); filter: contrast(1.03) brightness(1); }
+    .mq-card:hover .mq-cta { opacity: 1; }
+
+    @media (hover: none) {
+      .mq-cta { opacity: 1; transform: none; }
+    }
+    @media (max-width: 720px) {
+      #insights { padding: 90px 0 100px; }
+      .mq-head { padding: 0 26px; margin-bottom: 34px; }
+      .mq-track { gap: 18px; padding: 8px 20px; }
+      .mq-card { width: 68vw; max-width: 300px; height: auto; }
+    }
+  </style>
+
+  <div class="mq-head">
+    <div>
+      <div class="mq-kicker" data-reveal>Founder Insights</div>
+      <div class="mq-title" data-reveal data-delay="80">Twenty essays worth <em style="color:#9C7A3C;">stopping for.</em></div>
+    </div>
+    <div class="mq-hint" data-reveal data-delay="160"><span class="dot"></span><span id="mqHintText">Hover to pause &middot; click to read</span></div>
+  </div>
+
+  <div class="mq-viewport" id="mqViewport">
+    <div class="mq-track" id="mqTrack">
+      <a class="mq-card" href="insights/where-marketing-is-headed-over-the-next-3-5-years.html" aria-label="Where Marketing Is Headed Over the Next 3-5 Years">
+        <div class="mq-media"><img src="images/insights/insight-01.jpg" alt="Where Marketing Is Headed Over the Next 3-5 Years" loading="lazy" decoding="async"></div>
+        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
+      </a>
+      <a class="mq-card" href="insights/why-consistency-beats-quick-wins-every-time.html" aria-label="Why Consistency Beats Quick Wins Every Time">
+        <div class="mq-media"><img src="images/insights/insight-02.jpg" alt="Why Consistency Beats Quick Wins Every Time" loading="lazy" decoding="async"></div>
+        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
+      </a>
+      <a class="mq-card" href="insights/the-marketing-metrics-i-actually-pay-attention-to.html" aria-label="The Marketing Metrics I Actually Pay Attention To">
+        <div class="mq-media"><img src="images/insights/insight-03.jpg" alt="The Marketing Metrics I Actually Pay Attention To" loading="lazy" decoding="async"></div>
+        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
+      </a>
+      <a class="mq-card" href="insights/the-future-of-search-why-seo-is-changing-faster-than-most-businesses-realise.html" aria-label="The Future of Search: Why SEO Is Changing Faster Than Most Businesses Realise">
+        <div class="mq-media"><img src="images/insights/insight-04.jpg" alt="The Future of Search: Why SEO Is Changing Faster Than Most Businesses Realise" loading="lazy" decoding="async"></div>
+        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
+      </a>
+      <a class="mq-card" href="insights/most-businesses-dont-have-a-marketing-problem.html" aria-label="Most Businesses Don&#x27;t Have a Marketing Problem">
+        <div class="mq-media"><img src="images/insights/insight-05.jpg" alt="Most Businesses Don&#x27;t Have a Marketing Problem" loading="lazy" decoding="async"></div>
+        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
+      </a>
+      <a class="mq-card" href="insights/the-hiring-lessons-i-learned-the-hard-way.html" aria-label="The Hiring Lessons I Learned the Hard Way">
+        <div class="mq-media"><img src="images/insights/insight-06.jpg" alt="The Hiring Lessons I Learned the Hard Way" loading="lazy" decoding="async"></div>
+        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
+      </a>
+      <a class="mq-card" href="insights/what-20-years-of-managing-people-has-taught-me.html" aria-label="What 20+ Years of Managing People Has Taught Me">
+        <div class="mq-media"><img src="images/insights/insight-07.jpg" alt="What 20+ Years of Managing People Has Taught Me" loading="lazy" decoding="async"></div>
+        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
+      </a>
+      <a class="mq-card" href="insights/the-hidden-bottlenecks-that-stop-businesses-scaling.html" aria-label="The Hidden Bottlenecks That Stop Businesses Scaling">
+        <div class="mq-media"><img src="images/insights/insight-08.jpg" alt="The Hidden Bottlenecks That Stop Businesses Scaling" loading="lazy" decoding="async"></div>
+        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
+      </a>
+      <a class="mq-card" href="insights/the-reality-of-building-businesses-while-raising-children.html" aria-label="The Reality of Building Businesses While Raising Children">
+        <div class="mq-media"><img src="images/insights/insight-09.jpg" alt="The Reality of Building Businesses While Raising Children" loading="lazy" decoding="async"></div>
+        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
+      </a>
+      <a class="mq-card" href="insights/what-becoming-a-mother-taught-me-about-leadership.html" aria-label="What Becoming a Mother Taught Me About Leadership">
+        <div class="mq-media"><img src="images/insights/insight-10.jpg" alt="What Becoming a Mother Taught Me About Leadership" loading="lazy" decoding="async"></div>
+        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
+      </a>
+      <a class="mq-card" href="insights/the-most-expensive-business-mistakes-ive-seen-founders-make.html" aria-label="The Most Expensive Business Mistakes I&#x27;ve Seen Founders Make">
+        <div class="mq-media"><img src="images/insights/insight-11.jpg" alt="The Most Expensive Business Mistakes I&#x27;ve Seen Founders Make" loading="lazy" decoding="async"></div>
+        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
+      </a>
+      <a class="mq-card" href="insights/things-i-believe-about-business-that-most-people-disagree-with.html" aria-label="Things I Believe About Business That Most People Disagree With">
+        <div class="mq-media"><img src="images/insights/insight-12.jpg" alt="Things I Believe About Business That Most People Disagree With" loading="lazy" decoding="async"></div>
+        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
+      </a>
+      <a class="mq-card" href="insights/ai-is-not-a-strategy.html" aria-label="AI Is Not a Strategy">
+        <div class="mq-media"><img src="images/insights/insight-13.jpg" alt="AI Is Not a Strategy" loading="lazy" decoding="async"></div>
+        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
+      </a>
+      <a class="mq-card" href="insights/the-businesses-that-will-win-in-an-ai-world.html" aria-label="The Businesses That Will Win in an AI World">
+        <div class="mq-media"><img src="images/insights/insight-14.jpg" alt="The Businesses That Will Win in an AI World" loading="lazy" decoding="async"></div>
+        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
+      </a>
+      <a class="mq-card" href="insights/why-human-trust-is-becoming-more-valuable-not-less.html" aria-label="Why Human Trust Is Becoming More Valuable, Not Less">
+        <div class="mq-media"><img src="images/insights/insight-15.jpg" alt="Why Human Trust Is Becoming More Valuable, Not Less" loading="lazy" decoding="async"></div>
+        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
+      </a>
+      <a class="mq-card" href="insights/the-unexpected-advantages-of-becoming-a-mother-young.html" aria-label="The Unexpected Advantages of Becoming a Mother Young">
+        <div class="mq-media"><img src="images/insights/insight-16.jpg" alt="The Unexpected Advantages of Becoming a Mother Young" loading="lazy" decoding="async"></div>
+        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
+      </a>
+      <a class="mq-card" href="insights/what-fitness-business-and-parenting-have-in-common.html" aria-label="What Fitness, Business and Parenting Have in Common">
+        <div class="mq-media"><img src="images/insights/insight-17.jpg" alt="What Fitness, Business and Parenting Have in Common" loading="lazy" decoding="async"></div>
+        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
+      </a>
+      <a class="mq-card" href="insights/lessons-i-wish-i-knew-at-25.html" aria-label="Lessons I Wish I Knew at 25">
+        <div class="mq-media"><img src="images/insights/insight-18.jpg" alt="Lessons I Wish I Knew at 25" loading="lazy" decoding="async"></div>
+        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
+      </a>
+      <a class="mq-card" href="insights/the-life-i-thought-id-have-versus-the-life-i-built.html" aria-label="The Life I Thought I&#x27;d Have Versus The Life I Built">
+        <div class="mq-media"><img src="images/insights/insight-19.jpg" alt="The Life I Thought I&#x27;d Have Versus The Life I Built" loading="lazy" decoding="async"></div>
+        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
+      </a>
+      <a class="mq-card" href="insights/the-parts-of-success-nobody-talks-about.html" aria-label="The Parts Of Success Nobody Talks About">
+        <div class="mq-media"><img src="images/insights/insight-20.jpg" alt="The Parts Of Success Nobody Talks About" loading="lazy" decoding="async"></div>
+        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
+      </a>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var viewport = document.getElementById('mqViewport');
+    var track = document.getElementById('mqTrack');
+    if(!track) return;
+
+    // Duplicate the card set once for a seamless loop
+    track.innerHTML += track.innerHTML;
+
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var isTouch = window.matchMedia('(hover: none)').matches;
+    document.getElementById('mqHintText').textContent = isTouch ? 'Touch to pause · tap to read' : 'Hover to pause · click to read';
+
+    var offset = 0, setWidth = 0, paused = reduce;
+    var speed = 0.45; // px per frame (~27px/s at 60fps)
+    function measure(){ setWidth = track.scrollWidth / 2; }
+    measure();
+    window.addEventListener('resize', measure);
+    // re-measure once images have loaded (widths can shift)
+    Array.prototype.forEach.call(track.querySelectorAll('img'), function(img){
+      if(!img.complete){ img.addEventListener('load', measure); img.addEventListener('error', measure); }
+    });
+
+    function tick(){
+      if(!paused && setWidth > 0){
+        offset += speed;
+        if(offset >= setWidth) offset -= setWidth;
+        track.style.transform = 'translate3d(' + (-offset) + 'px,0,0)';
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+
+    // Pause on pointer over the strip
+    viewport.addEventListener('mouseenter', function(){ if(!reduce) paused = true; });
+    viewport.addEventListener('mouseleave', function(){ if(!reduce) paused = false; });
+
+    // Touch: pause while touching, resume shortly after; still allows tap navigation + swipe feel
+    var resumeTmr = null;
+    viewport.addEventListener('touchstart', function(){ if(reduce) return; clearTimeout(resumeTmr); paused = true; }, {passive:true});
+    viewport.addEventListener('touchend', function(){ if(reduce) return; clearTimeout(resumeTmr); resumeTmr = setTimeout(function(){ paused = false; }, 2000); }, {passive:true});
+
+    // Pause when tab hidden
+    document.addEventListener('visibilitychange', function(){ if(document.hidden){ paused = true; } else if(!reduce){ paused = false; } });
+  })();
+  </script>
+</div>
+
+<!-- 5. Companies — A Fable in Five Chapters -->
+<div id="companies" data-screen-label="Companies" style="padding: 120px 64px 140px; position: relative; overflow: hidden;">
+  <!-- giant ghost chapter numeral — anchored behind the stage, right side -->
+  <div data-fable-ghost style="position: absolute; right: 3vw; top: 20%; transform: translateY(-50%); font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(200px, 24vw, 430px); line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(198,161,91,0.16); pointer-events: none; user-select: none; transition: opacity 0.4s ease; z-index: 0;">I</div>
+
+  <div style="position: relative; z-index: 1;">
+    <div data-reveal style="font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #C6A15B; margin-bottom: 24px;">The Companies · A Fable in Six Chapters</div>
+    <div data-reveal data-delay="80" style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(40px, 4.5vw, 68px); line-height: 1.12; max-width: 860px; margin-bottom: 96px; text-wrap: balance;">Every company I've built started the same way — <em style="color: #C6A15B;">with something I couldn't stop noticing.</em></div>
+
+    <div data-reveal style="display: grid; grid-template-columns: minmax(280px, 380px) 1fr; gap: clamp(48px, 6vw, 120px); align-items: start;">
+
+      <!-- Chapter index -->
+      <div style="display: flex; flex-direction: column;">
+        <div data-fable-tab data-idx="0" style="display: flex; align-items: baseline; gap: 20px; padding: 22px 0; border-top: 1px solid rgba(237,231,219,0.12); cursor: pointer; transition: padding-left 0.4s cubic-bezier(0.2,0.6,0.2,1);">
+          <span style="font-family: 'Cormorant Garamond', serif; font-size: 15px; color: rgba(198,161,91,0.7); width: 26px;">I</span>
+          <span data-fable-name style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; color: rgba(237,231,219,0.55); transition: color 0.35s ease;">Shopa Marketing</span>
+        </div>
+        <div data-fable-tab data-idx="1" style="display: flex; align-items: baseline; gap: 20px; padding: 22px 0; border-top: 1px solid rgba(237,231,219,0.12); cursor: pointer; transition: padding-left 0.4s cubic-bezier(0.2,0.6,0.2,1);">
+          <span style="font-family: 'Cormorant Garamond', serif; font-size: 15px; color: rgba(198,161,91,0.7); width: 26px;">II</span>
+          <span data-fable-name style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; color: rgba(237,231,219,0.55); transition: color 0.35s ease;">Brand Vantage</span>
+        </div>
+        <div data-fable-tab data-idx="2" style="display: flex; align-items: baseline; gap: 20px; padding: 22px 0; border-top: 1px solid rgba(237,231,219,0.12); cursor: pointer; transition: padding-left 0.4s cubic-bezier(0.2,0.6,0.2,1);">
+          <span style="font-family: 'Cormorant Garamond', serif; font-size: 15px; color: rgba(198,161,91,0.7); width: 26px;">III</span>
+          <span data-fable-name style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; color: rgba(237,231,219,0.55); transition: color 0.35s ease;">Ads Near You</span>
+        </div>
+        <div data-fable-tab data-idx="3" style="display: flex; align-items: baseline; gap: 20px; padding: 22px 0; border-top: 1px solid rgba(237,231,219,0.12); cursor: pointer; transition: padding-left 0.4s cubic-bezier(0.2,0.6,0.2,1);">
+          <span style="font-family: 'Cormorant Garamond', serif; font-size: 15px; color: rgba(198,161,91,0.7); width: 26px;">IV</span>
+          <span data-fable-name style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; color: rgba(237,231,219,0.55); transition: color 0.35s ease;">SEOOnly</span>
+        </div>
+        <div data-fable-tab data-idx="4" style="display: flex; align-items: baseline; gap: 20px; padding: 22px 0; border-top: 1px solid rgba(237,231,219,0.12); cursor: pointer; transition: padding-left 0.4s cubic-bezier(0.2,0.6,0.2,1);">
+          <span style="font-family: 'Cormorant Garamond', serif; font-size: 15px; color: rgba(198,161,91,0.7); width: 26px;">V</span>
+          <span data-fable-name style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; color: rgba(237,231,219,0.55); transition: color 0.35s ease;">No Filter Club</span>
+        </div>
+        <div data-fable-tab data-idx="5" style="display: flex; align-items: baseline; gap: 20px; padding: 22px 0; border-top: 1px solid rgba(237,231,219,0.12); border-bottom: 1px solid rgba(237,231,219,0.12); cursor: pointer; transition: padding-left 0.4s cubic-bezier(0.2,0.6,0.2,1);">
+          <span style="font-family: 'Cormorant Garamond', serif; font-size: 15px; color: rgba(198,161,91,0.7); width: 26px;">VI</span>
+          <span data-fable-name style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; color: rgba(237,231,219,0.55); transition: color 0.35s ease;">Brand Vantage Academy</span>
+        </div>
+        <!-- auto-advance progress -->
+        <div style="margin-top: 32px; height: 1px; background: rgba(237,231,219,0.12); position: relative;">
+          <div data-fable-progress style="position: absolute; left: 0; top: 0; height: 1px; width: 0%; background: #C6A15B;"></div>
+        </div>
+        <div style="margin-top: 14px; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(237,231,219,0.35);">Click a chapter — or just watch</div>
+      </div>
+
+      <!-- Stage -->
+      <div data-fable-stage style="min-height: 420px; transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.2,0.6,0.2,1);">
+        <div class="fb-copy">
+        <div data-fable-noticed style="font-size: 11px; letter-spacing: 0.34em; text-transform: uppercase; color: rgba(237,231,219,0.45); margin-bottom: 36px;">What I couldn't stop noticing</div>
+        <div data-fable-line style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: clamp(32px, 3.4vw, 52px); line-height: 1.3; color: #EDE7DB; max-width: 720px; text-wrap: balance;"></div>
+        <div data-fable-moral style="margin-top: 44px; display: flex; align-items: baseline; gap: 18px;">
+          <span style="font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: #C6A15B; white-space: nowrap;">The moral</span>
+          <span data-fable-moral-text style="font-family: 'Cormorant Garamond', serif; font-size: 23px; font-weight: 400; color: #C6A15B; line-height: 1.4;"></span>
+        </div>
+        <div style="margin-top: 52px; display: flex; align-items: center; gap: 32px;">
+          <a data-fable-visit href="https://shopamarketing.com.au" target="_blank" rel="noopener" style="display: inline-block; border: 1px solid rgba(198,161,91,0.7); color: #C6A15B; padding: 15px 38px; border-radius: 999px; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; transition: background 0.35s ease, color 0.35s ease;" style-hover="background: #C6A15B; color: #0C0B09;">Visit <span data-fable-visit-name>Shopa Marketing</span> ↗</a>
+        </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- 8. The Book -->
+<div id="book" data-screen-label="The Book" style="border-top: 1px solid rgba(237,231,219,0.12); padding: 150px 64px 140px;">
+  <div class="bk-grid">
+    <div class="bk-cover" data-reveal>
+      <img src="images/book-ambition-without-apology.jpg" alt="Ambition Without Apology by Preeti Kennedy" loading="lazy" decoding="async">
+    </div>
+    <div>
+      <div class="bk-kicker" data-reveal>The Book</div>
+      <div class="bk-title" data-reveal data-delay="80">Ambition Without <em style="color: #C6A15B;">Apology.</em></div>
+      <p class="bk-sub" data-reveal data-delay="140">Building businesses, raising children, and refusing to choose between them.</p>
+      <div data-reveal data-delay="260">
+        <div class="bk-author">Preeti Kennedy</div>
+        <div class="bk-tagline">Entrepreneur &middot; Mother &middot; Dreamer</div>
+        <a class="bk-cta" href="https://au.linkedin.com/in/preetikennedy" target="_blank" rel="noopener" data-magnetic style-hover="background: #C6A15B; color: #0C0B09;">Enquire about the book</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Monthly newsletter (separate from Founder Insights) -->
+<div id="newsletter" data-screen-label="Newsletter" class="nl">
+  <div class="nl-wrap">
+    <div class="nl-kicker" data-reveal>The Monthly Note</div>
+    <div class="nl-title" data-reveal data-delay="80">One letter a month. <em style="color:#C6A15B;">Nothing else.</em></div>
+    <p class="nl-sub" data-reveal data-delay="140">Current thinking on marketing, operations and the Academy — separate from the Founder Insights, which stay exactly as they are.</p>
+    <form class="nl-form" id="nlForm" novalidate data-reveal data-delay="200">
+      <input type="text" id="nlName" name="name" placeholder="First name" autocomplete="given-name" required>
+      <input type="email" id="nlEmail" name="email" placeholder="Email address" autocomplete="email" required>
+      <button type="submit">Subscribe</button>
+    </form>
+    <div class="nl-note" id="nlNote" role="status" aria-live="polite"></div>
+  </div>
+</div>
+
+<!-- Contact -->
+<div id="contact" data-screen-label="Footer" style="border-top: 1px solid rgba(237,231,219,0.12); padding: 70px 64px 60px; text-align: center;">
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0; padding-top: 32px; border-top: 1px solid rgba(237,231,219,0.12); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(237,231,219,0.45); flex-wrap: wrap; gap: 24px;">
+    <span>Preeti Kennedy © 2026</span>
+    <div style="display: flex; gap: 28px; flex-wrap: wrap; justify-content: center;">
+      <a href="https://shopamarketing.com.au" target="_blank" rel="noopener">Shopa Marketing</a>
+      <a href="https://brandvantage.us" target="_blank" rel="noopener">Brand Vantage</a>
+      <a href="https://adsnearyou.com.au" target="_blank" rel="noopener">Ads Near You</a>
+      <a href="https://seoonly.com.au" target="_blank" rel="noopener">SEOOnly</a>
+      <a href="#companies">No Filter Club</a>
+      <a href="#companies">Brand Vantage Academy</a>
+    </div>
+    <span>Melbourne, Australia</span>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // Hover styles (replaces the design tool's style-hover attribute)
+  document.querySelectorAll('[style-hover]').forEach(function (el) {
+    var hover = el.getAttribute('style-hover');
+    var prev = null;
+    el.addEventListener('mouseenter', function () { prev = el.getAttribute('style'); el.setAttribute('style', prev + ';' + hover); });
+    el.addEventListener('mouseleave', function () { if (prev !== null) el.setAttribute('style', prev); });
+  });
+
+  // Scroll reveals
+  var revealEls = document.querySelectorAll('[data-reveal]');
+  revealEls.forEach(function (el) {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(48px)';
+    el.style.transition = 'opacity 1.1s cubic-bezier(0.2,0.6,0.2,1), transform 1.1s cubic-bezier(0.2,0.6,0.2,1)';
+  });
+  var pendingReveals = new Set(revealEls);
+  var revealEl = function (el) {
+    var delay = parseInt(el.getAttribute('data-delay') || '0', 10);
+    setTimeout(function () { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; }, delay);
+  };
+
+  // Scroll-linked horizontal reels
+  var updateScenes = function () {
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    var isMobileReel = window.matchMedia('(max-width: 767px)').matches;
+    document.querySelectorAll('[data-reel-scene]').forEach(function (reelScene) {
+      var reelTrack = reelScene.querySelector('[data-reel-track]');
+      if (!reelTrack) return;
+      if (isMobileReel) { reelTrack.style.transform = ''; return; }  // mobile: static vertical stack (CSS)
+      var r = reelScene.getBoundingClientRect();
+      var total = r.height - vh;
+      var p = Math.min(Math.max(-r.top / total, 0), 1);
+      var maxX = Math.max(reelTrack.scrollWidth - window.innerWidth, 0);
+      reelTrack.style.transform = 'translateX(' + (-p * maxX) + 'px)';
+    });
+  };
+  var ticking = false;
+  var onFrame = function () {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () { updateScenes(); ticking = false; });
+  };
+  window.addEventListener('scroll', onFrame, { passive: true });
+  window.addEventListener('resize', onFrame);
+  updateScenes();
+
+  var check = function () {
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    pendingReveals.forEach(function (el) {
+      var r = el.getBoundingClientRect();
+      if (r.top < vh * 0.92 && r.bottom > 0) { pendingReveals.delete(el); revealEl(el); }
+    });
+  };
+  window.addEventListener('scroll', check, { passive: true });
+  window.addEventListener('resize', check);
+  var checkTimer = setInterval(check, 400);
+  check();
+
+  // Safety net: after 8s, force-reveal anything still hidden
+  setTimeout(function () { pendingReveals.forEach(function (el) { pendingReveals.delete(el); revealEl(el); }); }, 8000);
+
+  // Preloader
+  var hidePre = function () {
+    var p = document.querySelector('[data-preloader]');
+    if (p) p.style.display = 'none';
+    document.documentElement.style.overflow = '';
+  };
+  if (document.querySelector('[data-preloader]')) {
+    document.documentElement.style.overflow = 'hidden';
+    var t0 = performance.now();
+    var dur = 1700;
+    var tickPre = function (now) {
+      var p = document.querySelector('[data-preloader]');
+      if (!p) { document.documentElement.style.overflow = ''; return; }
+      var nameEl = p.querySelector('[data-preloader-name] span');
+      if (nameEl) { nameEl.style.opacity = '1'; nameEl.style.transform = 'translateY(0)'; }
+      var t = Math.min((now - t0) / dur, 1);
+      var eased = 1 - Math.pow(1 - t, 3);
+      var countEl = p.querySelector('[data-preloader-count]');
+      if (countEl) countEl.textContent = Math.round(eased * 100);
+      if (t < 1) { requestAnimationFrame(tickPre); return; }
+      p.style.transform = 'translateY(-100%)';
+      document.documentElement.style.overflow = '';
+      setTimeout(hidePre, 1100);
+    };
+    requestAnimationFrame(tickPre);
+    setTimeout(hidePre, 4500);
+  }
+
+  // Scroll-velocity skew on all horizontal reels
+  var lastScrollY = window.scrollY;
+  var skew = 0;
+  var skewReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var skewLoop = function () {
+    var dy = window.scrollY - lastScrollY;
+    lastScrollY = window.scrollY;
+    // no velocity skew on mobile (static stacks) or under reduced-motion
+    if (skewReduce || window.matchMedia('(max-width: 767px)').matches) { requestAnimationFrame(skewLoop); return; }
+    skew += (Math.max(Math.min(dy * 0.06, 4), -4) - skew) * 0.12;
+    if (Math.abs(skew) > 0.01) {
+      document.querySelectorAll('[data-reel-track]').forEach(function (track) {
+        var base = track.style.transform.match(/translateX\([^)]*\)/);
+        track.style.transform = (base ? base[0] : '') + ' skewX(' + (-skew) + 'deg)';
+      });
+    }
+    requestAnimationFrame(skewLoop);
+  };
+  requestAnimationFrame(skewLoop);
+
+  // Word scrub: manifesto words brighten one by one as you scroll
+  var scrub = document.querySelector('[data-word-scrub]');
+  var scrubWords = [];
+  if (scrub) {
+    var wrapWords = function (node) {
+      if (node.nodeType === 3) {
+        var frag = document.createDocumentFragment();
+        node.textContent.split(/(\s+)/).forEach(function (piece) {
+          if (/^\s+$/.test(piece) || piece === '') { frag.appendChild(document.createTextNode(piece)); }
+          else {
+            var s = document.createElement('span');
+            s.textContent = piece;
+            s.style.opacity = '0.18';
+            s.style.transition = 'opacity 0.35s ease';
+            frag.appendChild(s);
+            scrubWords.push(s);
+          }
+        });
+        node.parentNode.replaceChild(frag, node);
+      } else if (node.nodeType === 1) {
+        Array.prototype.slice.call(node.childNodes).forEach(wrapWords);
+      }
+    };
+    Array.prototype.slice.call(scrub.childNodes).forEach(wrapWords);
+  }
+
+  // Scroll progress + word scrub
+  var progress = document.querySelector('[data-progress]');
+  var updateProgress = function () {
+    var doc = document.documentElement;
+    var p = doc.scrollTop / (doc.scrollHeight - doc.clientHeight || 1);
+    if (progress) progress.style.width = (p * 100) + '%';
+    if (scrub && scrubWords.length) {
+      var r = scrub.getBoundingClientRect();
+      var vh = window.innerHeight;
+      var t = Math.min(Math.max((vh * 0.85 - r.top) / (vh * 0.7), 0), 1);
+      var lit = Math.floor(t * scrubWords.length);
+      scrubWords.forEach(function (w, i) { w.style.opacity = i < lit ? '1' : '0.18'; });
+    }
+  };
+  window.addEventListener('scroll', updateProgress, { passive: true });
+  updateProgress();
+
+  // Mobile menu
+  var navToggle = document.getElementById('navToggle');
+  var navMenu = document.getElementById('navMenu');
+  if (navToggle && navMenu) {
+    var setMenu = function (open) {
+      navToggle.classList.toggle('is-open', open);
+      navMenu.classList.toggle('is-open', open);
+      navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      navMenu.setAttribute('aria-hidden', open ? 'false' : 'true');
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+    navToggle.addEventListener('click', function () { setMenu(!navMenu.classList.contains('is-open')); });
+    navMenu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
+  }
+
+  // Cursor ring
+  var cursor = document.querySelector('[data-cursor]');
+  if (cursor && window.matchMedia('(pointer: fine)').matches) {
+    window.addEventListener('mousemove', function (e) {
+      cursor.style.opacity = '1';
+      var grow = e.target.closest('a, [data-magnetic]');
+      var size = grow ? 66 : 44;
+      cursor.style.width = size + 'px';
+      cursor.style.height = size + 'px';
+      cursor.style.transform = 'translate(' + (e.clientX - size / 2) + 'px, ' + (e.clientY - size / 2) + 'px)';
+    }, { passive: true });
+    document.documentElement.addEventListener('mouseleave', function () { cursor.style.opacity = '0'; });
+  }
+
+  // Fable of five: chapter deck with auto-advance
+  var fables = [
+    { name: 'Shopa Marketing', logo: 'brand-logos/shopa-marketing.png', line: 'Small businesses being sold complicated things they didn’t need — or ignored because they weren’t spending enterprise money.', moral: 'Small businesses deserve big-brand marketing.', url: 'https://shopamarketing.com.au' },
+    { name: 'Brand Vantage', logo: 'brand-logos/brand-vantage.png', line: 'Founders drowning — not in marketing problems, but in people, process and capacity problems nobody was solving.', moral: 'Fix the growing pains, and growth follows.', url: 'https://brandvantage.us' },
+    { name: 'Ads Near You', logo: 'brand-logos/ads-near-you.png', line: 'Local businesses priced out of being seen in their own neighbourhoods, while ad inventory sat unsold.', moral: 'Being noticed shouldn’t need a national budget.', url: 'https://adsnearyou.com.au' },
+    { name: 'SEOOnly', logo: 'brand-logos/seoonly.png', line: 'My Gen Z son searching in ways none of us — CMO and SEO lead included — could explain. AI was rewriting the rules mid-game.', moral: 'Stay ahead of how people search, not behind it.', url: 'https://seoonly.com.au' },
+    { name: 'No Filter Club', soon: true, logo: 'brand-logos/no-filter-club.png', line: 'Teenagers — mine included — fighting their skin and their confidence, with products harsher than my grandmother’s remedies ever were.', moral: 'Less filter, more self-belief.', url: '#contact' },
+    { name: 'Brand Vantage Academy', soon: true, logo: 'brand-logos/brand-vantage-academy.png', line: 'A growing gap between what’s taught in classrooms and the practical skills employers actually need — a gap that’s only widening as AI reshapes the workplace.', moral: 'Education should prepare people for the jobs they’re about to enter.', url: '#contact' }
+  ];
+  var romans = ['I', 'II', 'III', 'IV', 'V', 'VI'];
+  var fableTabs = Array.prototype.slice.call(document.querySelectorAll('[data-fable-tab]'));
+  var fableStage = document.querySelector('[data-fable-stage]');
+  var fableGhost = document.querySelector('[data-fable-ghost]');
+  var fableProgress = document.querySelector('[data-fable-progress]');
+  var fableIdx = 0;
+  var fableT0 = performance.now();
+  var FABLE_DUR = 6000;
+  var fablePaused = false;
+
+  var setFable = function (i, animate) {
+    fableIdx = i;
+    fableT0 = performance.now();
+    var f = fables[i];
+    fableTabs.forEach(function (tab, j) {
+      var name = tab.querySelector('[data-fable-name]');
+      var on = j === i;
+      if (name) name.style.color = on ? '#C6A15B' : 'rgba(237,231,219,0.55)';
+      tab.style.paddingLeft = on ? '18px' : '0px';
+    });
+    var apply = function () {
+      var lineEl = document.querySelector('[data-fable-line]');
+      var moralEl = document.querySelector('[data-fable-moral-text]');
+      var visitEl = document.querySelector('[data-fable-visit]');
+      var visitName = document.querySelector('[data-fable-visit-name]');
+      if (lineEl) lineEl.textContent = f.line;
+      if (moralEl) moralEl.textContent = f.moral;
+      if (visitEl) {
+        if (f.soon) {
+          // no public site yet - show a non-clickable "Coming soon" label
+          visitEl.innerHTML = 'Coming soon';
+          visitEl.removeAttribute('href');
+          visitEl.removeAttribute('target');
+          visitEl.classList.add('is-soon');
+        } else {
+          visitEl.innerHTML = 'Visit <span data-fable-visit-name>' + f.name + '</span> ↗';
+          visitEl.setAttribute('href', f.url);
+          visitEl.classList.remove('is-soon');
+          if (f.url.indexOf('#') === 0) { visitEl.removeAttribute('target'); }
+          else { visitEl.setAttribute('target', '_blank'); }
+        }
+      }
+      if (fableGhost) fableGhost.textContent = romans[i];
+    };
+    if (animate && fableStage) {
+      fableStage.style.opacity = '0';
+      fableStage.style.transform = 'translateY(18px)';
+      if (fableGhost) fableGhost.style.opacity = '0';
+      setTimeout(function () {
+        apply();
+        fableStage.style.opacity = '1';
+        fableStage.style.transform = 'translateY(0)';
+        if (fableGhost) fableGhost.style.opacity = '1';
+      }, 300);
+    } else { apply(); }
+  };
+  fableTabs.forEach(function (tab) {
+    tab.addEventListener('click', function () { setFable(parseInt(tab.getAttribute('data-idx'), 10), true); });
+  });
+  var companiesSection = document.getElementById('companies');
+  if (companiesSection) {
+    companiesSection.addEventListener('mouseenter', function () { fablePaused = true; });
+    companiesSection.addEventListener('mouseleave', function () { fablePaused = false; fableT0 = performance.now(); });
+  }
+  if (fableTabs.length) setFable(0, false);
+  var fableLoop = function (now) {
+    if (!fablePaused) {
+      var t = (now - fableT0) / FABLE_DUR;
+      if (fableProgress) fableProgress.style.width = Math.min(t * 100, 100) + '%';
+      if (t >= 1) setFable((fableIdx + 1) % fables.length, true);
+    } else if (fableProgress) {
+      fableProgress.style.width = '0%';
+      fableT0 = now;
+    }
+    requestAnimationFrame(fableLoop);
+  };
+  requestAnimationFrame(fableLoop);
+
+  // Content pillars: hover/click opens a row, ghost numeral follows
+  var pillars = Array.prototype.slice.call(document.querySelectorAll('[data-pillar]'));
+  var ghostNum = document.querySelector('[data-pillar-num]');
+  var setPillar = function (active) {
+    pillars.forEach(function (p, i) {
+      var body = p.querySelector('[data-pillar-body]');
+      var title = p.querySelector('[data-pillar-title]');
+      var mark = p.querySelector('[data-pillar-mark]');
+      var on = p === active;
+      if (body) { body.style.maxHeight = on ? body.scrollHeight + 'px' : '0px'; body.style.opacity = on ? '1' : '0'; }
+      if (title) { title.style.color = on ? '#C6A15B' : ''; title.style.transform = on ? 'translateX(24px)' : 'translateX(0)'; }
+      if (mark) mark.style.transform = on ? 'rotate(45deg)' : 'rotate(0deg)';
+      if (on && ghostNum) {
+        ghostNum.style.opacity = '0';
+        var n = '0' + (i + 1);
+        setTimeout(function () { ghostNum.textContent = n; ghostNum.style.opacity = '1'; }, 200);
+      }
+    });
+  };
+  pillars.forEach(function (p) {
+    p.addEventListener('mouseenter', function () { setPillar(p); });
+    p.addEventListener('click', function () { setPillar(p); });
+  });
+  if (pillars.length) setPillar(pillars[0]);
+
+
+  // ===== Monthly newsletter signup =====
+  // NOTE: no email provider is connected yet. Set NEWSLETTER_ENDPOINT to your form URL
+  // (Mailchimp / Formspree / Kit etc.) and it will POST name+email there. Until then it
+  // validates and confirms locally so the flow can be tested end to end.
+  var NEWSLETTER_ENDPOINT = '';
+  var nlForm = document.getElementById('nlForm');
+  if (nlForm) {
+    nlForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var note = document.getElementById('nlNote');
+      var name = document.getElementById('nlName').value.trim();
+      var email = document.getElementById('nlEmail').value.trim();
+      var okEmail = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+      note.className = 'nl-note';
+      if (!name) { note.classList.add('err'); note.textContent = 'Please add your first name'; return; }
+      if (!okEmail) { note.classList.add('err'); note.textContent = 'Please check that email address'; return; }
+      var done = function () {
+        note.classList.add('ok');
+        note.textContent = 'Thank you — you are on the list';
+        nlForm.reset();
+      };
+      if (!NEWSLETTER_ENDPOINT) { done(); return; }
+      fetch(NEWSLETTER_ENDPOINT, {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: name, email: email })
+      }).then(function (r) {
+        if (r.ok) { done(); }
+        else { note.classList.add('err'); note.textContent = 'Something went wrong — please try again'; }
+      }).catch(function () {
+        note.classList.add('err'); note.textContent = 'Something went wrong — please try again';
+      });
+    });
+  }
+
+  // Magnetic buttons
+  document.querySelectorAll('[data-magnetic]').forEach(function (el) {
+    el.addEventListener('mousemove', function (e) {
+      var r = el.getBoundingClientRect();
+      var dx = (e.clientX - r.left - r.width / 2) / (r.width / 2);
+      var dy = (e.clientY - r.top - r.height / 2) / (r.height / 2);
+      el.style.transform = 'translate(' + dx * 10 + 'px, ' + dy * 8 + 'px)';
+    });
+    el.addEventListener('mouseleave', function () { el.style.transform = 'translate(0,0)'; });
+  });
+});
+</script>
+</body>
+</html>

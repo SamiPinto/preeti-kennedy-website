@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Hiring Lessons I Learned the Hard Way — Preeti Kennedy</title>
+<meta name="description" content="There are certain decisions in business that stay with you long after they’ve been made.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #0C0B09; color: #EDE7DB; font-family: 'Outfit', sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: #C6A15B; }
+  ::selection { background: #C6A15B; color: #0C0B09; }
+  .grain { position: fixed; inset: 0; z-index: 60; pointer-events: none; opacity: 0.35; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E"); }
+  .progress { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: linear-gradient(90deg, #C6A15B, #EDE7DB); z-index: 70; }
+  nav.bar { position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; justify-content: space-between; align-items: center; padding: 24px 48px; background: linear-gradient(rgba(12,11,9,0.9), rgba(12,11,9,0)); backdrop-filter: blur(2px); }
+  nav.bar .logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; letter-spacing: 0.16em; }
+  nav.bar .back { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(237,231,219,0.7); }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 160px 28px 60px; }
+  .kicker { font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #C6A15B; margin-bottom: 28px; }
+  h1.title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(38px, 5.4vw, 68px); line-height: 1.08; margin: 0 0 32px; letter-spacing: 0.005em; text-wrap: balance; }
+  .meta { display: flex; gap: 22px; align-items: center; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(237,231,219,0.5); padding-bottom: 40px; margin-bottom: 8px; border-bottom: 1px solid rgba(237,231,219,0.14); }
+  .meta .dot { width: 3px; height: 3px; border-radius: 50%; background: #C6A15B; }
+  article p { font-size: 18px; font-weight: 200; line-height: 1.85; color: rgba(237,231,219,0.82); margin: 0 0 26px; }
+  article p.lead { font-size: 21px; color: #EDE7DB; }
+  article p.lead::first-letter { font-family: 'Cormorant Garamond', serif; font-weight: 400; float: left; font-size: 82px; line-height: 0.82; padding: 6px 14px 0 0; color: #C6A15B; }
+  .next { margin-top: 72px; padding-top: 40px; border-top: 1px solid rgba(237,231,219,0.14); }
+  .next .lbl { font-size: 11px; letter-spacing: 0.34em; text-transform: uppercase; color: rgba(237,231,219,0.45); margin-bottom: 18px; }
+  .next a.nxt { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(26px, 3.4vw, 40px); line-height: 1.12; transition: padding-left 0.4s ease, color 0.3s ease; }
+  .next a.nxt:hover { padding-left: 14px; color: #C6A15B; }
+  .next a.nxt .arrow { font-family: 'Outfit', sans-serif; font-size: 22px; color: #C6A15B; flex: 0 0 auto; }
+  .foot { margin-top: 80px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(237,231,219,0.45); }
+  .foot a { color: #C6A15B; }
+  @media (max-width: 640px) { nav.bar { padding: 20px 24px; } .wrap { padding-top: 130px; } article p { font-size: 17px; } }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="progress" id="progress"></div>
+<nav class="bar">
+  <a href="../index.html#top" class="logo">P<span style="color:#C6A15B;">·</span>K</a>
+  <a href="../index.html#insights" class="back">← All Insights</a>
+</nav>
+<div class="wrap">
+  <div class="kicker">Leadership &amp; Operations</div>
+  <h1 class="title">The Hiring Lessons I Learned the Hard Way</h1>
+  <div class="meta"><span>Founder reflection</span><span class="dot"></span><span>3 min read</span></div>
+  <article>
+    <p class="lead">There are certain decisions in business that stay with you long after they’ve been made.</p>
+    <p>Some because they worked out better than you expected.</p>
+    <p>Others because they didn’t.</p>
+    <p>When I think back over the businesses I’ve built, the campaigns we’ve run, the clients we’ve worked with and the opportunities we’ve pursued, very few decisions have had a bigger impact than the people we’ve chosen to hire.</p>
+    <p>That’s probably why hiring still feels surprisingly personal to me, even after all these years.</p>
+    <p>I used to believe hiring was mostly about finding the most qualified person. It sounds obvious now, but when you’re younger and trying to grow a business, it’s easy to become impressed by experience, resumes and credentials. You convince yourself that if somebody has worked for the right companies or held the right titles, everything else will take care of itself.</p>
+    <p>Sometimes that’s true. Many times it isn’t.</p>
+    <p>One of the hardest lessons I learned was that competence and fit are not the same thing.</p>
+    <p>You can hire somebody incredibly capable who still isn’t right for your business. Not because they’re a bad person. Not because they aren’t talented. Simply because the way they work, communicate or approach problems doesn’t align with the environment you’re trying to build.</p>
+    <p>For a long time, I found that difficult to accept. I wanted hiring to be more scientific than it really is. I wanted there to be a formula that would remove uncertainty from the process.</p>
+    <p>The reality is that hiring is one of the few areas in business where certainty remains frustratingly out of reach.</p>
+    <p>You’re making decisions about people, and people are wonderfully complex.</p>
+    <p>The other lesson that took me longer than it should have was understanding the difference between skills and character.</p>
+    <p>Skills can be taught. Processes can be taught. Systems can be taught. Character is much harder to teach.</p>
+    <p>Over the years, I’ve watched people with average experience become exceptional employees because they were curious, accountable and willing to learn. I’ve also watched people with impressive resumes struggle because they believed they already had all the answers.</p>
+    <p>If I had to choose between the two today, I’d choose attitude almost every time.</p>
+    <p>Not because skills don’t matter. They absolutely do. But skills tend to grow. Character tends to reveal itself.</p>
+    <p>I also think founders underestimate how much their hiring decisions shape the culture of a business.</p>
+    <p>When businesses are small, culture feels like an abstract concept. People talk about it in presentations and company values documents. It sounds important, but not necessarily urgent.</p>
+    <p>Then you make a few hires.</p>
+    <p>Suddenly culture becomes very real.</p>
+    <p>Every person changes the dynamic of a team. They influence standards, communication, accountability and expectations. The people you hire don’t just contribute to culture. In many ways, they become the culture.</p>
+    <p>Looking back, some of the best hiring decisions I ever made weren’t based on experience at all. They were based on trust.</p>
+    <p>They were people who cared. People who followed through. People who did what they said they were going to do. People who treated the business as though their contribution mattered.</p>
+    <p>Many of those people are still part of my life today.</p>
+    <p>Not because they worked for me, but because we built genuine relationships over time.</p>
+    <p>That’s another thing nobody tells you when you’re building a company. The people become part of the story.</p>
+    <p>Years later, you often remember the conversations more than the projects. You remember the challenges you solved together. You remember the difficult periods when everyone pulled in the same direction. You remember the loyalty.</p>
+    <p>At least I do.</p>
+    <p>Perhaps that’s why hiring feels different to me now than it did twenty years ago.</p>
+    <p>When I was younger, I viewed hiring as a process. Today, I see it more as a responsibility. You’re not just choosing who can do the work. You’re choosing who gets a seat on the journey.</p>
+    <p>And after enough years in business, you realise that the journey is almost always defined by the people who travelled it with you.</p>
+  </article>
+  <div class="next">
+    <div class="lbl">Continue reading — next up</div>
+    <a class="nxt" href="what-20-years-of-managing-people-has-taught-me.html"><span>What 20+ Years of Managing People Has Taught Me</span><span class="arrow">→</span></a>
+  </div>
+  <div class="foot">
+    <a href="../index.html#insights">← Back to all insights</a>
+    <a href="https://au.linkedin.com/in/preetikennedy" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>
+  </div>
+</div>
+<script>
+  var pr = document.getElementById('progress');
+  function upd(){ var d=document.documentElement; pr.style.width=(d.scrollTop/((d.scrollHeight-d.clientHeight)||1)*100)+'%'; }
+  window.addEventListener('scroll', upd, {passive:true}); upd();
+</script>
+</body>
+</html>

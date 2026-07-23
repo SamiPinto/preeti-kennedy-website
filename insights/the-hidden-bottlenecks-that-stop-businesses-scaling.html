@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Hidden Bottlenecks That Stop Businesses Scaling — Preeti Kennedy</title>
+<meta name="description" content="A few years ago, I was speaking with a founder who couldn’t understand why their business felt harder to run than it had a year earlier.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #0C0B09; color: #EDE7DB; font-family: 'Outfit', sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: #C6A15B; }
+  ::selection { background: #C6A15B; color: #0C0B09; }
+  .grain { position: fixed; inset: 0; z-index: 60; pointer-events: none; opacity: 0.35; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E"); }
+  .progress { position: fixed; top: 0; left: 0; height: 2px; width: 0%; background: linear-gradient(90deg, #C6A15B, #EDE7DB); z-index: 70; }
+  nav.bar { position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; justify-content: space-between; align-items: center; padding: 24px 48px; background: linear-gradient(rgba(12,11,9,0.9), rgba(12,11,9,0)); backdrop-filter: blur(2px); }
+  nav.bar .logo { font-family: 'Cormorant Garamond', serif; font-size: 22px; letter-spacing: 0.16em; }
+  nav.bar .back { font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(237,231,219,0.7); }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 160px 28px 60px; }
+  .kicker { font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #C6A15B; margin-bottom: 28px; }
+  h1.title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(38px, 5.4vw, 68px); line-height: 1.08; margin: 0 0 32px; letter-spacing: 0.005em; text-wrap: balance; }
+  .meta { display: flex; gap: 22px; align-items: center; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(237,231,219,0.5); padding-bottom: 40px; margin-bottom: 8px; border-bottom: 1px solid rgba(237,231,219,0.14); }
+  .meta .dot { width: 3px; height: 3px; border-radius: 50%; background: #C6A15B; }
+  article p { font-size: 18px; font-weight: 200; line-height: 1.85; color: rgba(237,231,219,0.82); margin: 0 0 26px; }
+  article p.lead { font-size: 21px; color: #EDE7DB; }
+  article p.lead::first-letter { font-family: 'Cormorant Garamond', serif; font-weight: 400; float: left; font-size: 82px; line-height: 0.82; padding: 6px 14px 0 0; color: #C6A15B; }
+  .next { margin-top: 72px; padding-top: 40px; border-top: 1px solid rgba(237,231,219,0.14); }
+  .next .lbl { font-size: 11px; letter-spacing: 0.34em; text-transform: uppercase; color: rgba(237,231,219,0.45); margin-bottom: 18px; }
+  .next a.nxt { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(26px, 3.4vw, 40px); line-height: 1.12; transition: padding-left 0.4s ease, color 0.3s ease; }
+  .next a.nxt:hover { padding-left: 14px; color: #C6A15B; }
+  .next a.nxt .arrow { font-family: 'Outfit', sans-serif; font-size: 22px; color: #C6A15B; flex: 0 0 auto; }
+  .foot { margin-top: 80px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(237,231,219,0.45); }
+  .foot a { color: #C6A15B; }
+  @media (max-width: 640px) { nav.bar { padding: 20px 24px; } .wrap { padding-top: 130px; } article p { font-size: 17px; } }
+</style>
+</head>
+<body>
+<div class="grain"></div>
+<div class="progress" id="progress"></div>
+<nav class="bar">
+  <a href="../index.html#top" class="logo">P<span style="color:#C6A15B;">·</span>K</a>
+  <a href="../index.html#insights" class="back">← All Insights</a>
+</nav>
+<div class="wrap">
+  <div class="kicker">Leadership &amp; Operations</div>
+  <h1 class="title">The Hidden Bottlenecks That Stop Businesses Scaling</h1>
+  <div class="meta"><span>Founder reflection</span><span class="dot"></span><span>4 min read</span></div>
+  <article>
+    <p class="lead">A few years ago, I was speaking with a founder who couldn’t understand why their business felt harder to run than it had a year earlier.</p>
+    <p>On paper, things looked positive. Revenue was growing. The team was larger. There were more customers, more opportunities and more activity than ever before. From the outside, most people would have described the business as successful.</p>
+    <p>The founder, however, looked exhausted.</p>
+    <p>I remember leaving that conversation thinking about how often growth gets romanticised. We spend so much time talking about how to get more customers, increase revenue and expand a business that we rarely talk about what growth actually feels like when you’re living through it.</p>
+    <p>The truth is that growth can be surprisingly uncomfortable.</p>
+    <p>In the early stages of a business, most problems are visible. If you’re not generating enough revenue, you know it. If you’re struggling to find customers, you know it. The challenges are often frustrating, but they’re relatively easy to identify.</p>
+    <p>As businesses grow, the problems become more subtle.</p>
+    <p>They’re no longer sitting on the surface waiting to be solved. They hide inside the day-to-day operations of the business, quietly slowing things down while everyone remains focused on the next target, the next project or the next opportunity.</p>
+    <p>I’ve become fascinated by these hidden bottlenecks over the years because they rarely look like bottlenecks at first.</p>
+    <p>They often look like busyness.</p>
+    <p>The founder who can’t take a holiday because every important decision still flows through them. The manager who spends their day answering the same questions over and over again. The team that works incredibly hard but somehow never seems to create more capacity. The business that keeps growing revenue without becoming any easier to run.</p>
+    <p>At first glance, none of those situations seem particularly alarming. In fact, many founders wear them as a badge of honour. Being busy can feel productive. Being needed can feel important.</p>
+    <p>But eventually the business starts sending signals.</p>
+    <p>Decisions take longer. Customers wait longer. Team members become frustrated. Good people leave. Growth slows.</p>
+    <p>The founder feels increasingly trapped by the very business they worked so hard to build.</p>
+    <p>One of the biggest surprises of my career has been discovering how often growth itself exposes problems rather than creates them.</p>
+    <p>Most bottlenecks already exist long before they’re noticed.</p>
+    <p>Growth simply shines a brighter light on them.</p>
+    <p>A process that works when you have five employees suddenly struggles when you have fifty. A communication style that feels manageable with a small team becomes chaotic as more people join. A founder who can personally oversee everything eventually reaches a point where there are simply too many moving parts.</p>
+    <p>The bottleneck isn’t growth. The bottleneck is that the business hasn’t evolved at the same pace. I’ve experienced versions of this myself over the years.</p>
+    <p>There have been periods where I thought the answer was to work harder, become more involved or spend more time solving problems personally. For a while, that approach seems effective. Things move faster because you’re pushing them forward.</p>
+    <p>Eventually, however, you realise you’ve become part of the problem.</p>
+    <p>That’s not an easy realisation for any founder.</p>
+    <p>Many of us start businesses because we’re capable. We solve problems. We get things done. Those strengths help us build a company in the first place.</p>
+    <p>Then one day you realise the business has reached a size where your ability to do everything is no longer an advantage. It’s a constraint.</p>
+    <p>The businesses that scale successfully seem to understand this earlier than most.</p>
+    <p>They become intentional about building systems before they desperately need them. They document knowledge. They clarify responsibilities. They create processes that allow decisions to happen without requiring constant founder involvement.</p>
+    <p>None of those things are particularly exciting. Nobody starts a business because they dream of documenting workflows. Yet some of the strongest companies I’ve encountered have an almost boring level of operational discipline behind the scenes.</p>
+    <p>Not because they’re obsessed with process. Because they understand that scale requires structure.</p>
+    <p>Looking back, I think many founders ask the wrong question when growth slows.</p>
+    <p>They ask, “How do we grow faster?”</p>
+    <p>A more useful question is often, “What is preventing us from handling the growth we already have?”</p>
+    <p>Those are very different questions.</p>
+    <p>One focuses on acceleration.</p>
+    <p>The other focuses on capacity.</p>
+    <p>And in my experience, capacity is where many of the most important business breakthroughs actually happen.</p>
+    <p>The hidden bottlenecks that stop businesses scaling are rarely dramatic. They’re rarely obvious. More often than not, they’re the small inefficiencies, dependencies and habits that have quietly accumulated over time.</p>
+    <p>The challenge is that they’re difficult to see from inside the business. The opportunity is that once you do see them, growth often becomes far easier than you expected.</p>
+    <p>Not because you found a shortcut.</p>
+    <p>Because you finally removed the thing that was holding everything else back.</p>
+  </article>
+  <div class="next">
+    <div class="lbl">Continue reading — next up</div>
+    <a class="nxt" href="the-reality-of-building-businesses-while-raising-children.html"><span>The Reality of Building Businesses While Raising Children</span><span class="arrow">→</span></a>
+  </div>
+  <div class="foot">
+    <a href="../index.html#insights">← Back to all insights</a>
+    <a href="https://au.linkedin.com/in/preetikennedy" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>
+  </div>
+</div>
+<script>
+  var pr = document.getElementById('progress');
+  function upd(){ var d=document.documentElement; pr.style.width=(d.scrollTop/((d.scrollHeight-d.clientHeight)||1)*100)+'%'; }
+  window.addEventListener('scroll', upd, {passive:true}); upd();
+</script>
+</body>
+</html>
