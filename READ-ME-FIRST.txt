@@ -41,22 +41,23 @@ BEFORE GOING LIVE - PLEASE CHECK
    no sideways scrolling, all tap targets 40px+.
 
 -------------------------------------------------------------------
-ONE THING THAT IS NOT CONNECTED YET
+THE NEWSLETTER SECTION IS HIDDEN
 -------------------------------------------------------------------
-THE NEWSLETTER FORM (the "Monthly Note" section near the bottom)
-It validates the name and email and shows a success message, but it
-does not yet send the details anywhere.
+The "Monthly Note" signup was never connected to an email provider,
+so it validated the form and showed a success message while storing
+nothing. Rather than mislead visitors, the section is now commented
+out in index.html.
 
-To connect it, open index.html, search for:
+To bring it back once you have an email provider:
+  1. Open index.html and search for:   HIDDEN
+  2. Delete the comment wrapper (the <!-- ... --> around the section).
+  3. Search for:   var NEWSLETTER_ENDPOINT = '';
+     and put your form URL between the quotes (Mailchimp, Kit/
+     ConvertKit, Formspree, Campaign Monitor - any will give you one).
+     It POSTs JSON: { name, email }.
 
-    var NEWSLETTER_ENDPOINT = '';
-
-and put the form URL from your email provider between the quotes
-(Mailchimp, Kit/ConvertKit, Formspree, Campaign Monitor - any of
-them will give you one). It POSTs JSON: { name, email }.
-
-Until that is filled in, subscribers are NOT being captured.
-Either connect it or hide the section before launch.
+The styles and the submit handler are both still in place, so those
+two steps are all it takes.
 
 -------------------------------------------------------------------
 FILE MAP
@@ -67,6 +68,7 @@ FILE MAP
   images/                 Book cover
   uploads/                Hero photograph
   press-assets/logos/     8 publication logos (Featured In section)
+  book/                   The ebook PDF served by "The Book" button
 
 -------------------------------------------------------------------
 KNOWN GAPS (content, not bugs)
@@ -76,7 +78,7 @@ KNOWN GAPS (content, not bugs)
   press-assets/logos/the-american-reporter.png in to fix.
 - No Filter Club and Brand Vantage Academy show "Coming soon"
   instead of a website link, because those sites do not exist yet.
-- The book's button links to LinkedIn. Swap it for a real
-  pre-order/purchase link when there is one.
+- (resolved) The book button now serves the ebook directly:
+  book/ambition-without-apology.pdf
 
 Questions: Chad Jacob, Shopa Marketing.
