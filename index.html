@@ -162,45 +162,61 @@
   @media (max-width: 767px) { .hero-li { margin: 40px 0 0; padding: 16px 34px; } }
   /* ===== Founder Story reel cards (text-on-image) ===== */
   [data-fable-visit].is-soon { border-color: rgba(237,231,219,0.28); color: rgba(237,231,219,0.5); cursor: default; pointer-events: none; }
-  /* ===== Featured In: small, logo-forward press cards ===== */
-  .pc-intro { flex: 0 0 auto; width: min(30vw, 380px); }
-  .pc-intro-h { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(32px, 3.2vw, 48px); line-height: 1.18; text-wrap: balance; }
-  .pc-intro-p { font-size: 14px; font-weight: 200; line-height: 1.8; color: rgba(237,231,219,0.6); margin: 24px 0 0; }
-  .pc { position: relative; flex: 0 0 auto; display: flex; flex-direction: column;
-        width: min(23vw, 300px); height: clamp(310px, 37vh, 380px); background: #12100D;
-        border: 1px solid rgba(237,231,219,0.14); box-sizing: border-box; text-decoration: none;
-        transition: background 0.4s ease, transform 0.5s cubic-bezier(0.2,0.6,0.2,1), border-color 0.4s ease; }
-  .pc:hover { background: #17130E; transform: translateY(-7px); border-color: rgba(198,161,91,0.4); }
-  .pc-top { display: block; }
-  /* the logo is the hero of the card - rendered as a clean white mark */
-  /* real publication colours, sitting on a light plate so dark marks read on the dark card */
-  /* full-width masthead band - the logo reads as part of the card, not a pasted patch */
+  /* =================================================================
+     Featured In — "the press wall".
+     Nine mastheads hung as a grid so the whole shelf reads at a glance.
+     Replaces a 430vh pinned horizontal reel that kept 8 of the 9 features
+     off-screen behind four screens of scroll-jacking.
+     ================================================================= */
+  .pw { max-width: 1240px; margin: 0 auto; }
+  .pw-head { margin-bottom: clamp(38px, 4vw, 56px); }
+  .pw-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(38px, 4.4vw, 64px);
+              line-height: 1.1; max-width: 820px; text-wrap: balance; }
+  .pw-sub { font-size: 15px; font-weight: 200; line-height: 1.8; color: rgba(237,231,219,0.62);
+            max-width: 520px; margin: 26px 0 0; }
+
+  .pw-grid { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 1.6vw, 24px); }
+  /* a soft gold spotlight tracks the pointer across the wall */
+  .pw-grid::before { content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none; opacity: 0;
+    background: radial-gradient(360px circle at var(--mx, 50%) var(--my, 50%), rgba(198,161,91,0.17), transparent 68%);
+    transition: opacity 0.55s ease; }
+  .pw-grid.is-lit::before { opacity: 1; }
+
+  .pc { position: relative; z-index: 1; display: flex; flex-direction: column; overflow: hidden;
+        background: #12100D; border: 1px solid rgba(237,231,219,0.14); box-sizing: border-box; text-decoration: none;
+        transition: background 0.4s ease, transform 0.5s cubic-bezier(0.2,0.6,0.2,1),
+                    border-color 0.4s ease, box-shadow 0.5s ease; }
+  .pc:hover, .pc:focus-visible { background: #17130E; transform: translateY(-6px);
+        border-color: rgba(198,161,91,0.55); box-shadow: 0 28px 56px -34px rgba(0,0,0,0.95); }
   .pc-band { position: relative; display: flex; align-items: center; justify-content: center; background: #F4F1EA;
-             min-height: 100px; padding: 18px 22px; box-sizing: border-box; }
+             min-height: 104px; padding: 18px 22px; box-sizing: border-box; transition: background 0.4s ease; }
+  .pc:hover .pc-band, .pc:focus-visible .pc-band { background: #FFFDF8; }
   .pc-band::after { content: ''; position: absolute; inset: 9px; box-shadow: inset 0 0 0 1px rgba(166,128,58,0.5); pointer-events: none; }
-  .pc-body { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 22px; padding: 24px 24px; }
-  .pc-logo { display: block; width: auto; height: auto; max-width: 150px; max-height: 48px; object-fit: contain; position: relative; z-index: 1; }
-  .pc-name { display: none; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 23px; line-height: 1.15; color: #14110d; text-align: center; }
-  .pc-title { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: 18px;
-              line-height: 1.42; color: rgba(237,231,219,0.85); display: -webkit-box; -webkit-line-clamp: 4;
+  .pc-logo { display: block; width: auto; height: auto; max-width: 150px; max-height: 46px; object-fit: contain; position: relative; z-index: 1; }
+  .pc-name { display: none; font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 22px;
+             line-height: 1.15; color: #14110d; text-align: center; }
+  .pc-body { flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 20px; padding: 26px 26px 24px; }
+  /* 4 lines, not 3 — the longest masthead headline truncates mid-word at 3 */
+  .pc-title { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: 19px;
+              line-height: 1.42; color: rgba(237,231,219,0.88); display: -webkit-box; -webkit-line-clamp: 4;
               -webkit-box-orient: vertical; overflow: hidden; }
-  .pc-cta { font-size: 9px; letter-spacing: 0.26em; text-transform: uppercase; color: #C6A15B; }
-  /* big outline numeral, sitting just outside the card - as it was before */
-  .pc-num { position: absolute; bottom: -40px; right: -24px; font-family: 'Cormorant Garamond', serif; font-size: 104px;
-            font-weight: 300; line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(198,161,91,0.65);
-            pointer-events: none; -webkit-user-select: none; user-select: none; }
-  /* staggered rhythm - one slightly up, the next slightly down */
-  .pc:nth-of-type(4n+1) { margin-top: -13vh; }
-  .pc:nth-of-type(4n+2) { margin-top: 11vh; }
-  .pc:nth-of-type(4n+3) { margin-top: -5vh; }
-  .pc:nth-of-type(4n+4) { margin-top: 15vh; }
-  @media (max-width: 767px) {
-    .pc-intro { width: 100% !important; max-width: 420px; }
-    .pc { width: 100% !important; max-width: 420px !important; height: auto !important; min-height: 230px !important; }
+  .pc-cta { display: inline-flex; align-items: center; gap: 7px; font-size: 9px; letter-spacing: 0.26em;
+            text-transform: uppercase; color: #C6A15B; }
+  .pc-cta span { transition: transform 0.35s cubic-bezier(0.2,0.6,0.2,1); }
+  .pc:hover .pc-cta span, .pc:focus-visible .pc-cta span { transform: translate(4px, -4px); }
+  /* the issue numeral sits inside the card now that there is no reel for it to bleed into */
+  .pc-num { position: absolute; right: 14px; bottom: -6px; font-family: 'Cormorant Garamond', serif; font-size: 74px;
+            font-weight: 300; line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(198,161,91,0.38);
+            pointer-events: none; -webkit-user-select: none; user-select: none;
+            transition: -webkit-text-stroke-color 0.4s ease; }
+  .pc:hover .pc-num, .pc:focus-visible .pc-num { -webkit-text-stroke-color: rgba(198,161,91,0.9); }
+  @media (max-width: 1023px) { .pw-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 639px) {
+    .pw-grid { grid-template-columns: 1fr; }
     .pc-logo { max-width: 140px; max-height: 44px; }
-    .pc { margin-top: 0 !important; }
-    .pc-num { display: none !important; }
+    .pc-num { font-size: 62px; }
   }
+  @media (prefers-reduced-motion: reduce) { .pw-grid::before { display: none; } }
 
   /* ===== Monthly newsletter signup ===== */
   .nl { border-top: 1px solid rgba(237,231,219,0.12); padding: 110px 64px; }
@@ -246,7 +262,7 @@
     [style*="animation: spinSlow"] { display: none !important; }
 
     /* Section side padding + tighter vertical rhythm */
-    [data-screen-label="Manifesto"] { padding: 130px 22px 90px !important; }
+    [data-screen-label="Manifesto"] { padding: 76px 22px 80px !important; }
     #pillars { padding: 0 22px 90px !important; }
     #companies { padding: 92px 22px 84px !important; }
     #book { padding: 92px 22px 84px !important; }
@@ -265,12 +281,7 @@
 
     /* Founder Story: stack label above each paragraph */
 
-    /* ---- Horizontal reels become clean vertical stacks (no scroll-jack / sticky) ---- */
-    [data-reel-scene] { height: auto !important; }
-    [data-reel-scene] > div { position: static !important; height: auto !important; overflow: visible !important; }
-    [data-reel-track] { position: static !important; flex-direction: column !important; align-items: center !important; height: auto !important; width: auto !important; transform: none !important; gap: 28px !important; padding: 24px 22px !important; }
-    /* hide the absolute reel labels, keep the track itself */
-    [data-reel-scene] > div > div[style*="position: absolute"]:not([data-reel-track]) { display: none !important; }
+    #press { padding: 72px 22px 64px !important; }
 
     /* Featured In: full-width cards, reset stagger, hide decorative overflow bits */
 
@@ -417,97 +428,93 @@
   </div>
 </section>
 
-<!-- 2. Featured In — pinned horizontal gallery of press features -->
-<section data-reel-scene data-screen-label="Featured In" aria-labelledby="featured-h" style="height: 430vh; position: relative; border-top: 1px solid rgba(237,231,219,0.12);">
-  <div style="position: sticky; top: 0; height: 100vh; overflow: hidden;">
-    <div style="position: absolute; top: 116px; left: 64px; font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #C6A15B; z-index: 3;">Featured In</div>
-    <div style="position: absolute; top: 116px; right: 64px; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(237,231,219,0.62); z-index: 3;">Keep scrolling &rarr;</div>
-    <div data-reel-track style="position: absolute; top: 0; left: 0; height: 100vh; display: flex; align-items: center; gap: 4vw; padding: 0 9vw; will-change: transform;">
-
-      <div class="pc-intro">
-        <h2 id="featured-h" class="pc-intro-h">The press found the story before I told it <em style="color: #C6A15B;">myself.</em></h2>
-        <p class="pc-intro-p">Nine features across international publications &mdash; and the shelf keeps filling up.</p>
-      </div>
-
-      <a class="pc" href="https://www.digitaljournal.com/article/why-preeti-kennedy-believes-loyalty-is-a-business-strategy/" target="_blank" rel="noopener">
+<!-- 2. Featured In — the press wall -->
+<section id="press" data-screen-label="Featured In" aria-labelledby="featured-h" style="border-top: 1px solid rgba(237,231,219,0.12); padding: clamp(64px, 7vw, 96px) 64px clamp(52px, 5.4vw, 72px);">
+  <div class="pw">
+    <div class="pw-head">
+      <div data-reveal style="font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #C6A15B; margin-bottom: 24px;">Featured In</div>
+      <h2 id="featured-h" class="pw-title" data-reveal data-delay="80">The press found the story before I told it <em style="color: #C6A15B;">myself.</em></h2>
+      <p class="pw-sub" data-reveal data-delay="140">Nine features across international publications &mdash; and the shelf keeps filling up.</p>
+    </div>
+    <div class="pw-grid" data-press-grid>
+      <a class="pc" data-reveal data-delay="0" href="https://www.digitaljournal.com/article/why-preeti-kennedy-believes-loyalty-is-a-business-strategy/" target="_blank" rel="noopener">
         <span class="pc-band"><picture><source srcset="press-assets/logos/digital-journal.webp" type="image/webp"><img width="600" height="71" class="pc-logo" src="press-assets/logos/digital-journal.png" alt="Digital Journal" loading="lazy" decoding="async" onerror="this.style.display='none';this.closest('.pc-band').querySelector('.pc-name').style.display='block';"></picture><span class="pc-name">Digital Journal</span></span>
         <span class="pc-body">
-          <span class="pc-title">Why Preeti Kennedy Believes Loyalty Is a Business Strategy</span>
-          <span class="pc-cta">Read the feature &#8599;</span>
+        <span class="pc-title">Why Preeti Kennedy Believes Loyalty Is a Business Strategy</span>
+        <span class="pc-cta">Read the feature <span>&#8599;</span></span>
         </span>
         <span class="pc-num">01</span>
-      </a>
-      <a class="pc" href="https://www.theamericanreporter.com/2026/07/04/why-this-global-founder-thinks-modern-business-has-forgotten-its-people/" target="_blank" rel="noopener">
+        </a>
+      <a class="pc" data-reveal data-delay="70" href="https://www.theamericanreporter.com/2026/07/04/why-this-global-founder-thinks-modern-business-has-forgotten-its-people/" target="_blank" rel="noopener">
         <span class="pc-band"><span class="pc-name" style="display:block;">The American Reporter</span></span>
         <span class="pc-body">
-          <span class="pc-title">Why this global founder thinks modern business has forgotten its people</span>
-          <span class="pc-cta">Read the feature &#8599;</span>
+        <span class="pc-title">Why this global founder thinks modern business has forgotten its people</span>
+        <span class="pc-cta">Read the feature <span>&#8599;</span></span>
         </span>
         <span class="pc-num">02</span>
-      </a>
-      <a class="pc" href="https://usinsider.com/preeti-kennedy-is-redefining-what-modern-ambition-looks-like/" target="_blank" rel="noopener">
+        </a>
+      <a class="pc" data-reveal data-delay="140" href="https://usinsider.com/preeti-kennedy-is-redefining-what-modern-ambition-looks-like/" target="_blank" rel="noopener">
         <span class="pc-band"><picture><source srcset="press-assets/logos/us-insider.webp" type="image/webp"><img width="600" height="86" class="pc-logo" src="press-assets/logos/us-insider.png" alt="US Insider" loading="lazy" decoding="async" onerror="this.style.display='none';this.closest('.pc-band').querySelector('.pc-name').style.display='block';"></picture><span class="pc-name">US Insider</span></span>
         <span class="pc-body">
-          <span class="pc-title">Preeti Kennedy Is Redefining What Modern Ambition Looks Like</span>
-          <span class="pc-cta">Read the feature &#8599;</span>
+        <span class="pc-title">Preeti Kennedy Is Redefining What Modern Ambition Looks Like</span>
+        <span class="pc-cta">Read the feature <span>&#8599;</span></span>
         </span>
         <span class="pc-num">03</span>
-      </a>
-      <a class="pc" href="https://www.usatoday.com/story/special/contributor-content/2026/01/23/why-global-marketing-agencies-are-rethinking-outsourcing-and-what-theyre-looking-for-instead/88323922007/" target="_blank" rel="noopener">
+        </a>
+      <a class="pc" data-reveal data-delay="0" href="https://www.usatoday.com/story/special/contributor-content/2026/01/23/why-global-marketing-agencies-are-rethinking-outsourcing-and-what-theyre-looking-for-instead/88323922007/" target="_blank" rel="noopener">
         <span class="pc-band"><picture><source srcset="press-assets/logos/usa-today.webp" type="image/webp"><img width="600" height="106" class="pc-logo" src="press-assets/logos/usa-today.png" alt="USA Today" loading="lazy" decoding="async" onerror="this.style.display='none';this.closest('.pc-band').querySelector('.pc-name').style.display='block';"></picture><span class="pc-name">USA Today</span></span>
         <span class="pc-body">
-          <span class="pc-title">Why Global Marketing Agencies Are Rethinking Outsourcing — And What They&#x27;re Looking For Instead</span>
-          <span class="pc-cta">Read the feature &#8599;</span>
+        <span class="pc-title">Why Global Marketing Agencies Are Rethinking Outsourcing — And What They&#x27;re Looking For Instead</span>
+        <span class="pc-cta">Read the feature <span>&#8599;</span></span>
         </span>
         <span class="pc-num">04</span>
-      </a>
-      <a class="pc" href="https://theentrepreneur-times.com/how-the-smartest-marketing-agencies-are-scaling-without-hiring-more-people/" target="_blank" rel="noopener">
+        </a>
+      <a class="pc" data-reveal data-delay="70" href="https://theentrepreneur-times.com/how-the-smartest-marketing-agencies-are-scaling-without-hiring-more-people/" target="_blank" rel="noopener">
         <span class="pc-band"><picture><source srcset="press-assets/logos/the-entrepreneur-times.webp" type="image/webp"><img width="600" height="210" class="pc-logo" src="press-assets/logos/the-entrepreneur-times.png" alt="The Entrepreneur Times" loading="lazy" decoding="async" onerror="this.style.display='none';this.closest('.pc-band').querySelector('.pc-name').style.display='block';"></picture><span class="pc-name">The Entrepreneur Times</span></span>
         <span class="pc-body">
-          <span class="pc-title">How the Smartest Marketing Agencies Are Scaling Without Hiring More People</span>
-          <span class="pc-cta">Read the feature &#8599;</span>
+        <span class="pc-title">How the Smartest Marketing Agencies Are Scaling Without Hiring More People</span>
+        <span class="pc-cta">Read the feature <span>&#8599;</span></span>
         </span>
         <span class="pc-num">05</span>
-      </a>
-      <a class="pc" href="https://theguardian.com.au/recommended/partner-content/2026/03/06/growing-with-purpose-shopa-marketings-strengthened-position-in-new-zealand/" target="_blank" rel="noopener">
+        </a>
+      <a class="pc" data-reveal data-delay="140" href="https://theguardian.com.au/recommended/partner-content/2026/03/06/growing-with-purpose-shopa-marketings-strengthened-position-in-new-zealand/" target="_blank" rel="noopener">
         <span class="pc-band"><picture><source srcset="press-assets/logos/the-guardian.webp" type="image/webp"><img width="600" height="96" class="pc-logo" src="press-assets/logos/the-guardian.png" alt="The Guardian" loading="lazy" decoding="async" onerror="this.style.display='none';this.closest('.pc-band').querySelector('.pc-name').style.display='block';"></picture><span class="pc-name">The Guardian</span></span>
         <span class="pc-body">
-          <span class="pc-title">Growing with Purpose: Shopa Marketing&#x27;s Strengthened Position in New Zealand</span>
-          <span class="pc-cta">Read the feature &#8599;</span>
+        <span class="pc-title">Growing with Purpose: Shopa Marketing&#x27;s Strengthened Position in New Zealand</span>
+        <span class="pc-cta">Read the feature <span>&#8599;</span></span>
         </span>
         <span class="pc-num">06</span>
-      </a>
-      <a class="pc" href="https://markets.businessinsider.com/news/stocks/shopa-marketing-introduces-a-new-multi-platform-advertising-model-designed-exclusively-for-smes-across-australia-and-new-zealand-1035614816" target="_blank" rel="noopener">
+        </a>
+      <a class="pc" data-reveal data-delay="0" href="https://markets.businessinsider.com/news/stocks/shopa-marketing-introduces-a-new-multi-platform-advertising-model-designed-exclusively-for-smes-across-australia-and-new-zealand-1035614816" target="_blank" rel="noopener">
         <span class="pc-band"><picture><source srcset="press-assets/logos/business-insider.webp" type="image/webp"><img width="600" height="207" class="pc-logo" src="press-assets/logos/business-insider.png" alt="Business Insider" loading="lazy" decoding="async" onerror="this.style.display='none';this.closest('.pc-band').querySelector('.pc-name').style.display='block';"></picture><span class="pc-name">Business Insider</span></span>
         <span class="pc-body">
-          <span class="pc-title">Shopa Marketing Introduces a New Multi-Platform Advertising Model Designed Exclusively for SMEs Across Australia and New Zealand</span>
-          <span class="pc-cta">Read the feature &#8599;</span>
+        <span class="pc-title">Shopa Marketing Introduces a New Multi-Platform Advertising Model Designed Exclusively for SMEs Across Australia and New Zealand</span>
+        <span class="pc-cta">Read the feature <span>&#8599;</span></span>
         </span>
         <span class="pc-num">07</span>
-      </a>
-      <a class="pc" href="https://apnews.com/press-release/marketersmedia/shopa-marketing-strengthens-position-as-go-to-advertising-partner-for-smes-across-australia-and-new-zealand-86c3162d8575a96ebff6b5981d7fb529" target="_blank" rel="noopener">
+        </a>
+      <a class="pc" data-reveal data-delay="70" href="https://apnews.com/press-release/marketersmedia/shopa-marketing-strengthens-position-as-go-to-advertising-partner-for-smes-across-australia-and-new-zealand-86c3162d8575a96ebff6b5981d7fb529" target="_blank" rel="noopener">
         <span class="pc-band"><picture><source srcset="press-assets/logos/ap-news.webp" type="image/webp"><img width="600" height="535" class="pc-logo" src="press-assets/logos/ap-news.png" alt="AP News" loading="lazy" decoding="async" onerror="this.style.display='none';this.closest('.pc-band').querySelector('.pc-name').style.display='block';"></picture><span class="pc-name">AP News</span></span>
         <span class="pc-body">
-          <span class="pc-title">Shopa Marketing Strengthens Position as Go-To Advertising Partner for SMEs Across Australia and New Zealand</span>
-          <span class="pc-cta">Read the feature &#8599;</span>
+        <span class="pc-title">Shopa Marketing Strengthens Position as Go-To Advertising Partner for SMEs Across Australia and New Zealand</span>
+        <span class="pc-cta">Read the feature <span>&#8599;</span></span>
         </span>
         <span class="pc-num">08</span>
-      </a>
-      <a class="pc" href="https://ceoweekly.com/making-marketing-human-again-how-one-founder-is-reshaping-sme-advertising-across-australia-and-new-zealand/" target="_blank" rel="noopener">
+        </a>
+      <a class="pc" data-reveal data-delay="140" href="https://ceoweekly.com/making-marketing-human-again-how-one-founder-is-reshaping-sme-advertising-across-australia-and-new-zealand/" target="_blank" rel="noopener">
         <span class="pc-band"><picture><source srcset="press-assets/logos/ceo-weekly.webp" type="image/webp"><img width="600" height="66" class="pc-logo" src="press-assets/logos/ceo-weekly.png" alt="CEO Weekly" loading="lazy" decoding="async" onerror="this.style.display='none';this.closest('.pc-band').querySelector('.pc-name').style.display='block';"></picture><span class="pc-name">CEO Weekly</span></span>
         <span class="pc-body">
-          <span class="pc-title">Making Marketing Human Again: How One Founder Is Reshaping SME Advertising Across Australia and New Zealand</span>
-          <span class="pc-cta">Read the feature &#8599;</span>
+        <span class="pc-title">Making Marketing Human Again: How One Founder Is Reshaping SME Advertising Across Australia and New Zealand</span>
+        <span class="pc-cta">Read the feature <span>&#8599;</span></span>
         </span>
         <span class="pc-num">09</span>
-      </a>
-
+        </a>
     </div>
   </div>
 </section>
 
 <!-- Manifesto -->
-<section data-screen-label="Manifesto" aria-labelledby="manifesto-h" style="padding: 180px 64px 120px; max-width: 1120px; margin: 0 auto;">
+<section data-screen-label="Manifesto" aria-labelledby="manifesto-h" style="padding: clamp(72px, 7vw, 100px) 64px clamp(84px, 8vw, 112px); max-width: 1120px; margin: 0 auto;">
   <h2 id="manifesto-h" data-reveal style="font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #C6A15B; text-align: center; margin-bottom: 48px;">Why this site exists</h2>
   <div data-reveal data-delay="120" data-word-scrub style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(21px, 2.15vw, 31px); line-height: 1.5; text-align: center; text-wrap: balance;">You won't find a résumé here, and I'm not selling you anything. This is my notebook — what building companies and raising kids at the same time has actually taught me. <em style="color: #C6A15B;">Trust first. Everything else follows.</em></div>
 </section>
@@ -969,31 +976,6 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(function () { el.style.opacity = '1'; el.style.transform = 'translateY(0)'; }, delay);
   };
 
-  // Scroll-linked horizontal reels
-  var updateScenes = function () {
-    var vh = window.innerHeight || document.documentElement.clientHeight;
-    var isMobileReel = window.matchMedia('(max-width: 767px)').matches;
-    document.querySelectorAll('[data-reel-scene]').forEach(function (reelScene) {
-      var reelTrack = reelScene.querySelector('[data-reel-track]');
-      if (!reelTrack) return;
-      if (isMobileReel) { reelTrack.style.transform = ''; return; }  // mobile: static vertical stack (CSS)
-      var r = reelScene.getBoundingClientRect();
-      var total = r.height - vh;
-      var p = Math.min(Math.max(-r.top / total, 0), 1);
-      var maxX = Math.max(reelTrack.scrollWidth - window.innerWidth, 0);
-      reelTrack.style.transform = 'translateX(' + (-p * maxX) + 'px)';
-    });
-  };
-  var ticking = false;
-  var onFrame = function () {
-    if (ticking) return;
-    ticking = true;
-    requestAnimationFrame(function () { updateScenes(); ticking = false; });
-  };
-  window.addEventListener('scroll', onFrame, { passive: true });
-  window.addEventListener('resize', onFrame);
-  updateScenes();
-
   var check = function () {
     var vh = window.innerHeight || document.documentElement.clientHeight;
     pendingReveals.forEach(function (el) {
@@ -1038,26 +1020,6 @@ document.addEventListener('DOMContentLoaded', function () {
     setTimeout(hidePre, 4500);
   }
 
-  // Scroll-velocity skew on all horizontal reels
-  var lastScrollY = window.scrollY;
-  var skew = 0;
-  var skewReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var skewLoop = function () {
-    var dy = window.scrollY - lastScrollY;
-    lastScrollY = window.scrollY;
-    // no velocity skew on mobile (static stacks) or under reduced-motion
-    if (skewReduce || window.matchMedia('(max-width: 767px)').matches) { requestAnimationFrame(skewLoop); return; }
-    skew += (Math.max(Math.min(dy * 0.06, 4), -4) - skew) * 0.12;
-    if (Math.abs(skew) > 0.01) {
-      document.querySelectorAll('[data-reel-track]').forEach(function (track) {
-        var base = track.style.transform.match(/translateX\([^)]*\)/);
-        track.style.transform = (base ? base[0] : '') + ' skewX(' + (-skew) + 'deg)';
-      });
-    }
-    requestAnimationFrame(skewLoop);
-  };
-  requestAnimationFrame(skewLoop);
-
   // Word scrub: manifesto words brighten one by one as you scroll
   var scrub = document.querySelector('[data-word-scrub]');
   var scrubWords = [];
@@ -1100,6 +1062,19 @@ document.addEventListener('DOMContentLoaded', function () {
   };
   window.addEventListener('scroll', updateProgress, { passive: true });
   updateProgress();
+
+  // Featured In: a soft spotlight tracks the pointer across the press wall.
+  // Pointer-only and motion-aware — it is decoration, never a way to reach content.
+  var wall = document.querySelector('[data-press-grid]');
+  if (wall && !prefersReduced && window.matchMedia('(hover: hover)').matches) {
+    wall.addEventListener('pointermove', function (e) {
+      var r = wall.getBoundingClientRect();
+      wall.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      wall.style.setProperty('--my', (e.clientY - r.top) + 'px');
+      wall.classList.add('is-lit');
+    }, { passive: true });
+    wall.addEventListener('pointerleave', function () { wall.classList.remove('is-lit'); });
+  }
 
   // Mobile menu
   var navToggle = document.getElementById('navToggle');
