@@ -136,7 +136,7 @@
   .bk-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 380px) minmax(0, 1fr); gap: clamp(44px, 6vw, 96px); align-items: center; }
   .bk-cover { position: relative; justify-self: start; width: 100%; max-width: 380px; }
   .bk-cover img { width: 100%; height: auto; display: block; box-shadow: 0 48px 90px -40px rgba(0,0,0,0.95); }
-  .bk-cover::after { content: ''; position: absolute; inset: 14px; box-shadow: inset 0 0 0 1px rgba(198,161,91,0.5); pointer-events: none; }
+  .bk-cover::after { content: none; }
   .bk-kicker { font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #C6A15B; margin-bottom: 26px; }
   .bk-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(42px, 5vw, 78px); line-height: 1.02; letter-spacing: 0.005em; margin-bottom: 26px; text-wrap: balance; }
   .bk-sub { font-size: 17px; font-weight: 200; line-height: 1.75; color: rgba(237,231,219,0.7); max-width: 520px; margin-bottom: 38px; }
@@ -162,6 +162,25 @@
   @media (max-width: 767px) { .hero-li { margin: 40px 0 0; padding: 16px 34px; } }
   /* ===== Founder Story reel cards (text-on-image) ===== */
   [data-fable-visit].is-soon { border-color: rgba(237,231,219,0.28); color: rgba(237,231,219,0.5); cursor: default; pointer-events: none; }
+
+  /* ===== Ventures: mobile accordion — each company's blurb opens directly under its name.
+     Desktop keeps the tabbed auto-playing "fable"; these panels are injected by JS and
+     hidden entirely above 767px. ===== */
+  .fab-panel { overflow: hidden; max-height: 0; opacity: 0;
+    transition: max-height 0.55s cubic-bezier(0.2,0.6,0.2,1), opacity 0.45s ease; }
+  @media (min-width: 768px) { .fab-panel { display: none; } }
+  .fab-panel-inner { padding: 2px 0 30px; }
+  .fab-noticed { font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(237,231,219,0.6); margin: 0 0 16px; }
+  .fab-line { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: 21px; line-height: 1.42; color: #EDE7DB; }
+  .fab-moral { margin-top: 22px; }
+  .fab-moral-k { display: block; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: #C6A15B; margin-bottom: 8px; }
+  .fab-moral-t { font-family: 'Cormorant Garamond', serif; font-size: 19px; color: #C6A15B; line-height: 1.4; }
+  .fab-visit { display: inline-block; margin-top: 26px; border: 1px solid rgba(198,161,91,0.78); color: #C6A15B; padding: 13px 30px; border-radius: 999px; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; }
+  .fab-visit.is-soon { border-color: rgba(237,231,219,0.28); color: rgba(237,231,219,0.5); }
+  @media (max-width: 767px) {
+    #companies [data-fable-stage] { display: none !important; }
+    #companies [data-fable-progress] { display: none; }
+  }
   /* =================================================================
      Featured In — "the press wall".
      Nine mastheads hung as a grid so the whole shelf reads at a glance.
@@ -200,6 +219,10 @@
   .pc-title { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: 19px;
               line-height: 1.42; color: rgba(237,231,219,0.88); display: -webkit-box; -webkit-line-clamp: 4;
               -webkit-box-orient: vertical; overflow: hidden; }
+  .pc-top { display: flex; flex-direction: column; gap: 13px; }
+  /* Two-line article excerpt — desktop (3-column) only, per client note */
+  .pc-excerpt { font-size: 13px; font-weight: 200; line-height: 1.62; color: rgba(237,231,219,0.58);
+              display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
   .pc-cta { display: inline-flex; align-items: center; gap: 7px; font-size: 9px; letter-spacing: 0.26em;
             text-transform: uppercase; color: #C6A15B; }
   .pc-cta span { transition: transform 0.35s cubic-bezier(0.2,0.6,0.2,1); }
@@ -210,7 +233,7 @@
             pointer-events: none; -webkit-user-select: none; user-select: none;
             transition: -webkit-text-stroke-color 0.4s ease; }
   .pc:hover .pc-num, .pc:focus-visible .pc-num { -webkit-text-stroke-color: rgba(198,161,91,0.9); }
-  @media (max-width: 1023px) { .pw-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 1023px) { .pw-grid { grid-template-columns: repeat(2, 1fr); } .pc-excerpt { display: none; } }
   @media (max-width: 639px) {
     .pw-grid { grid-template-columns: 1fr; }
     .pc-logo { max-width: 140px; max-height: 44px; }
@@ -254,7 +277,7 @@
 
     /* Nav: trim padding, hide the link cluster (logo stays, page is a scroll journey) */
     [style*="z-index: 50"] { padding: 16px 20px !important; }
-    [style*="gap: 44px"] { display: none !important; }
+    nav[aria-label="Primary"] { display: none !important; }
 
     /* Hero: single column, image below text; hide the spinning badge (overflows) */
     [data-screen-label="Hero"] { grid-template-columns: 1fr !important; padding: 112px 22px 60px !important; min-height: auto !important; }
@@ -309,7 +332,7 @@
     /* hero CTAs: two pills don't fit side-by-side on a phone */
     [data-screen-label="Hero"] div[style*="gap: 20px"] { flex-wrap: wrap !important; gap: 12px !important; margin-top: 36px !important; }
     [data-screen-label="Hero"] div[style*="gap: 20px"] > a { padding: 16px 30px !important; }
-    [data-screen-label="Hero"] div[style*="clamp(56px"] { font-size: 40px !important; line-height: 1.06 !important; }
+    [data-screen-label="Hero"] div[style*="clamp(56px"] { font-size: 40px !important; line-height: 1.14 !important; }
     [data-screen-label="Hero"] div[style*="letter-spacing: 0.4em"] { letter-spacing: 0.26em !important; }
     #contact div[style*="clamp(64px"] { font-size: 50px !important; line-height: 1.06 !important; }
 
@@ -321,7 +344,7 @@
      Target size is a pointer question, not a phone question.
      ================================================================= */
   [style*="z-index: 50"] > a:first-child { display: inline-flex; align-items: center; min-height: 44px; }
-  [style*="z-index: 50"] [style*="gap: 44px"] a { display: inline-flex; align-items: center; min-height: 32px; }
+  [style*="z-index: 50"] nav[aria-label="Primary"] a { display: inline-flex; align-items: center; min-height: 32px; }
   #navMenu a { min-height: 44px; display: flex; align-items: center; }
   #contact div[style*="border-top"] a { display: inline-flex; align-items: center; min-height: 32px; }
 
@@ -361,7 +384,7 @@
 <!-- Preloader -->
 <div data-preloader style="position: fixed; inset: 0; z-index: 100; background: #0C0B09; display: flex; align-items: center; justify-content: center; transition: transform 1s cubic-bezier(0.76, 0, 0.24, 1);">
   <div style="text-align: center;">
-    <div data-preloader-name style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(40px, 5vw, 72px); color: #EDE7DB; overflow: hidden;"><span style="display: inline-block; opacity: 0; transform: translateY(100%); transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.2,0.6,0.2,1);">Preeti <em style="color: #C6A15B;">Kennedy</em></span></div>
+    <div data-preloader-name style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(40px, 5vw, 72px); color: #EDE7DB; overflow: hidden; padding-bottom: 0.14em;"><span style="display: inline-block; opacity: 0; transform: translateY(100%); transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.2,0.6,0.2,1);">Preeti <em style="color: #C6A15B;">Kennedy</em></span></div>
     <div data-preloader-count style="font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: rgba(198,161,91,0.8); margin-top: 28px;">0</div>
   </div>
 </div>
@@ -373,21 +396,25 @@
 <!-- Nav -->
 <header style="position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; justify-content: space-between; align-items: center; padding: 28px 64px; background: linear-gradient(rgba(12,11,9,0.85), rgba(12,11,9,0)); -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);">
   <a href="#top" style="font-family: 'Cormorant Garamond', serif; font-size: 24px; font-weight: 400; letter-spacing: 0.16em;" aria-label="P·K — Preeti Kennedy, home">P<span style="color: #C6A15B;">·</span>K</a>
-  <nav aria-label="Primary" style="display: flex; gap: 44px; font-size: 11px; font-weight: 300; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(237,231,219,0.7);">
-    <a href="#pillars">Topics</a>
-    <a href="#insights">Insights</a>
-    <a href="#companies">Companies</a>
+  <nav aria-label="Primary" style="display: flex; gap: 34px; font-size: 11px; font-weight: 300; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(237,231,219,0.7);">
+    <a href="#top">Home</a>
+    <a href="#about">About</a>
     <a href="#book" style="color: #C6A15B;">Book</a>
+    <a href="#insights">Founder Insights</a>
+    <a href="#press">Media</a>
+    <a href="#companies">Ventures</a>
   </nav>
   <button id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navMenu"><span></span><span></span></button>
 </header>
 
 <!-- Mobile menu overlay -->
 <nav id="navMenu" aria-label="Mobile" aria-hidden="true" inert>
-  <a href="#pillars">Topics</a>
-  <a href="#insights">Insights</a>
-  <a href="#companies">Companies</a>
+  <a href="#top">Home</a>
+  <a href="#about">About</a>
   <a href="#book">Book</a>
+  <a href="#insights">Founder Insights</a>
+  <a href="#press">Media</a>
+  <a href="#companies">Ventures</a>
 </nav>
 
 <main>
@@ -396,23 +423,22 @@
 <section id="top" data-screen-label="Hero" style="position: relative; min-height: 100vh; display: grid; grid-template-columns: 1.15fr 0.85fr; align-items: center; overflow: hidden; padding: 140px 64px 80px;">
   <div style="position: relative; z-index: 2;">
     <div style="font-size: 12px; font-weight: 300; letter-spacing: 0.4em; text-transform: uppercase; color: #C6A15B; margin-bottom: 44px; opacity: 0; animation: heroRise 1.1s cubic-bezier(0.2, 0.6, 0.2, 1) 0.15s forwards;">Preeti Kennedy — Founder · Operator · Working Mum</div>
-    <h1 style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(56px, 6.4vw, 104px); line-height: 1.02; letter-spacing: 0.005em;">
-      <div style="overflow: hidden;"><div style="opacity: 0; animation: heroRise 1.2s cubic-bezier(0.2, 0.6, 0.2, 1) 0.3s forwards;">Building businesses.</div></div>
-      <div style="overflow: hidden;"><div style="opacity: 0; animation: heroRise 1.2s cubic-bezier(0.2, 0.6, 0.2, 1) 0.45s forwards;">Raising kids.</div></div>
-      <div style="overflow: hidden;"><div style="opacity: 0; animation: heroRise 1.2s cubic-bezier(0.2, 0.6, 0.2, 1) 0.6s forwards;">Sharing what I've learned <em style="color: #C6A15B;">along the way.</em></div></div>
+    <h1 style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(56px, 6.4vw, 104px); line-height: 1.12; letter-spacing: 0.005em;">
+      <div style="overflow: hidden; padding-bottom: 0.18em; margin-bottom: -0.18em;"><div style="opacity: 0; animation: heroRise 1.2s cubic-bezier(0.2, 0.6, 0.2, 1) 0.3s forwards;">Building businesses.</div></div>
+      <div style="overflow: hidden; padding-bottom: 0.18em; margin-bottom: -0.18em;"><div style="opacity: 0; animation: heroRise 1.2s cubic-bezier(0.2, 0.6, 0.2, 1) 0.45s forwards;">Raising kids.</div></div>
+      <div style="overflow: hidden; padding-bottom: 0.18em; margin-bottom: -0.18em;"><div style="opacity: 0; animation: heroRise 1.2s cubic-bezier(0.2, 0.6, 0.2, 1) 0.6s forwards;">Sharing what I've learned <em style="color: #C6A15B;">along the way.</em></div></div>
     </h1>
-    <p style="font-size: 17px; font-weight: 200; line-height: 1.8; color: rgba(237,231,219,0.65); max-width: 480px; margin: 44px 0 0; opacity: 0; animation: heroFade 1.4s ease 1s forwards;">I walked into my first agency at seventeen. Twenty-three years, six companies and a family later, I've learned most of my lessons the hard way. This is where I write them down — the observations, not the highlight reel.</p>
+    <p style="font-size: 20px; font-weight: 300; line-height: 1.85; color: rgba(237,231,219,0.78); max-width: 520px; margin: 44px 0 0; opacity: 0; animation: heroFade 1.4s ease 1s forwards;">I walked into my first agency at seventeen. Twenty-three years, six companies and a family later, I've learned most of my lessons the hard way. This is where I write them down — the observations, not the highlight reel.</p>
     <div style="display: flex; gap: 20px; margin-top: 48px; opacity: 0; animation: heroFade 1.4s ease 1.2s forwards;">
-      <a href="#insights" data-magnetic style="display: inline-block; background: #C6A15B; color: #0C0B09; padding: 18px 44px; border-radius: 999px; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; transition: background 0.35s ease;" style-hover="background: #EDE7DB;">Read Insights</a>
-      <a href="#companies" data-magnetic style="display: inline-block; border: 1px solid rgba(198,161,91,0.78); color: #C6A15B; padding: 18px 44px; border-radius: 999px; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; transition: background 0.35s ease, color 0.35s ease;" style-hover="background: #C6A15B; color: #0C0B09;">Explore Companies</a>
+      <a href="#book" data-magnetic style="display: inline-block; background: #C6A15B; color: #0C0B09; padding: 18px 44px; border-radius: 999px; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; transition: background 0.35s ease;" style-hover="background: #EDE7DB;">Read My Story</a>
+      <a href="#insights" data-magnetic style="display: inline-block; border: 1px solid rgba(198,161,91,0.78); color: #C6A15B; padding: 18px 44px; border-radius: 999px; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; transition: background 0.35s ease, color 0.35s ease;" style-hover="background: #C6A15B; color: #0C0B09;">Founder Insights</a>
     </div>
   </div>
   <div style="position: relative; z-index: 1; justify-self: center; width: min(44vw, 620px); opacity: 0; animation: heroFade 1.6s ease 0.7s forwards;">
     <div class="hero-media" style="position: relative;">
     <div style="overflow: hidden;">
-      <picture><source srcset="uploads/hero-preeti.webp" type="image/webp"><img width="896" height="1088" src="uploads/hero-preeti.jpg" alt="Preeti Kennedy" style="width: 100%; height: min(66vh, 640px); object-fit: cover; object-position: 50% 10%; display: block; filter: contrast(1.03); animation: kenBurns 2.4s cubic-bezier(0.2, 0.6, 0.2, 1) forwards;"></picture>
+      <picture><source srcset="uploads/hero-preeti.webp?v=2" type="image/webp"><img width="1137" height="1383" src="uploads/hero-preeti.jpg?v=2" alt="Preeti Kennedy" style="width: 100%; height: auto; display: block; filter: contrast(1.03); animation: kenBurns 2.4s cubic-bezier(0.2, 0.6, 0.2, 1) forwards;"></picture>
     </div>
-    <div style="position: absolute; inset: 18px; box-shadow: inset 0 0 0 1px rgba(198,161,91,0.45); pointer-events: none;"></div>
     <div style="position: absolute; left: -70px; bottom: -50px; width: 140px; height: 140px; animation: spinSlow 22s linear infinite;">
       <svg viewBox="0 0 140 140" style="width: 100%; height: 100%; display: block;">
         <defs><path id="circlePath" d="M 70,70 m -52,0 a 52,52 0 1,1 104,0 a 52,52 0 1,1 -104,0"></path></defs>
@@ -423,112 +449,93 @@
     </div>
     <a class="hero-li" href="https://au.linkedin.com/in/preetikennedy" target="_blank" rel="noopener" data-magnetic style-hover="background: #C6A15B; color: #0C0B09;"><svg class="hero-li-ico" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4.98 3.5A2.5 2.5 0 1 1 0 3.5a2.5 2.5 0 0 1 4.98 0zM.24 8.02h4.48V24H.24V8.02zM8.34 8.02h4.29v2.18h.06c.6-1.13 2.06-2.32 4.24-2.32 4.54 0 5.38 2.99 5.38 6.88V24h-4.48v-6.35c0-1.51-.03-3.46-2.11-3.46-2.11 0-2.43 1.65-2.43 3.35V24H8.34V8.02z"/></svg><span>Connect on LinkedIn</span></a>
   </div>
-  <div style="position: absolute; bottom: 36px; left: 64px; display: flex; align-items: center; gap: 14px; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(237,231,219,0.88); animation: scrollPulse 2.4s ease-in-out infinite;">
-    <span style="display: block; width: 1px; height: 40px; background: linear-gradient(#C6A15B, transparent);"></span> Scroll
+</section>
+
+<!-- 2. About — The Story Behind Everything -->
+<section id="about" data-screen-label="About" aria-labelledby="about-h" style="padding: clamp(96px, 10vw, 150px) clamp(22px, 5vw, 64px); max-width: 880px; margin: 0 auto;">
+  <div data-reveal style="font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #C6A15B; margin-bottom: 30px;">About</div>
+  <h2 id="about-h" data-reveal data-delay="80" style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(40px, 5vw, 72px); line-height: 1.08; letter-spacing: 0.005em; margin-bottom: 54px; text-wrap: balance;">The Story Behind <em style="color: #C6A15B;">Everything.</em></h2>
+  <div data-reveal data-delay="140" style="font-size: 19px; font-weight: 300; line-height: 1.9; color: rgba(237,231,219,0.8); max-width: 680px;">
+    <p style="margin: 0 0 32px;">I never set out to build multiple businesses. I was simply trying to build a life that felt like my own.</p>
+    <p style="margin: 0 0 32px;">Becoming a mother at a young age, rebuilding after divorce and starting over more than once taught me that reinvention rarely comes with a roadmap. Every challenge shaped the way I think, the way I lead and the opportunities I chose to pursue.</p>
+    <p style="margin: 0;">Today, every venture I've built has started with a real problem worth solving. This website isn't a portfolio or a place to promote my businesses. It's a collection of the journey behind them, the ideas that continue to shape them and the lessons I'm still learning along the way.</p>
   </div>
 </section>
 
-<!-- 2. Featured In — the press wall -->
-<section id="press" data-screen-label="Featured In" aria-labelledby="featured-h" style="border-top: 1px solid rgba(237,231,219,0.12); padding: clamp(64px, 7vw, 96px) 64px clamp(52px, 5.4vw, 72px);">
-  <div class="pw">
-    <div class="pw-head">
-      <div data-reveal style="font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #C6A15B; margin-bottom: 24px;">Featured In</div>
-      <h2 id="featured-h" class="pw-title" data-reveal data-delay="80">The press found the story before I told it <em style="color: #C6A15B;">myself.</em></h2>
-      <p class="pw-sub" data-reveal data-delay="140">Nine features across international publications &mdash; and the shelf keeps filling up.</p>
-    </div>
-    <div class="pw-grid" data-press-grid>
-      <a class="pc" data-reveal data-delay="0" href="https://www.digitaljournal.com/article/why-preeti-kennedy-believes-loyalty-is-a-business-strategy/" target="_blank" rel="noopener">
-        <span class="pc-band"><picture><source srcset="press-assets/logos/digital-journal.webp" type="image/webp"><img width="600" height="71" class="pc-logo" src="press-assets/logos/digital-journal.png" alt="Digital Journal" loading="lazy" decoding="async" onerror="this.style.display='none';this.closest('.pc-band').querySelector('.pc-name').style.display='block';"></picture><span class="pc-name">Digital Journal</span></span>
-        <span class="pc-body">
-        <span class="pc-title">Why Preeti Kennedy Believes Loyalty Is a Business Strategy</span>
-        <span class="pc-cta">Read the feature <span>&#8599;</span></span>
-        </span>
-        <span class="pc-num">01</span>
-        </a>
-      <a class="pc" data-reveal data-delay="70" href="https://www.theamericanreporter.com/2026/07/04/why-this-global-founder-thinks-modern-business-has-forgotten-its-people/" target="_blank" rel="noopener">
-        <span class="pc-band"><span class="pc-name" style="display:block;">The American Reporter</span></span>
-        <span class="pc-body">
-        <span class="pc-title">Why this global founder thinks modern business has forgotten its people</span>
-        <span class="pc-cta">Read the feature <span>&#8599;</span></span>
-        </span>
-        <span class="pc-num">02</span>
-        </a>
-      <a class="pc" data-reveal data-delay="140" href="https://usinsider.com/preeti-kennedy-is-redefining-what-modern-ambition-looks-like/" target="_blank" rel="noopener">
-        <span class="pc-band"><picture><source srcset="press-assets/logos/us-insider.webp" type="image/webp"><img width="600" height="86" class="pc-logo" src="press-assets/logos/us-insider.png" alt="US Insider" loading="lazy" decoding="async" onerror="this.style.display='none';this.closest('.pc-band').querySelector('.pc-name').style.display='block';"></picture><span class="pc-name">US Insider</span></span>
-        <span class="pc-body">
-        <span class="pc-title">Preeti Kennedy Is Redefining What Modern Ambition Looks Like</span>
-        <span class="pc-cta">Read the feature <span>&#8599;</span></span>
-        </span>
-        <span class="pc-num">03</span>
-        </a>
-      <a class="pc" data-reveal data-delay="0" href="https://www.usatoday.com/story/special/contributor-content/2026/01/23/why-global-marketing-agencies-are-rethinking-outsourcing-and-what-theyre-looking-for-instead/88323922007/" target="_blank" rel="noopener">
-        <span class="pc-band"><picture><source srcset="press-assets/logos/usa-today.webp" type="image/webp"><img width="600" height="106" class="pc-logo" src="press-assets/logos/usa-today.png" alt="USA Today" loading="lazy" decoding="async" onerror="this.style.display='none';this.closest('.pc-band').querySelector('.pc-name').style.display='block';"></picture><span class="pc-name">USA Today</span></span>
-        <span class="pc-body">
-        <span class="pc-title">Why Global Marketing Agencies Are Rethinking Outsourcing — And What They&#x27;re Looking For Instead</span>
-        <span class="pc-cta">Read the feature <span>&#8599;</span></span>
-        </span>
-        <span class="pc-num">04</span>
-        </a>
-      <a class="pc" data-reveal data-delay="70" href="https://theentrepreneur-times.com/how-the-smartest-marketing-agencies-are-scaling-without-hiring-more-people/" target="_blank" rel="noopener">
-        <span class="pc-band"><picture><source srcset="press-assets/logos/the-entrepreneur-times.webp" type="image/webp"><img width="600" height="210" class="pc-logo" src="press-assets/logos/the-entrepreneur-times.png" alt="The Entrepreneur Times" loading="lazy" decoding="async" onerror="this.style.display='none';this.closest('.pc-band').querySelector('.pc-name').style.display='block';"></picture><span class="pc-name">The Entrepreneur Times</span></span>
-        <span class="pc-body">
-        <span class="pc-title">How the Smartest Marketing Agencies Are Scaling Without Hiring More People</span>
-        <span class="pc-cta">Read the feature <span>&#8599;</span></span>
-        </span>
-        <span class="pc-num">05</span>
-        </a>
-      <a class="pc" data-reveal data-delay="140" href="https://theguardian.com.au/recommended/partner-content/2026/03/06/growing-with-purpose-shopa-marketings-strengthened-position-in-new-zealand/" target="_blank" rel="noopener">
-        <span class="pc-band"><picture><source srcset="press-assets/logos/the-guardian.webp" type="image/webp"><img width="600" height="96" class="pc-logo" src="press-assets/logos/the-guardian.png" alt="The Guardian" loading="lazy" decoding="async" onerror="this.style.display='none';this.closest('.pc-band').querySelector('.pc-name').style.display='block';"></picture><span class="pc-name">The Guardian</span></span>
-        <span class="pc-body">
-        <span class="pc-title">Growing with Purpose: Shopa Marketing&#x27;s Strengthened Position in New Zealand</span>
-        <span class="pc-cta">Read the feature <span>&#8599;</span></span>
-        </span>
-        <span class="pc-num">06</span>
-        </a>
-      <a class="pc" data-reveal data-delay="0" href="https://markets.businessinsider.com/news/stocks/shopa-marketing-introduces-a-new-multi-platform-advertising-model-designed-exclusively-for-smes-across-australia-and-new-zealand-1035614816" target="_blank" rel="noopener">
-        <span class="pc-band"><picture><source srcset="press-assets/logos/business-insider.webp" type="image/webp"><img width="600" height="207" class="pc-logo" src="press-assets/logos/business-insider.png" alt="Business Insider" loading="lazy" decoding="async" onerror="this.style.display='none';this.closest('.pc-band').querySelector('.pc-name').style.display='block';"></picture><span class="pc-name">Business Insider</span></span>
-        <span class="pc-body">
-        <span class="pc-title">Shopa Marketing Introduces a New Multi-Platform Advertising Model Designed Exclusively for SMEs Across Australia and New Zealand</span>
-        <span class="pc-cta">Read the feature <span>&#8599;</span></span>
-        </span>
-        <span class="pc-num">07</span>
-        </a>
-      <a class="pc" data-reveal data-delay="70" href="https://apnews.com/press-release/marketersmedia/shopa-marketing-strengthens-position-as-go-to-advertising-partner-for-smes-across-australia-and-new-zealand-86c3162d8575a96ebff6b5981d7fb529" target="_blank" rel="noopener">
-        <span class="pc-band"><picture><source srcset="press-assets/logos/ap-news.webp" type="image/webp"><img width="600" height="535" class="pc-logo" src="press-assets/logos/ap-news.png" alt="AP News" loading="lazy" decoding="async" onerror="this.style.display='none';this.closest('.pc-band').querySelector('.pc-name').style.display='block';"></picture><span class="pc-name">AP News</span></span>
-        <span class="pc-body">
-        <span class="pc-title">Shopa Marketing Strengthens Position as Go-To Advertising Partner for SMEs Across Australia and New Zealand</span>
-        <span class="pc-cta">Read the feature <span>&#8599;</span></span>
-        </span>
-        <span class="pc-num">08</span>
-        </a>
-      <a class="pc" data-reveal data-delay="140" href="https://ceoweekly.com/making-marketing-human-again-how-one-founder-is-reshaping-sme-advertising-across-australia-and-new-zealand/" target="_blank" rel="noopener">
-        <span class="pc-band"><picture><source srcset="press-assets/logos/ceo-weekly.webp" type="image/webp"><img width="600" height="66" class="pc-logo" src="press-assets/logos/ceo-weekly.png" alt="CEO Weekly" loading="lazy" decoding="async" onerror="this.style.display='none';this.closest('.pc-band').querySelector('.pc-name').style.display='block';"></picture><span class="pc-name">CEO Weekly</span></span>
-        <span class="pc-body">
-        <span class="pc-title">Making Marketing Human Again: How One Founder Is Reshaping SME Advertising Across Australia and New Zealand</span>
-        <span class="pc-cta">Read the feature <span>&#8599;</span></span>
-        </span>
-        <span class="pc-num">09</span>
-        </a>
+<!-- 5. Companies — A Fable in Six Chapters -->
+<section id="companies" data-screen-label="Companies" aria-labelledby="companies-h" style="padding: 120px 64px 140px; position: relative; overflow: hidden;">
+  <!-- giant ghost chapter numeral — anchored behind the stage, right side -->
+  <div data-fable-ghost style="position: absolute; right: 3vw; top: 20%; transform: translateY(-50%); font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(200px, 24vw, 430px); line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(198,161,91,0.16); pointer-events: none; -webkit-user-select: none; user-select: none; transition: opacity 0.4s ease; z-index: 0;">I</div>
+
+  <div style="position: relative; z-index: 1;">
+    <div data-reveal style="font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #C6A15B; margin-bottom: 24px;">The Companies · A Fable in Six Chapters</div>
+    <h2 id="companies-h" data-reveal data-delay="80" style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(40px, 4.5vw, 68px); line-height: 1.12; max-width: 860px; margin-bottom: 96px; text-wrap: balance;">Every company I've built started the same way — <em style="color: #C6A15B;">with something I couldn't stop noticing.</em></h2>
+
+    <div data-reveal style="display: grid; grid-template-columns: minmax(280px, 380px) 1fr; gap: clamp(48px, 6vw, 120px); align-items: start;">
+
+      <!-- Chapter index -->
+      <div style="display: flex; flex-direction: column;">
+        <div data-fable-tab data-idx="0" style="display: flex; align-items: baseline; gap: 20px; padding: 22px 0; border-top: 1px solid rgba(237,231,219,0.12); cursor: pointer; transition: padding-left 0.4s cubic-bezier(0.2,0.6,0.2,1);">
+          <span style="font-family: 'Cormorant Garamond', serif; font-size: 15px; color: rgba(198,161,91,0.78); width: 26px;">I</span>
+          <span data-fable-name style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; color: rgba(237,231,219,0.55); transition: color 0.35s ease;">Shopa Marketing</span>
+        </div>
+        <div data-fable-tab data-idx="1" style="display: flex; align-items: baseline; gap: 20px; padding: 22px 0; border-top: 1px solid rgba(237,231,219,0.12); cursor: pointer; transition: padding-left 0.4s cubic-bezier(0.2,0.6,0.2,1);">
+          <span style="font-family: 'Cormorant Garamond', serif; font-size: 15px; color: rgba(198,161,91,0.78); width: 26px;">II</span>
+          <span data-fable-name style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; color: rgba(237,231,219,0.55); transition: color 0.35s ease;">Brand Vantage</span>
+        </div>
+        <div data-fable-tab data-idx="2" style="display: flex; align-items: baseline; gap: 20px; padding: 22px 0; border-top: 1px solid rgba(237,231,219,0.12); cursor: pointer; transition: padding-left 0.4s cubic-bezier(0.2,0.6,0.2,1);">
+          <span style="font-family: 'Cormorant Garamond', serif; font-size: 15px; color: rgba(198,161,91,0.78); width: 26px;">III</span>
+          <span data-fable-name style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; color: rgba(237,231,219,0.55); transition: color 0.35s ease;">Ads Near You</span>
+        </div>
+        <div data-fable-tab data-idx="3" style="display: flex; align-items: baseline; gap: 20px; padding: 22px 0; border-top: 1px solid rgba(237,231,219,0.12); cursor: pointer; transition: padding-left 0.4s cubic-bezier(0.2,0.6,0.2,1);">
+          <span style="font-family: 'Cormorant Garamond', serif; font-size: 15px; color: rgba(198,161,91,0.78); width: 26px;">IV</span>
+          <span data-fable-name style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; color: rgba(237,231,219,0.55); transition: color 0.35s ease;">SEOOnly</span>
+        </div>
+        <div data-fable-tab data-idx="4" style="display: flex; align-items: baseline; gap: 20px; padding: 22px 0; border-top: 1px solid rgba(237,231,219,0.12); cursor: pointer; transition: padding-left 0.4s cubic-bezier(0.2,0.6,0.2,1);">
+          <span style="font-family: 'Cormorant Garamond', serif; font-size: 15px; color: rgba(198,161,91,0.78); width: 26px;">V</span>
+          <span data-fable-name style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; color: rgba(237,231,219,0.55); transition: color 0.35s ease;">No Filter Club</span>
+        </div>
+        <div data-fable-tab data-idx="5" style="display: flex; align-items: baseline; gap: 20px; padding: 22px 0; border-top: 1px solid rgba(237,231,219,0.12); border-bottom: 1px solid rgba(237,231,219,0.12); cursor: pointer; transition: padding-left 0.4s cubic-bezier(0.2,0.6,0.2,1);">
+          <span style="font-family: 'Cormorant Garamond', serif; font-size: 15px; color: rgba(198,161,91,0.78); width: 26px;">VI</span>
+          <span data-fable-name style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; color: rgba(237,231,219,0.55); transition: color 0.35s ease;">Brand Vantage Academy</span>
+        </div>
+        <!-- auto-advance progress -->
+        <div style="margin-top: 32px; height: 1px; background: rgba(237,231,219,0.12); position: relative;">
+          <div data-fable-progress style="position: absolute; left: 0; top: 0; height: 1px; width: 0%; background: #C6A15B;"></div>
+        </div>
+        <div id="fableHint" style="margin-top: 14px; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(237,231,219,0.62);">Click a chapter — or just watch</div>
+      </div>
+
+      <!-- Stage -->
+      <div data-fable-stage style="min-height: 420px; transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.2,0.6,0.2,1);">
+        <div class="fb-copy">
+        <div data-fable-noticed style="font-size: 11px; letter-spacing: 0.34em; text-transform: uppercase; color: rgba(237,231,219,0.62); margin-bottom: 36px;">What I couldn't stop noticing</div>
+        <div data-fable-line style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: clamp(32px, 3.4vw, 52px); line-height: 1.3; color: #EDE7DB; max-width: 720px; text-wrap: balance;">Small businesses being sold complicated things they didn&rsquo;t need &mdash; or ignored because they weren&rsquo;t spending enterprise money.</div>
+        <div data-fable-moral style="margin-top: 44px; display: flex; align-items: baseline; gap: 18px;">
+          <span style="font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: #C6A15B; white-space: nowrap;">The moral</span>
+          <span data-fable-moral-text style="font-family: 'Cormorant Garamond', serif; font-size: 23px; font-weight: 400; color: #C6A15B; line-height: 1.4;">Small businesses deserve big-brand marketing.</span>
+        </div>
+        <div style="margin-top: 52px; display: flex; align-items: center; gap: 32px;">
+          <a data-fable-visit href="https://shopamarketing.com.au" target="_blank" rel="noopener" style="display: inline-block; border: 1px solid rgba(198,161,91,0.78); color: #C6A15B; padding: 15px 38px; border-radius: 999px; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; transition: background 0.35s ease, color 0.35s ease;" style-hover="background: #C6A15B; color: #0C0B09;">Visit <span data-fable-visit-name>Shopa Marketing</span> ↗</a>
+        </div>
+        </div>
+      </div>
+
     </div>
   </div>
-</section>
-
-<!-- Manifesto -->
-<section data-screen-label="Manifesto" aria-labelledby="manifesto-h" style="padding: clamp(72px, 7vw, 100px) 64px clamp(84px, 8vw, 112px); max-width: 1120px; margin: 0 auto;">
-  <h2 id="manifesto-h" data-reveal style="font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #C6A15B; text-align: center; margin-bottom: 48px;">Why this site exists</h2>
-  <div data-reveal data-delay="120" data-word-scrub style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(21px, 2.15vw, 31px); line-height: 1.5; text-align: center; text-wrap: balance;">You won't find a résumé here, and I'm not selling you anything. This is my notebook — what building companies and raising kids at the same time has actually taught me. <em style="color: #C6A15B;">Trust first. Everything else follows.</em></div>
 </section>
 
 <!-- 3. Content Pillars -->
-<section id="pillars" data-screen-label="Content Pillars" aria-labelledby="pillars-h" style="padding: 0 64px 170px; position: relative; overflow: hidden;">
+<section id="pillars" data-screen-label="Content Pillars" aria-labelledby="pillars-h" style="padding: 0 64px 120px; position: relative; overflow: hidden;">
   <!-- Giant ghost numeral tracks the active pillar -->
   <div data-pillar-num style="position: absolute; right: -2vw; top: 50%; transform: translateY(-50%); font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 34vw; line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(198,161,91,0.22); pointer-events: none; -webkit-user-select: none; user-select: none; transition: opacity 0.4s ease; z-index: 0;">01</div>
 
   <div style="position: relative; z-index: 1;">
-    <div data-reveal style="font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #C6A15B; margin-bottom: 24px;">What I write &amp; speak about</div>
-    <div data-reveal data-delay="80" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; margin-bottom: 88px;">
-      <h2 id="pillars-h" style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(40px, 4.2vw, 64px); line-height: 1.1; max-width: 700px; text-wrap: balance;">The six things I can't stop <em style="color: #C6A15B;">talking about.</em></h2>
-      <div id="pillarHint" style="font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(237,231,219,0.62); padding-bottom: 12px;">Hover to open ↓</div>
+    <div data-reveal style="font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #C6A15B; margin-bottom: 24px;">Founder Insights</div>
+    <h2 id="pillars-h" data-reveal data-delay="60" style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(40px, 4.2vw, 64px); line-height: 1.1; max-width: 760px; text-wrap: balance;">The six things I can't stop <em style="color: #C6A15B;">talking about.</em></h2>
+    <div data-reveal data-delay="120" style="display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; flex-wrap: wrap; margin: 32px 0 72px;">
+      <p style="font-size: 19px; font-weight: 300; line-height: 1.85; color: rgba(237,231,219,0.72); max-width: 640px; margin: 0;">Founder Insights is where I share the observations, experiences and ideas that have shaped the way I think about business, leadership, reinvention and building over the long term.</p>
+      <div id="pillarHint" style="font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(237,231,219,0.62); padding-bottom: 12px; white-space: nowrap;">Hover to open ↓</div>
     </div>
 
     <div data-reveal style="border-top: 1px solid rgba(237,231,219,0.12);">
@@ -543,8 +550,8 @@
           <div style="display: grid; grid-template-columns: 90px 1fr; gap: 40px; padding: 0 0 44px;">
             <span></span>
             <div style="max-width: 640px;">
-              <p style="font-size: 16px; font-weight: 200; line-height: 1.85; color: rgba(237,231,219,0.68); margin: 0 0 18px;">I've lived the messy middle five times now. What actually happens between the idea and the win — and what nobody warns you about.</p>
-              <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 21px; color: #C6A15B;">the messy middle, five times over</div>
+              <p style="font-size: 16px; font-weight: 200; line-height: 1.85; color: rgba(237,231,219,0.68); margin: 0 0 18px;">I've lived the messy middle six times now. What actually happens between the idea and the win — and what nobody warns you about.</p>
+              <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 21px; color: #C6A15B;">the messy middle, six times over</div>
             </div>
           </div>
         </div>
@@ -673,7 +680,7 @@
 
   <div class="mq-head">
     <div>
-      <div class="mq-kicker" data-reveal>Founder Insights</div>
+      <div class="mq-kicker" data-reveal>The Essays</div>
       <h2 id="insights-h" class="mq-title" data-reveal data-delay="80">Twenty essays worth <em style="color:#9C7A3C;">stopping for.</em></h2>
     </div>
     <div class="mq-hint" data-reveal data-delay="160"><span class="dot"></span><span id="mqHintText">Hover to pause &middot; click to read</span></div>
@@ -814,69 +821,6 @@
   </script>
 </section>
 
-<!-- 5. Companies — A Fable in Six Chapters -->
-<section id="companies" data-screen-label="Companies" aria-labelledby="companies-h" style="padding: 120px 64px 140px; position: relative; overflow: hidden;">
-  <!-- giant ghost chapter numeral — anchored behind the stage, right side -->
-  <div data-fable-ghost style="position: absolute; right: 3vw; top: 20%; transform: translateY(-50%); font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(200px, 24vw, 430px); line-height: 1; color: transparent; -webkit-text-stroke: 1px rgba(198,161,91,0.16); pointer-events: none; -webkit-user-select: none; user-select: none; transition: opacity 0.4s ease; z-index: 0;">I</div>
-
-  <div style="position: relative; z-index: 1;">
-    <div data-reveal style="font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #C6A15B; margin-bottom: 24px;">The Companies · A Fable in Six Chapters</div>
-    <h2 id="companies-h" data-reveal data-delay="80" style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(40px, 4.5vw, 68px); line-height: 1.12; max-width: 860px; margin-bottom: 96px; text-wrap: balance;">Every company I've built started the same way — <em style="color: #C6A15B;">with something I couldn't stop noticing.</em></h2>
-
-    <div data-reveal style="display: grid; grid-template-columns: minmax(280px, 380px) 1fr; gap: clamp(48px, 6vw, 120px); align-items: start;">
-
-      <!-- Chapter index -->
-      <div style="display: flex; flex-direction: column;">
-        <div data-fable-tab data-idx="0" style="display: flex; align-items: baseline; gap: 20px; padding: 22px 0; border-top: 1px solid rgba(237,231,219,0.12); cursor: pointer; transition: padding-left 0.4s cubic-bezier(0.2,0.6,0.2,1);">
-          <span style="font-family: 'Cormorant Garamond', serif; font-size: 15px; color: rgba(198,161,91,0.78); width: 26px;">I</span>
-          <span data-fable-name style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; color: rgba(237,231,219,0.55); transition: color 0.35s ease;">Shopa Marketing</span>
-        </div>
-        <div data-fable-tab data-idx="1" style="display: flex; align-items: baseline; gap: 20px; padding: 22px 0; border-top: 1px solid rgba(237,231,219,0.12); cursor: pointer; transition: padding-left 0.4s cubic-bezier(0.2,0.6,0.2,1);">
-          <span style="font-family: 'Cormorant Garamond', serif; font-size: 15px; color: rgba(198,161,91,0.78); width: 26px;">II</span>
-          <span data-fable-name style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; color: rgba(237,231,219,0.55); transition: color 0.35s ease;">Brand Vantage</span>
-        </div>
-        <div data-fable-tab data-idx="2" style="display: flex; align-items: baseline; gap: 20px; padding: 22px 0; border-top: 1px solid rgba(237,231,219,0.12); cursor: pointer; transition: padding-left 0.4s cubic-bezier(0.2,0.6,0.2,1);">
-          <span style="font-family: 'Cormorant Garamond', serif; font-size: 15px; color: rgba(198,161,91,0.78); width: 26px;">III</span>
-          <span data-fable-name style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; color: rgba(237,231,219,0.55); transition: color 0.35s ease;">Ads Near You</span>
-        </div>
-        <div data-fable-tab data-idx="3" style="display: flex; align-items: baseline; gap: 20px; padding: 22px 0; border-top: 1px solid rgba(237,231,219,0.12); cursor: pointer; transition: padding-left 0.4s cubic-bezier(0.2,0.6,0.2,1);">
-          <span style="font-family: 'Cormorant Garamond', serif; font-size: 15px; color: rgba(198,161,91,0.78); width: 26px;">IV</span>
-          <span data-fable-name style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; color: rgba(237,231,219,0.55); transition: color 0.35s ease;">SEOOnly</span>
-        </div>
-        <div data-fable-tab data-idx="4" style="display: flex; align-items: baseline; gap: 20px; padding: 22px 0; border-top: 1px solid rgba(237,231,219,0.12); cursor: pointer; transition: padding-left 0.4s cubic-bezier(0.2,0.6,0.2,1);">
-          <span style="font-family: 'Cormorant Garamond', serif; font-size: 15px; color: rgba(198,161,91,0.78); width: 26px;">V</span>
-          <span data-fable-name style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; color: rgba(237,231,219,0.55); transition: color 0.35s ease;">No Filter Club</span>
-        </div>
-        <div data-fable-tab data-idx="5" style="display: flex; align-items: baseline; gap: 20px; padding: 22px 0; border-top: 1px solid rgba(237,231,219,0.12); border-bottom: 1px solid rgba(237,231,219,0.12); cursor: pointer; transition: padding-left 0.4s cubic-bezier(0.2,0.6,0.2,1);">
-          <span style="font-family: 'Cormorant Garamond', serif; font-size: 15px; color: rgba(198,161,91,0.78); width: 26px;">VI</span>
-          <span data-fable-name style="font-family: 'Cormorant Garamond', serif; font-size: 27px; font-weight: 300; color: rgba(237,231,219,0.55); transition: color 0.35s ease;">Brand Vantage Academy</span>
-        </div>
-        <!-- auto-advance progress -->
-        <div style="margin-top: 32px; height: 1px; background: rgba(237,231,219,0.12); position: relative;">
-          <div data-fable-progress style="position: absolute; left: 0; top: 0; height: 1px; width: 0%; background: #C6A15B;"></div>
-        </div>
-        <div id="fableHint" style="margin-top: 14px; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(237,231,219,0.62);">Click a chapter — or just watch</div>
-      </div>
-
-      <!-- Stage -->
-      <div data-fable-stage style="min-height: 420px; transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.2,0.6,0.2,1);">
-        <div class="fb-copy">
-        <div data-fable-noticed style="font-size: 11px; letter-spacing: 0.34em; text-transform: uppercase; color: rgba(237,231,219,0.62); margin-bottom: 36px;">What I couldn't stop noticing</div>
-        <div data-fable-line style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: clamp(32px, 3.4vw, 52px); line-height: 1.3; color: #EDE7DB; max-width: 720px; text-wrap: balance;">Small businesses being sold complicated things they didn&rsquo;t need &mdash; or ignored because they weren&rsquo;t spending enterprise money.</div>
-        <div data-fable-moral style="margin-top: 44px; display: flex; align-items: baseline; gap: 18px;">
-          <span style="font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; color: #C6A15B; white-space: nowrap;">The moral</span>
-          <span data-fable-moral-text style="font-family: 'Cormorant Garamond', serif; font-size: 23px; font-weight: 400; color: #C6A15B; line-height: 1.4;">Small businesses deserve big-brand marketing.</span>
-        </div>
-        <div style="margin-top: 52px; display: flex; align-items: center; gap: 32px;">
-          <a data-fable-visit href="https://shopamarketing.com.au" target="_blank" rel="noopener" style="display: inline-block; border: 1px solid rgba(198,161,91,0.78); color: #C6A15B; padding: 15px 38px; border-radius: 999px; font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase; transition: background 0.35s ease, color 0.35s ease;" style-hover="background: #C6A15B; color: #0C0B09;">Visit <span data-fable-visit-name>Shopa Marketing</span> ↗</a>
-        </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <!-- 8. The Book -->
 <section id="book" data-screen-label="The Book" aria-labelledby="book-h" style="border-top: 1px solid rgba(237,231,219,0.12); padding: 150px 64px 140px;">
   <div class="bk-grid">
@@ -886,13 +830,125 @@
     <div>
       <div class="bk-kicker" data-reveal>The Book</div>
       <h2 id="book-h" class="bk-title" data-reveal data-delay="80">Ambition Without <em style="color: #C6A15B;">Apology.</em></h2>
-      <p class="bk-sub" data-reveal data-delay="140">Building businesses, raising children, and refusing to choose between them.</p>
+      <p class="bk-sub" data-reveal data-delay="140">Ambition Without Apology is a memoir about ambition, motherhood, reinvention and building a life without waiting for permission.</p>
       <div data-reveal data-delay="260">
         <div class="bk-author">Preeti Kennedy</div>
         <div class="bk-tagline">Entrepreneur &middot; Mother &middot; Dreamer</div>
-        <a class="bk-cta" href="/book/ambition-without-apology.pdf" type="application/pdf" target="_blank" rel="noopener" data-magnetic style-hover="background: #C6A15B; color: #0C0B09;">Read the book</a>
-        <div class="bk-meta">PDF &middot; 71 pages &middot; 792 KB &middot; opens in a new tab</div>
+        <a class="bk-cta" href="/book/ambition-without-apology.pdf" type="application/pdf" target="_blank" rel="noopener" data-magnetic style-hover="background: #C6A15B; color: #0C0B09;">Explore the Book</a>
+        <div class="bk-meta">PDF &middot; 71 pages &middot; opens in a new tab</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Media — publications & articles -->
+<section id="press" data-screen-label="Media" aria-labelledby="featured-h" style="border-top: 1px solid rgba(237,231,219,0.12); padding: clamp(64px, 7vw, 96px) 64px clamp(52px, 5.4vw, 72px);">
+  <div class="pw">
+    <div class="pw-head">
+      <div data-reveal style="font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #C6A15B; margin-bottom: 24px;">Media</div>
+      <h2 id="featured-h" class="pw-title" data-reveal data-delay="80">Over the years, I&#x27;ve shared different parts of my journey through articles and publications covering entrepreneurship, reinvention, leadership and <em style="color: #C6A15B;">business.</em></h2>
+      <p class="pw-sub" data-reveal data-delay="140">This section brings those stories together in one place.</p>
+    </div>
+    <div class="pw-grid" data-press-grid>
+      <a class="pc" data-reveal data-delay="0" href="https://theguardian.com.au/recommended/partner-content/2026/03/06/growing-with-purpose-shopa-marketings-strengthened-position-in-new-zealand/" target="_blank" rel="noopener">
+        <span class="pc-band"><picture><source srcset="press-assets/logos/the-guardian.webp" type="image/webp"><img width="600" height="96" class="pc-logo" src="press-assets/logos/the-guardian.png" alt="The Guardian" loading="lazy" decoding="async" onerror="this.style.display='none';this.closest('.pc-band').querySelector('.pc-name').style.display='block';"></picture><span class="pc-name">The Guardian</span></span>
+        <span class="pc-body">
+        <span class="pc-top">
+        <span class="pc-title">Growing with Purpose: Shopa Marketing&#x27;s Strengthened Position in New Zealand</span>
+        <span class="pc-excerpt">Shopa Marketing deepens its footprint across New Zealand, bringing big-brand marketing within reach of the small and medium businesses that anchor the local economy.</span>
+        </span>
+        <span class="pc-cta">Read Article <span>&#8599;</span></span>
+        </span>
+        <span class="pc-num">01</span>
+        </a>
+      <a class="pc" data-reveal data-delay="70" href="https://www.digitaljournal.com/article/why-preeti-kennedy-believes-loyalty-is-a-business-strategy/" target="_blank" rel="noopener">
+        <span class="pc-band"><picture><source srcset="press-assets/logos/digital-journal.webp" type="image/webp"><img width="600" height="71" class="pc-logo" src="press-assets/logos/digital-journal.png" alt="Digital Journal" loading="lazy" decoding="async" onerror="this.style.display='none';this.closest('.pc-band').querySelector('.pc-name').style.display='block';"></picture><span class="pc-name">Digital Journal</span></span>
+        <span class="pc-body">
+        <span class="pc-top">
+        <span class="pc-title">Why Preeti Kennedy Believes Loyalty Is a Business Strategy</span>
+        <span class="pc-excerpt">At a time when modern business is dominated by automation, layoffs and growth-at-all-costs, Preeti Kennedy has built her philosophy around something less fashionable: loyalty.</span>
+        </span>
+        <span class="pc-cta">Read Article <span>&#8599;</span></span>
+        </span>
+        <span class="pc-num">02</span>
+        </a>
+      <a class="pc" data-reveal data-delay="140" href="https://markets.businessinsider.com/news/stocks/shopa-marketing-introduces-a-new-multi-platform-advertising-model-designed-exclusively-for-smes-across-australia-and-new-zealand-1035614816" target="_blank" rel="noopener">
+        <span class="pc-band"><picture><source srcset="press-assets/logos/business-insider.webp" type="image/webp"><img width="600" height="207" class="pc-logo" src="press-assets/logos/business-insider.png" alt="Business Insider" loading="lazy" decoding="async" onerror="this.style.display='none';this.closest('.pc-band').querySelector('.pc-name').style.display='block';"></picture><span class="pc-name">Business Insider</span></span>
+        <span class="pc-body">
+        <span class="pc-top">
+        <span class="pc-title">Shopa Marketing Introduces a New Multi-Platform Advertising Model Designed Exclusively for SMEs Across Australia and New Zealand</span>
+        <span class="pc-excerpt">A new multi-platform advertising model gives small and medium businesses across Australia and New Zealand enterprise-grade reach without an enterprise-sized budget.</span>
+        </span>
+        <span class="pc-cta">Read Article <span>&#8599;</span></span>
+        </span>
+        <span class="pc-num">03</span>
+        </a>
+      <a class="pc" data-reveal data-delay="0" href="https://www.usatoday.com/story/special/contributor-content/2026/01/23/why-global-marketing-agencies-are-rethinking-outsourcing-and-what-theyre-looking-for-instead/88323922007/" target="_blank" rel="noopener">
+        <span class="pc-band"><picture><source srcset="press-assets/logos/usa-today.webp" type="image/webp"><img width="600" height="106" class="pc-logo" src="press-assets/logos/usa-today.png" alt="USA Today" loading="lazy" decoding="async" onerror="this.style.display='none';this.closest('.pc-band').querySelector('.pc-name').style.display='block';"></picture><span class="pc-name">USA Today</span></span>
+        <span class="pc-body">
+        <span class="pc-top">
+        <span class="pc-title">Why Global Marketing Agencies Are Rethinking Outsourcing — And What They&#x27;re Looking For Instead</span>
+        <span class="pc-excerpt">As results start to matter more than headcount, global marketing agencies are rethinking how they outsource — and what they now look for in the partners they trust with growth.</span>
+        </span>
+        <span class="pc-cta">Read Article <span>&#8599;</span></span>
+        </span>
+        <span class="pc-num">04</span>
+        </a>
+      <a class="pc" data-reveal data-delay="70" href="https://apnews.com/press-release/marketersmedia/shopa-marketing-strengthens-position-as-go-to-advertising-partner-for-smes-across-australia-and-new-zealand-86c3162d8575a96ebff6b5981d7fb529" target="_blank" rel="noopener">
+        <span class="pc-band"><picture><source srcset="press-assets/logos/ap-news.webp" type="image/webp"><img width="600" height="535" class="pc-logo" src="press-assets/logos/ap-news.png" alt="AP News" loading="lazy" decoding="async" onerror="this.style.display='none';this.closest('.pc-band').querySelector('.pc-name').style.display='block';"></picture><span class="pc-name">AP News</span></span>
+        <span class="pc-body">
+        <span class="pc-top">
+        <span class="pc-title">Shopa Marketing Strengthens Position as Go-To Advertising Partner for SMEs Across Australia and New Zealand</span>
+        <span class="pc-excerpt">Shopa Marketing cements its place as the go-to advertising partner for SMEs across Australia and New Zealand, built on results, transparency and long-term relationships.</span>
+        </span>
+        <span class="pc-cta">Read Article <span>&#8599;</span></span>
+        </span>
+        <span class="pc-num">05</span>
+        </a>
+      <a class="pc" data-reveal data-delay="140" href="https://www.theamericanreporter.com/2026/07/04/why-this-global-founder-thinks-modern-business-has-forgotten-its-people/" target="_blank" rel="noopener">
+        <span class="pc-band"><span class="pc-name" style="display:block;">The American Reporter</span></span>
+        <span class="pc-body">
+        <span class="pc-top">
+        <span class="pc-title">Why this global founder thinks modern business has forgotten its people</span>
+        <span class="pc-excerpt">A global founder argues that in the rush to automate and scale, modern business has quietly forgotten the people it was built to serve — its employees and its customers.</span>
+        </span>
+        <span class="pc-cta">Read Article <span>&#8599;</span></span>
+        </span>
+        <span class="pc-num">06</span>
+        </a>
+      <a class="pc" data-reveal data-delay="0" href="https://ceoweekly.com/making-marketing-human-again-how-one-founder-is-reshaping-sme-advertising-across-australia-and-new-zealand/" target="_blank" rel="noopener">
+        <span class="pc-band"><picture><source srcset="press-assets/logos/ceo-weekly.webp" type="image/webp"><img width="600" height="66" class="pc-logo" src="press-assets/logos/ceo-weekly.png" alt="CEO Weekly" loading="lazy" decoding="async" onerror="this.style.display='none';this.closest('.pc-band').querySelector('.pc-name').style.display='block';"></picture><span class="pc-name">CEO Weekly</span></span>
+        <span class="pc-body">
+        <span class="pc-top">
+        <span class="pc-title">Making Marketing Human Again: How One Founder Is Reshaping SME Advertising Across Australia and New Zealand</span>
+        <span class="pc-excerpt">Most people picture advertising agencies as glossy boardrooms, high retainers and complex reports. For small and medium businesses, effective multi-channel marketing often feels out of reach.</span>
+        </span>
+        <span class="pc-cta">Read Article <span>&#8599;</span></span>
+        </span>
+        <span class="pc-num">07</span>
+        </a>
+      <a class="pc" data-reveal data-delay="70" href="https://theentrepreneur-times.com/how-the-smartest-marketing-agencies-are-scaling-without-hiring-more-people/" target="_blank" rel="noopener">
+        <span class="pc-band"><picture><source srcset="press-assets/logos/the-entrepreneur-times.webp" type="image/webp"><img width="600" height="210" class="pc-logo" src="press-assets/logos/the-entrepreneur-times.png" alt="The Entrepreneur Times" loading="lazy" decoding="async" onerror="this.style.display='none';this.closest('.pc-band').querySelector('.pc-name').style.display='block';"></picture><span class="pc-name">The Entrepreneur Times</span></span>
+        <span class="pc-body">
+        <span class="pc-top">
+        <span class="pc-title">How the Smartest Marketing Agencies Are Scaling Without Hiring More People</span>
+        <span class="pc-excerpt">The fastest-growing agencies aren't adding headcount for every new client — they're scaling through systems, process and smarter operations instead of bigger teams.</span>
+        </span>
+        <span class="pc-cta">Read Article <span>&#8599;</span></span>
+        </span>
+        <span class="pc-num">08</span>
+        </a>
+      <a class="pc" data-reveal data-delay="140" href="https://usinsider.com/preeti-kennedy-is-redefining-what-modern-ambition-looks-like/" target="_blank" rel="noopener">
+        <span class="pc-band"><picture><source srcset="press-assets/logos/us-insider.webp" type="image/webp"><img width="600" height="86" class="pc-logo" src="press-assets/logos/us-insider.png" alt="US Insider" loading="lazy" decoding="async" onerror="this.style.display='none';this.closest('.pc-band').querySelector('.pc-name').style.display='block';"></picture><span class="pc-name">US Insider</span></span>
+        <span class="pc-body">
+        <span class="pc-top">
+        <span class="pc-title">Preeti Kennedy Is Redefining What Modern Ambition Looks Like</span>
+        <span class="pc-excerpt">For a long time, ambition was presented to women as a trade-off: build a successful career, or be fully present for your family.</span>
+        </span>
+        <span class="pc-cta">Read Article <span>&#8599;</span></span>
+        </span>
+        <span class="pc-num">09</span>
+        </a>
     </div>
   </div>
 </section>
@@ -920,17 +976,9 @@
 </main>
 
 <!-- Contact -->
-<footer id="contact" data-screen-label="Footer" style="border-top: 1px solid rgba(237,231,219,0.12); padding: 70px 64px 60px; text-align: center;">
+<footer id="contact" data-screen-label="Footer" style="padding: 40px 64px 60px; text-align: center;">
   <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 0; padding-top: 32px; border-top: 1px solid rgba(237,231,219,0.12); font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(237,231,219,0.62); flex-wrap: wrap; gap: 24px;">
     <span>Preeti Kennedy © 2026</span>
-    <div style="display: flex; gap: 28px; flex-wrap: wrap; justify-content: center;">
-      <a href="https://shopamarketing.com.au" target="_blank" rel="noopener">Shopa Marketing</a>
-      <a href="https://brandvantage.us" target="_blank" rel="noopener">Brand Vantage</a>
-      <a href="https://adsnearyou.com.au" target="_blank" rel="noopener">Ads Near You</a>
-      <a href="https://seoonly.com.au" target="_blank" rel="noopener">SEOOnly</a>
-      <a href="#companies">No Filter Club</a>
-      <a href="#companies">Brand Vantage Academy</a>
-    </div>
     <span>Melbourne, Australia</span>
   </div>
 </footer>
@@ -1115,6 +1163,9 @@ document.addEventListener('DOMContentLoaded', function () {
   var fableT0 = performance.now();
   var FABLE_DUR = 6000;
   var fablePaused = false;
+  var fableMobileMQ = window.matchMedia('(max-width: 767px)');
+  var fableMobile = fableMobileMQ.matches;
+  var fablePanels = [];
 
   var setFable = function (i, animate) {
     fableIdx = i;
@@ -1125,6 +1176,11 @@ document.addEventListener('DOMContentLoaded', function () {
       var on = j === i;
       if (name) name.style.color = on ? '#C6A15B' : 'rgba(237,231,219,0.55)';
       tab.style.paddingLeft = on ? '18px' : '0px';
+    });
+    fablePanels.forEach(function (p, j) {
+      if (!p) return;
+      if (j === i) { p.style.maxHeight = p.scrollHeight + 'px'; p.style.opacity = '1'; }
+      else { p.style.maxHeight = '0px'; p.style.opacity = '0'; }
     });
     var apply = function () {
       var lineEl = document.querySelector('[data-fable-line]');
@@ -1177,9 +1233,38 @@ document.addEventListener('DOMContentLoaded', function () {
     companiesSection.addEventListener('focusout', function () { if (!prefersReduced) { fablePaused = false; fableT0 = performance.now(); } });
   }
   if (prefersReduced) fablePaused = true;
+
+  // Mobile accordion: inject a blurb panel under each company name (hidden on desktop via CSS)
+  fableTabs.forEach(function (tab) {
+    var i = parseInt(tab.getAttribute('data-idx'), 10);
+    var f = fables[i];
+    var panel = document.createElement('div');
+    panel.className = 'fab-panel';
+    var visit = f.soon
+      ? '<span class="fab-visit is-soon">Coming soon</span>'
+      : '<a class="fab-visit" href="' + f.url + '"' + (f.url.indexOf('#') === 0 ? '' : ' target="_blank" rel="noopener"') + '>Visit ' + f.name + ' ↗</a>';
+    panel.innerHTML =
+      '<div class="fab-panel-inner">' +
+      '<div class="fab-noticed">What I couldn’t stop noticing</div>' +
+      '<div class="fab-line"></div>' +
+      '<div class="fab-moral"><span class="fab-moral-k">The moral</span><span class="fab-moral-t"></span></div>' +
+      visit +
+      '</div>';
+    panel.querySelector('.fab-line').textContent = f.line;
+    panel.querySelector('.fab-moral-t').textContent = f.moral;
+    tab.parentNode.insertBefore(panel, tab.nextSibling);
+    fablePanels[i] = panel;
+  });
+  var fableSync = function () {
+    fableMobile = fableMobileMQ.matches;
+    var op = fablePanels[fableIdx];
+    if (fableMobile && op) { op.style.maxHeight = op.scrollHeight + 'px'; op.style.opacity = '1'; }
+  };
+  window.addEventListener('resize', fableSync);
+
   if (fableTabs.length) setFable(0, false);
   var fableLoop = function (now) {
-    if (!fablePaused) {
+    if (!fablePaused && !fableMobile) {
       var t = (now - fableT0) / FABLE_DUR;
       if (fableProgress) fableProgress.style.width = Math.min(t * 100, 100) + '%';
       if (t >= 1) setFable((fableIdx + 1) % fables.length, true);
