@@ -1,0 +1,27 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://preetikennedy.com/</loc>
+    <lastmod>{{ buildDate }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+{%- for essay in collections.essays %}
+  <url>
+    <loc>https://preetikennedy.com/insights/{{ essay.data.slug }}</loc>
+    <lastmod>{{ essay.data.dateModified | isoDate }}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.8</priority>
+  </url>
+{%- endfor %}
+  <url>
+    <loc>https://preetikennedy.com/book/ambition-without-apology.pdf</loc>
+    <lastmod>{{ buildDate }}</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+</urlset>

@@ -681,94 +681,20 @@
   <div class="mq-head">
     <div>
       <div class="mq-kicker" data-reveal>The Essays</div>
-      <h2 id="insights-h" class="mq-title" data-reveal data-delay="80">Twenty essays worth <em style="color:#9C7A3C;">stopping for.</em></h2>
+      <h2 id="insights-h" class="mq-title" data-reveal data-delay="80">{{ essayCount }} essays worth <em style="color:#9C7A3C;">stopping for.</em></h2>
     </div>
     <div class="mq-hint" data-reveal data-delay="160"><span class="dot"></span><span id="mqHintText">Hover to pause &middot; click to read</span></div>
   </div>
 
   <div class="mq-viewport" id="mqViewport">
     <div class="mq-track" id="mqTrack">
-      <a class="mq-card" href="insights/where-marketing-is-headed-over-the-next-3-5-years">
-        <div class="mq-media"><picture><source srcset="images/insights/insight-01.webp" type="image/webp"><img width="760" height="1140" src="images/insights/insight-01.jpg" alt="Where Marketing Is Headed Over the Next 3-5 Years" loading="lazy" decoding="async"></picture></div>
+      {%- for essay in collections.essays %}
+      <a class="mq-card" href="/insights/{{ essay.data.slug }}">
+        <div class="mq-media"><picture><source srcset="{{ essay.data.card.webp }}" type="image/webp"><img width="{{ essay.data.card.width }}" height="{{ essay.data.card.height }}" src="{{ essay.data.card.src }}" alt="{{ essay.data.title | htmlEscape }}" loading="lazy" decoding="async"></picture></div>
         <span class="mq-cta">Read the essay <span>&rarr;</span></span>
       </a>
-      <a class="mq-card" href="insights/why-consistency-beats-quick-wins-every-time">
-        <div class="mq-media"><picture><source srcset="images/insights/insight-02.webp" type="image/webp"><img width="760" height="1140" src="images/insights/insight-02.jpg" alt="Why Consistency Beats Quick Wins Every Time" loading="lazy" decoding="async"></picture></div>
-        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
-      </a>
-      <a class="mq-card" href="insights/the-marketing-metrics-i-actually-pay-attention-to">
-        <div class="mq-media"><picture><source srcset="images/insights/insight-03.webp" type="image/webp"><img width="760" height="1140" src="images/insights/insight-03.jpg" alt="The Marketing Metrics I Actually Pay Attention To" loading="lazy" decoding="async"></picture></div>
-        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
-      </a>
-      <a class="mq-card" href="insights/the-future-of-search-why-seo-is-changing-faster-than-most-businesses-realise">
-        <div class="mq-media"><picture><source srcset="images/insights/insight-04.webp" type="image/webp"><img width="760" height="1139" src="images/insights/insight-04.jpg" alt="The Future of Search: Why SEO Is Changing Faster Than Most Businesses Realise" loading="lazy" decoding="async"></picture></div>
-        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
-      </a>
-      <a class="mq-card" href="insights/most-businesses-dont-have-a-marketing-problem">
-        <div class="mq-media"><picture><source srcset="images/insights/insight-05.webp" type="image/webp"><img width="760" height="1140" src="images/insights/insight-05.jpg" alt="Most Businesses Don&#x27;t Have a Marketing Problem" loading="lazy" decoding="async"></picture></div>
-        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
-      </a>
-      <a class="mq-card" href="insights/the-hiring-lessons-i-learned-the-hard-way">
-        <div class="mq-media"><picture><source srcset="images/insights/insight-06.webp" type="image/webp"><img width="760" height="1140" src="images/insights/insight-06.jpg" alt="The Hiring Lessons I Learned the Hard Way" loading="lazy" decoding="async"></picture></div>
-        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
-      </a>
-      <a class="mq-card" href="insights/what-20-years-of-managing-people-has-taught-me">
-        <div class="mq-media"><picture><source srcset="images/insights/insight-07.webp" type="image/webp"><img width="760" height="1140" src="images/insights/insight-07.jpg" alt="What 20+ Years of Managing People Has Taught Me" loading="lazy" decoding="async"></picture></div>
-        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
-      </a>
-      <a class="mq-card" href="insights/the-hidden-bottlenecks-that-stop-businesses-scaling">
-        <div class="mq-media"><picture><source srcset="images/insights/insight-08.webp" type="image/webp"><img width="760" height="1142" src="images/insights/insight-08.jpg" alt="The Hidden Bottlenecks That Stop Businesses Scaling" loading="lazy" decoding="async"></picture></div>
-        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
-      </a>
-      <a class="mq-card" href="insights/the-reality-of-building-businesses-while-raising-children">
-        <div class="mq-media"><picture><source srcset="images/insights/insight-09.webp" type="image/webp"><img width="760" height="1140" src="images/insights/insight-09.jpg" alt="The Reality of Building Businesses While Raising Children" loading="lazy" decoding="async"></picture></div>
-        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
-      </a>
-      <a class="mq-card" href="insights/what-becoming-a-mother-taught-me-about-leadership">
-        <div class="mq-media"><picture><source srcset="images/insights/insight-10.webp" type="image/webp"><img width="760" height="1140" src="images/insights/insight-10.jpg" alt="What Becoming a Mother Taught Me About Leadership" loading="lazy" decoding="async"></picture></div>
-        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
-      </a>
-      <a class="mq-card" href="insights/the-most-expensive-business-mistakes-ive-seen-founders-make">
-        <div class="mq-media"><picture><source srcset="images/insights/insight-11.webp" type="image/webp"><img width="760" height="1142" src="images/insights/insight-11.jpg" alt="The Most Expensive Business Mistakes I&#x27;ve Seen Founders Make" loading="lazy" decoding="async"></picture></div>
-        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
-      </a>
-      <a class="mq-card" href="insights/things-i-believe-about-business-that-most-people-disagree-with">
-        <div class="mq-media"><picture><source srcset="images/insights/insight-12.webp" type="image/webp"><img width="760" height="1142" src="images/insights/insight-12.jpg" alt="Things I Believe About Business That Most People Disagree With" loading="lazy" decoding="async"></picture></div>
-        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
-      </a>
-      <a class="mq-card" href="insights/ai-is-not-a-strategy">
-        <div class="mq-media"><picture><source srcset="images/insights/insight-13.webp" type="image/webp"><img width="760" height="1140" src="images/insights/insight-13.jpg" alt="AI Is Not a Strategy" loading="lazy" decoding="async"></picture></div>
-        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
-      </a>
-      <a class="mq-card" href="insights/the-businesses-that-will-win-in-an-ai-world">
-        <div class="mq-media"><picture><source srcset="images/insights/insight-14.webp" type="image/webp"><img width="760" height="1140" src="images/insights/insight-14.jpg" alt="The Businesses That Will Win in an AI World" loading="lazy" decoding="async"></picture></div>
-        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
-      </a>
-      <a class="mq-card" href="insights/why-human-trust-is-becoming-more-valuable-not-less">
-        <div class="mq-media"><picture><source srcset="images/insights/insight-15.webp" type="image/webp"><img width="760" height="1142" src="images/insights/insight-15.jpg" alt="Why Human Trust Is Becoming More Valuable, Not Less" loading="lazy" decoding="async"></picture></div>
-        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
-      </a>
-      <a class="mq-card" href="insights/the-unexpected-advantages-of-becoming-a-mother-young">
-        <div class="mq-media"><picture><source srcset="images/insights/insight-16.webp" type="image/webp"><img width="760" height="1142" src="images/insights/insight-16.jpg" alt="The Unexpected Advantages of Becoming a Mother Young" loading="lazy" decoding="async"></picture></div>
-        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
-      </a>
-      <a class="mq-card" href="insights/what-fitness-business-and-parenting-have-in-common">
-        <div class="mq-media"><picture><source srcset="images/insights/insight-17.webp" type="image/webp"><img width="760" height="1142" src="images/insights/insight-17.jpg" alt="What Fitness, Business and Parenting Have in Common" loading="lazy" decoding="async"></picture></div>
-        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
-      </a>
-      <a class="mq-card" href="insights/lessons-i-wish-i-knew-at-25">
-        <div class="mq-media"><picture><source srcset="images/insights/insight-18.webp" type="image/webp"><img width="760" height="1140" src="images/insights/insight-18.jpg" alt="Lessons I Wish I Knew at 25" loading="lazy" decoding="async"></picture></div>
-        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
-      </a>
-      <a class="mq-card" href="insights/the-life-i-thought-id-have-versus-the-life-i-built">
-        <div class="mq-media"><picture><source srcset="images/insights/insight-19.webp" type="image/webp"><img width="760" height="1140" src="images/insights/insight-19.jpg" alt="The Life I Thought I&#x27;d Have Versus The Life I Built" loading="lazy" decoding="async"></picture></div>
-        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
-      </a>
-      <a class="mq-card" href="insights/the-parts-of-success-nobody-talks-about">
-        <div class="mq-media"><picture><source srcset="images/insights/insight-20.webp" type="image/webp"><img width="760" height="1140" src="images/insights/insight-20.jpg" alt="The Parts Of Success Nobody Talks About" loading="lazy" decoding="async"></picture></div>
-        <span class="mq-cta">Read the essay <span>&rarr;</span></span>
-      </a>
-    </div>
+      {%- endfor %}
+      </div>
   </div>
 
   <script>
