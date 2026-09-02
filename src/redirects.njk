@@ -1,0 +1,33 @@
+---
+# Slug-change redirects.
+#
+# The CMS locks the slug after first publish, so this normally generates nothing.
+# It exists for the case where a URL genuinely has to move: add the old slug to an
+# essay's `aliases` and a stub appears at the old path pointing to the new one, so
+# an indexed or shared link never dead-ends.
+#
+# Honest limitation: these are instant meta-refresh stubs, not server 301s. Vercel
+# reads vercel.json before the build runs, so a build cannot emit real 301s without
+# adopting the Build Output API. Google treats an instant meta refresh as a soft
+# 301 and the canonical tag reinforces the target. The slug lock is the real defence;
+# this is the safety net behind it.
+pagination:
+  data: collections.aliasRedirects
+  size: 1
+  alias: r
+permalink: "/insights/{{ r.alias }}.html"
+eleventyExcludeFromCollections: true
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://preetikennedy.com/insights/{{ r.slug }}">
+<meta http-equiv="refresh" content="0; url=/insights/{{ r.slug }}">
+<title>Moved — {{ r.title }}</title>
+</head>
+<body>
+<p>This essay has moved to <a href="/insights/{{ r.slug }}">{{ r.title }}</a>.</p>
+</body>
+</html>

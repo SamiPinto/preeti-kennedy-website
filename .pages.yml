@@ -1,0 +1,146 @@
+# Pages CMS configuration — https://pagescms.org
+#
+# This is the editing UI for Founder Insights. Sign in at app.pagescms.org with
+# GitHub, pick this repo, and the fields below are what the publisher sees.
+#
+# IMPORTANT: this must point at SamiPinto/preeti-kennedy-website, the repo Vercel
+# deploys. Pointing a CMS at a fork that nothing deploys makes publishing appear to
+# succeed while the live site never changes.
+
+media:
+  input: images/insights
+  output: images/insights
+  extensions: [jpg, jpeg, png, webp]
+
+content:
+  - name: essays
+    label: Founder Insights
+    type: collection
+    path: src/insights
+    filename: '{fields.slug}.md'
+    view:
+      fields: [title, category, order, published]
+      sort: [order, title]
+      primary: title
+    fields:
+      - name: slug
+        label: Web address
+        type: string
+        required: true
+        pattern: '^[a-z0-9]+(?:-[a-z0-9]+)*$'
+        description: >-
+          The essay's permanent web address, e.g. "why-consistency-wins" becomes
+          preetikennedy.com/insights/why-consistency-wins. Lowercase words joined by
+          hyphens. SET THIS ONCE AND DO NOT CHANGE IT after the essay is published —
+          the old address stops working, and anyone arriving from Google or a shared
+          link hits a "not found" page. Editing the Title is always safe; it never
+          moves the address.
+
+      - name: title
+        label: Title
+        type: string
+        required: true
+        description: >-
+          Shown as the headline, the browser tab, and the social share title.
+          Editing this later is safe — it never changes the web address.
+
+      - name: description
+        label: Search & social description
+        type: text
+        required: true
+        description: >-
+          One or two sentences. This is what Google shows under the title in results,
+          and what appears when the essay is shared. Aim for 120-160 characters.
+
+      - name: category
+        label: Category
+        type: select
+        required: true
+        options:
+          values:
+            - AI & The Future
+            - Founder & Entrepreneurship
+            - Leadership & Operations
+            - Marketing & Growth
+            - Personal / Founder Brand
+        description: The small gold line above the title.
+
+      - name: readTime
+        label: Read time (minutes)
+        type: number
+        required: true
+        default: 4
+
+      - name: order
+        label: Order on homepage
+        type: number
+        required: true
+        description: >-
+          Lower numbers appear first in the homepage reel. The essay with the highest
+          number is the last in the series and shows the closing card instead of a
+          "next up" link.
+
+      - name: published
+        label: Published
+        type: boolean
+        default: true
+        description: >-
+          Switch OFF to remove the essay from the site — the page, the homepage card
+          and the sitemap entry all disappear together, and the next-essay links close
+          over the gap. Nothing is lost; switch it back ON to restore.
+          PREFER THIS TO DELETING. Deleting removes the web address permanently, so
+          anyone arriving from Google or a shared link hits a "not found" page.
+
+      - name: card
+        label: Homepage card image
+        type: object
+        fields:
+          - name: src
+            label: Image (jpg)
+            type: image
+            required: true
+            description: Portrait, roughly 760 x 1140. Upload here; the path fills in automatically.
+          - name: webp
+            label: Image (webp)
+            type: image
+            description: Optional. The faster format, served to most browsers.
+          - name: width
+            label: Width
+            type: number
+            default: 760
+          - name: height
+            label: Height
+            type: number
+            default: 1140
+          - name: alt
+            label: Image description
+            type: string
+            description: Describes the photo for screen readers and when images fail to load.
+
+      - name: date
+        label: Published date
+        type: date
+
+      - name: dateModified
+        label: Last updated
+        type: date
+
+      - name: aliases
+        label: Previous web addresses
+        type: list
+        default: []
+        description: >-
+          Leave empty. Only used if an essay's web address ever has to change: put the
+          OLD address here and anyone following an old link is forwarded to the new one.
+
+      - name: body
+        label: Essay
+        type: rich-text
+        required: true
+        description: >-
+          Write in paragraphs. The first paragraph automatically gets the large gold
+          drop-cap; you do not need to mark it up.
+
+settings:
+  content:
+    merge: true
