@@ -55,6 +55,18 @@
   "dateModified": "2026-07-23"
 }
 </script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://preetikennedy.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Insights", "item": "https://preetikennedy.com/insights" },
+    { "@type": "ListItem", "position": 3, "name": "AI & The Future", "item": "https://preetikennedy.com/insights/category/ai-and-the-future" },
+    { "@type": "ListItem", "position": 4, "name": "Why Human Trust Is Becoming More Valuable, Not Less" }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Outfit:wght@200;300;400&display=swap">
@@ -104,6 +116,22 @@
   h1.title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(38px, 5.4vw, 68px); line-height: 1.08; margin: 0 0 32px; letter-spacing: 0.005em; text-wrap: balance; }
   .meta { display: flex; gap: 22px; align-items: center; font-size: 11px; letter-spacing: 0.26em; text-transform: uppercase; color: rgba(237,231,219,0.62); padding-bottom: 40px; margin-bottom: 8px; border-bottom: 1px solid rgba(237,231,219,0.14); }
   .meta .dot { width: 3px; height: 3px; border-radius: 50%; background: #C6A15B; }
+  /* Dates are uppercase like the rest of the row, but a date reads badly letter-spaced. */
+  .meta time { letter-spacing: 0.14em; }
+  .meta .by { color: rgba(237,231,219,0.62); }
+  .meta .by a { color: rgba(237,231,219,0.62); border-bottom: 1px solid rgba(198,161,91,0.4); padding-bottom: 2px; }
+  .meta .by a:hover { color: #C6A15B; }
+  /* Author block: closes the essay with a named, linked human. */
+  .author { margin-top: 64px; padding-top: 40px; border-top: 1px solid rgba(237,231,219,0.14);
+            display: grid; grid-template-columns: 84px 1fr; gap: 26px; align-items: start; }
+  .author img { width: 84px; height: 84px; border-radius: 50%; object-fit: cover; display: block;
+                border: 1px solid rgba(198,161,91,0.34); }
+  .author .a-lbl { font-size: 11px; letter-spacing: 0.34em; text-transform: uppercase; color: rgba(237,231,219,0.62); margin-bottom: 12px; }
+  .author .a-name { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: 30px; line-height: 1.15; margin-bottom: 12px; }
+  .author .a-bio { font-size: 16px; font-weight: 200; line-height: 1.8; color: rgba(237,231,219,0.78); margin: 0 0 16px; }
+  .author .a-links { display: flex; flex-wrap: wrap; gap: 20px; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; }
+  .author .a-links a { color: #C6A15B; }
+  @media (max-width: 560px) { .author { grid-template-columns: 1fr; gap: 20px; } }
   article p { font-size: 18px; font-weight: 200; line-height: 1.85; color: rgba(237,231,219,0.82); margin: 0 0 26px; }
   article p.lead { font-size: 21px; color: #EDE7DB; }
   article p.lead::first-letter { font-family: 'Cormorant Garamond', serif; font-weight: 400; float: left; font-size: 82px; line-height: 0.82; padding: 6px 14px 0 0; color: #C6A15B; }
@@ -136,9 +164,15 @@
   <a href="/#insights" class="back">All Insights</a>
 </nav>
 <main class="wrap">
-  <div class="kicker">AI &amp; The Future</div>
+  <div class="kicker"><a href="/insights/category/ai-and-the-future">AI &amp; The Future</a></div>
   <h1 class="title">Why Human Trust Is Becoming More Valuable, Not Less</h1>
-  <div class="meta"><span>Founder reflection</span><span class="dot"></span><span>2 min read</span></div>
+  <div class="meta">
+    <span class="by">By <a href="/#about" rel="author">Preeti Kennedy</a></span>
+    <span class="dot"></span>
+    <span>Published <time datetime="2026-07-23">23 July 2026</time></span>
+    <span class="dot"></span>
+    <span>2 min read</span>
+  </div>
   <article id="article">
     <p class="lead">The older I get, the more I realise how much of life comes down to trust.</p>
     <p>Not just in business, but everywhere.</p>
@@ -166,6 +200,18 @@
     <p>But trust feels different.</p>
     <p>For all the things that are becoming easier to replicate, trust remains one of the few things that still has to be earned.</p>
   </article>
+  <aside class="author">
+    <img src="/uploads/hero-preeti.jpg" width="84" height="84" alt="Preeti Kennedy" loading="lazy" decoding="async">
+    <div>
+      <div class="a-lbl">About the author</div>
+      <div class="a-name">Preeti Kennedy</div>
+      <p class="a-bio">Preeti Kennedy is an entrepreneur, operator and mother based in Melbourne. She walked into her first agency at seventeen and has since built six businesses across marketing, technology, operations and education. She writes here about entrepreneurship, leadership, AI and working motherhood &mdash; the observations, not the highlight reel.</p>
+      <div class="a-links">
+        <a href="/#about">More about Preeti</a>
+        <a href="https://au.linkedin.com/in/preetikennedy" target="_blank" rel="noopener">LinkedIn &#8599;&#xFE0E;</a>
+      </div>
+    </div>
+  </aside>
   <div class="next">
     <div class="lbl">Continue reading — next up</div>
     <a class="nxt" href="the-unexpected-advantages-of-becoming-a-mother-young"><span>The Unexpected Advantages of Becoming a Mother Young</span><span class="arrow">→&#xFE0E;</span></a>

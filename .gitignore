@@ -2,3 +2,6 @@
 ._*
 Thumbs.db
 .vercel
+_site/
+node_modules/
+.claude/settings.local.json
