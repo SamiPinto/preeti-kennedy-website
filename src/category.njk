@@ -1,0 +1,18 @@
+---
+# One archive page per category that has published essays. The category list is
+# derived from the essays themselves, so adding a category in the CMS creates its
+# archive on the next build and removing the last essay in a category removes it.
+pagination:
+  data: collections.categories
+  size: 1
+  alias: cat
+permalink: "/insights/category/{{ cat.slug }}/index.html"
+eleventyExcludeFromCollections: true
+listKicker: Category
+---
+{%- set listTitle = cat.name %}
+{%- set listCrumb = cat.name %}
+{%- set listUrl = "/insights/category/" + cat.slug %}
+{%- set listIntro = "Essays by Preeti Kennedy on " + cat.name + " — " + (cat.essays | length) + " pieces drawn from twenty-three years of building and running businesses." %}
+{%- set listEssays = cat.essays %}
+{% include "listing.njk" %}

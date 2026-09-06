@@ -1,0 +1,213 @@
+{#
+  Shared chrome for the two listing page types: /insights/ and the category archives.
+
+  Both exist for the same reason. The homepage presents the essays as an auto-scrolling
+  marquee of image cards, so the only anchor text pointing at an essay is its alt
+  attribute. These pages give every essay one plain, permanent, title-bearing text link
+  on a URL that does not move, which is what a crawler actually follows.
+
+  The caller supplies: listTitle, listKicker, listIntro, listUrl, listEssays,
+  and optionally listCrumb (the breadcrumb leaf name, when this is a category archive).
+#}<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ listTitle }} — Preeti Kennedy</title>
+<meta name="description" content="{{ listIntro }}">
+<link rel="canonical" href="{{ site.url }}{{ listUrl }}">
+<meta name="theme-color" content="#0C0B09">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Preeti Kennedy">
+<meta property="og:url" content="{{ site.url }}{{ listUrl }}">
+<meta property="og:title" content="{{ listTitle }} — Preeti Kennedy">
+<meta property="og:description" content="{{ listIntro }}">
+<meta property="og:image" content="{{ site.url }}/images/og-preeti-kennedy.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_AU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ listTitle }} — Preeti Kennedy">
+<meta name="twitter:description" content="{{ listIntro }}">
+<meta name="twitter:image" content="{{ site.url }}/images/og-preeti-kennedy.jpg">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": {{ listTitle | jsonString | safe }},
+  "description": {{ listIntro | jsonString | safe }},
+  "url": "{{ site.url }}{{ listUrl }}",
+  "inLanguage": "en-AU",
+  "isPartOf": { "@type": "WebSite", "name": "Preeti Kennedy", "url": "{{ site.url }}/" },
+  "about": { "@type": "Person", "name": "Preeti Kennedy", "url": "{{ site.url }}/" },
+  "mainEntity": {
+    "@type": "ItemList",
+    "numberOfItems": {{ listEssays | length }},
+    "itemListElement": [
+      {%- for essay in listEssays %}
+      {
+        "@type": "ListItem",
+        "position": {{ loop.index }},
+        "url": "{{ site.url }}/insights/{{ essay.data.slug }}",
+        "name": {{ essay.data.title | jsonString | safe }}
+      }{% if not loop.last %},{% endif %}
+      {%- endfor %}
+    ]
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ site.url }}/" },
+    { "@type": "ListItem", "position": 2, "name": "Insights"{% if listCrumb %}, "item": "{{ site.url }}/insights"{% endif %} }
+    {%- if listCrumb %},
+    { "@type": "ListItem", "position": 3, "name": {{ listCrumb | jsonString | safe }} }
+    {%- endif %}
+  ]
+}
+</script>
+{% include "analytics.njk" %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Outfit:wght@200;300;400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Outfit:wght@200;300;400&display=swap" media="print" onload="this.media='all';this.onload=null">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=Outfit:wght@200;300;400&display=swap"></noscript>
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #0C0B09; color: #EDE7DB; font-family: 'Outfit', sans-serif; -webkit-font-smoothing: antialiased; }
+  .skip-link { position: absolute; left: -9999px; top: 0; z-index: 200; background: #C6A15B; color: #0C0B09;
+               padding: 14px 22px; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; }
+  .skip-link:focus { left: 8px; top: 8px; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { color: #C6A15B; }
+  ::selection { background: #C6A15B; color: #0C0B09; }
+  a:focus-visible { outline: 2px solid #C6A15B; outline-offset: 3px; border-radius: 2px; }
+  .grain { position: fixed; inset: 0; z-index: 60; pointer-events: none; opacity: 0.35; mix-blend-mode: overlay; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E"); }
+
+  /* Same gold-hairline pill idiom as the essay pages, so the listing reads as part
+     of the same site rather than a bolted-on archive. */
+  nav.bar { position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; justify-content: space-between; align-items: center; padding: 24px 48px; background: linear-gradient(rgba(12,11,9,0.9), rgba(12,11,9,0)); -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px); }
+  nav.bar .home { display: inline-flex; align-items: center; gap: 11px; padding: 8px 20px 8px 15px;
+                  min-height: 44px; box-sizing: border-box;
+                  border: 1px solid rgba(198,161,91,0.32); border-radius: 999px;
+                  background: rgba(198,161,91,0.06); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+                  transition: border-color 0.35s ease, background 0.35s ease; }
+  nav.bar .home:hover { border-color: rgba(198,161,91,0.82); background: rgba(198,161,91,0.13); }
+  nav.bar .home-arw { width: 19px; height: 10px; flex: 0 0 auto; display: block; color: rgba(198,161,91,0.88);
+                      transition: transform 0.4s cubic-bezier(0.2,0.6,0.2,1), color 0.35s ease; }
+  nav.bar .home:hover .home-arw { transform: translateX(-4px); color: #C6A15B; }
+  nav.bar .home-mark { font-family: 'Cormorant Garamond', serif; font-size: 21px; letter-spacing: 0.16em; line-height: 1; color: #EDE7DB; transition: color 0.35s ease; }
+  nav.bar .home:hover .home-mark { color: #C6A15B; }
+  nav.bar .home-dot { color: #C6A15B; }
+  nav.bar .home-rule { width: 1px; height: 13px; flex: 0 0 auto; background: rgba(198,161,91,0.38); }
+  nav.bar .home-lbl { font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(237,231,219,0.74); transition: color 0.35s ease; }
+  nav.bar .home:hover .home-lbl { color: #C6A15B; }
+  nav.bar .home:focus-visible { outline: 2px solid #C6A15B; outline-offset: 3px; border-radius: 999px; }
+  nav.bar .back { position: relative; font-size: 11px; letter-spacing: 0.28em; text-transform: uppercase; color: rgba(237,231,219,0.66); padding-bottom: 4px; transition: color 0.35s ease; }
+  nav.bar .back::after { content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: right; transition: transform 0.45s cubic-bezier(0.2,0.6,0.2,1); }
+  nav.bar .back:hover::after { transform: scaleX(1); transform-origin: left; }
+
+  .wrap { max-width: 860px; margin: 0 auto; padding: 160px 28px 90px; }
+  .crumbs { font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(237,231,219,0.52); margin-bottom: 30px; }
+  .crumbs a:hover { color: #C6A15B; }
+  .crumbs .sep { color: rgba(198,161,91,0.6); padding: 0 10px; }
+  .kicker { font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #C6A15B; margin-bottom: 26px; }
+  h1.title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(40px, 5.4vw, 68px); line-height: 1.08; margin: 0 0 28px; letter-spacing: 0.005em; text-wrap: balance; }
+  .intro { font-size: 19px; font-weight: 300; line-height: 1.8; color: rgba(237,231,219,0.78); max-width: 640px; margin: 0 0 12px; }
+
+  /* Category rail. Marks the current archive with aria-current, not colour alone. */
+  .cats { display: flex; flex-wrap: wrap; gap: 10px; margin: 44px 0 0; padding: 34px 0 0; border-top: 1px solid rgba(237,231,219,0.14); }
+  .cats a { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(237,231,219,0.7);
+            border: 1px solid rgba(198,161,91,0.3); border-radius: 999px; padding: 10px 18px; min-height: 40px;
+            display: inline-flex; align-items: center; transition: border-color 0.3s ease, background 0.3s ease, color 0.3s ease; }
+  .cats a:hover { border-color: rgba(198,161,91,0.8); background: rgba(198,161,91,0.1); color: #C6A15B; }
+  .cats a[aria-current="page"] { background: #C6A15B; border-color: #C6A15B; color: #0C0B09; }
+
+  ol.list { list-style: none; margin: 54px 0 0; padding: 0; counter-reset: e; }
+  ol.list li { counter-increment: e; border-top: 1px solid rgba(237,231,219,0.12); }
+  ol.list li:last-child { border-bottom: 1px solid rgba(237,231,219,0.12); }
+  ol.list a.row { display: grid; grid-template-columns: 54px 1fr; gap: 22px; align-items: baseline;
+                  padding: 30px 0; transition: padding-left 0.4s cubic-bezier(0.2,0.6,0.2,1); }
+  ol.list a.row:hover { padding-left: 12px; }
+  ol.list a.row::before { content: counter(e, decimal-leading-zero); font-size: 11px; letter-spacing: 0.2em; color: rgba(198,161,91,0.7); }
+  .e-title { font-family: 'Cormorant Garamond', serif; font-weight: 300; font-size: clamp(24px, 3vw, 34px); line-height: 1.16; margin-bottom: 12px; transition: color 0.3s ease; }
+  a.row:hover .e-title { color: #C6A15B; }
+  .e-desc { font-size: 16px; font-weight: 200; line-height: 1.75; color: rgba(237,231,219,0.7); margin-bottom: 14px; max-width: 620px; }
+  .e-meta { font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(237,231,219,0.5); display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
+  .e-meta time { letter-spacing: 0.12em; }
+  .e-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: #C6A15B; }
+  .foot { margin-top: 76px; padding-top: 34px; border-top: 1px solid rgba(237,231,219,0.14); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(237,231,219,0.62); }
+  .foot a { color: #C6A15B; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; } }
+  @media (max-width: 640px) {
+    nav.bar { padding: 20px 24px; }
+    nav.bar .home { gap: 9px; padding: 7px 16px 7px 12px; }
+    nav.bar .home-mark { font-size: 19px; }
+    nav.bar .home-lbl { letter-spacing: 0.2em; }
+    nav.bar .back { font-size: 10px; letter-spacing: 0.2em; }
+    .wrap { padding: 130px 22px 70px; }
+    ol.list a.row { grid-template-columns: 1fr; gap: 10px; padding: 26px 0; }
+    .intro { font-size: 17px; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#list">Skip to the essays</a>
+<div class="grain"></div>
+<nav class="bar">
+  <a href="/#top" class="home" aria-label="Preeti Kennedy — return to homepage">
+    <svg class="home-arw" viewBox="0 0 22 10" aria-hidden="true" focusable="false"><path d="M21 5H1m0 0 4.6-4M1 5l4.6 4" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="home-mark">P<span class="home-dot">·</span>K</span>
+    <span class="home-rule" aria-hidden="true"></span>
+    <span class="home-lbl">Home</span>
+  </a>
+  <a href="/#insights" class="back">On the homepage</a>
+</nav>
+<main class="wrap">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="/">Home</a><span class="sep" aria-hidden="true">/</span>{% if listCrumb %}<a href="/insights">Insights</a><span class="sep" aria-hidden="true">/</span><span aria-current="page">{{ listCrumb }}</span>{% else %}<span aria-current="page">Insights</span>{% endif %}
+  </nav>
+  <div class="kicker">{{ listKicker }}</div>
+  <h1 class="title">{{ listTitle }}</h1>
+  <p class="intro">{{ listIntro }}</p>
+
+  <nav class="cats" aria-label="Essay categories">
+    <a href="/insights"{% if not listCrumb %} aria-current="page"{% endif %}>All essays</a>
+    {%- for cat in collections.categories %}
+    <a href="/insights/category/{{ cat.slug }}"{% if listCrumb == cat.name %} aria-current="page"{% endif %}>{{ cat.name }}</a>
+    {%- endfor %}
+  </nav>
+
+  <ol class="list" id="list">
+    {%- for essay in listEssays %}
+    <li>
+      <a class="row" href="/insights/{{ essay.data.slug }}">
+        <div>
+          <div class="e-title">{{ essay.data.title }}</div>
+          <div class="e-desc">{{ essay.data.description }}</div>
+          <div class="e-meta">
+            <span>{{ essay.data.category }}</span>
+            <span class="dot"></span>
+            <time datetime="{{ essay.data.date | isoDate }}">{{ essay.data.date | readableDate }}</time>
+            <span class="dot"></span>
+            <span>{{ essay.data.readTime }} min read</span>
+          </div>
+        </div>
+      </a>
+    </li>
+    {%- endfor %}
+  </ol>
+
+  <div class="foot">
+    <a href="/#insights">←&#xFE0E; Back to the homepage</a>
+    <a href="https://au.linkedin.com/in/preetikennedy" target="_blank" rel="noopener">Connect on LinkedIn ↗&#xFE0E;</a>
+  </div>
+</main>
+</body>
+</html>

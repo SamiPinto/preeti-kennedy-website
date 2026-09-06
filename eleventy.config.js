@@ -105,6 +105,55 @@ export default function (eleventyConfig) {
   /** JSON-LD and meta tags need a plain-text, quote-safe string. */
   eleventyConfig.addFilter("jsonString", (s) => JSON.stringify(String(s ?? "")));
 
+  /**
+   * Category archive slug. Categories are free text in the CMS ("Personal / Founder
+   * Brand"), so the slash has to collapse rather than become a path separator —
+   * otherwise the archive would nest a directory deep and the URL would not match
+   * what the sitemap and breadcrumb claim.
+   */
+  eleventyConfig.addFilter("categorySlug", (s) =>
+    String(s ?? "")
+      .toLowerCase()
+      .replace(/&/g, " and ")
+      .replace(/[^a-z0-9]+/g, "-")
+      .replace(/^-+|-+$/g, "")
+  );
+
+  /**
+   * Human-readable date for the byline. Built from UTC parts for the same reason
+   * isoDate is: the frontmatter dates are local-midnight Dates, and toLocaleDateString
+   * would render the previous day west of Greenwich.
+   */
+  eleventyConfig.addFilter("readableDate", (d) => {
+    if (!d) return "";
+    const dt = typeof d === "string" ? new Date(`${d.slice(0, 10)}T00:00:00Z`) : d;
+    if (Number.isNaN(dt.getTime())) return "";
+    const months = ["January","February","March","April","May","June",
+                    "July","August","September","October","November","December"];
+    return `${dt.getUTCDate()} ${months[dt.getUTCMonth()]} ${dt.getUTCFullYear()}`;
+  });
+
+  /**
+   * One entry per category that has at least one published essay, so an archive is
+   * never generated for a category the CMS no longer uses.
+   */
+  eleventyConfig.addCollection("categories", (api) => {
+    const slugify = (s) =>
+      String(s ?? "").toLowerCase().replace(/&/g, " and ")
+        .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+    const byName = new Map();
+    for (const essay of api
+      .getFilteredByGlob("src/insights/*.md")
+      .filter((item) => item.data.published !== false)
+      .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0))) {
+      const name = essay.data.category;
+      if (!name) continue;
+      if (!byName.has(name)) byName.set(name, { name, slug: slugify(name), essays: [] });
+      byName.get(name).essays.push(essay);
+    }
+    return [...byName.values()].sort((a, b) => a.name.localeCompare(b.name));
+  });
+
   eleventyConfig.addFilter("isoDate", (d) => {
     if (!d) return "";
     if (typeof d === "string") return d.slice(0, 10);
