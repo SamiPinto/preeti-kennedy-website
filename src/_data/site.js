@@ -23,6 +23,11 @@ export default {
   url: "https://preetikennedy.com",
   name: "Preeti Kennedy",
 
+  // Google Tag Manager container ID. GTM owns tagging for this site, so ga4Id
+  // below stays empty on purpose: configuring GA4 through the container AND
+  // through a gtag snippet double-counts every pageview.
+  gtmId: "GTM-NWX67S3D",
+
   ga4Id: "",
   gscVerification: "",
 };
